@@ -76,8 +76,11 @@ public class VeracrossHttpClient
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
 
             // Create a post request.
-            HttpPost post = new HttpPost(loginUrl);
+            HttpPost request = new HttpPost(loginUrl);
 
+            // Add the entity to the request.
+            request.setEntity(formEntity);
+            
         }
         catch (UnsupportedEncodingException e)
         {
