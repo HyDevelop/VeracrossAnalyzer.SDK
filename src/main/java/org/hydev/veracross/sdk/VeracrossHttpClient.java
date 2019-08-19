@@ -1,6 +1,6 @@
 package org.hydev.veracross.sdk;
 
-import lombok.RequiredArgsConstructor;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  * HTTP Client for the veracross sdk.
@@ -12,13 +12,19 @@ import lombok.RequiredArgsConstructor;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-08-19 13:45
  */
-@RequiredArgsConstructor
 public class VeracrossHttpClient
 {
-    /**
-     * Veracross school code (Eg. "sjp")
-     */
     private final String schoolCode;
+
+    /**
+     * Construct a veracross http client.
+     *
+     * @param schoolCode Veracross school code (Eg. "sjp")
+     */
+    public VeracrossHttpClient(String schoolCode)
+    {
+        this.schoolCode = schoolCode;
+    }
 
     /**
      * Login and save the session
