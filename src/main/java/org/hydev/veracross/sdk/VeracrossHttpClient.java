@@ -53,6 +53,8 @@ public class VeracrossHttpClient
      */
     public void login(String username, String password)
     {
+        // Combine the login url
+        String loginUrl = "https://accounts.veracross.com/" + schoolCode + "/portals/login";
 
     }
 }
