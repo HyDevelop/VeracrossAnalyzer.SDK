@@ -87,6 +87,11 @@ public class VeracrossHttpClient
             CloseableHttpResponse response = httpClient.execute(request);
             int status = response.getStatusLine().getStatusCode();
             String responseText = EntityUtils.toString(response.getEntity(), "UTF-8");
+
+            // Debug output TODO: Remove this
+            System.out.println("Status: " + status);
+            System.out.println("Text: " + responseText);
+
         }
         catch (UnsupportedEncodingException e)
         {
