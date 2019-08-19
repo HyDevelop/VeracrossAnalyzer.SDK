@@ -73,7 +73,7 @@ public class VeracrossHttpClient
         try
         {
             // Create from entity from param pairs
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params);
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
 
             // Create a post request.
             HttpPost post = new HttpPost(loginUrl);
@@ -82,7 +82,7 @@ public class VeracrossHttpClient
         catch (UnsupportedEncodingException e)
         {
             // This would never happen during runtime if the JVM encoding
-            // is correctly configured.
+            // is correctly configured to UTF-8.
             throw new RuntimeException(e);
         }
     }
