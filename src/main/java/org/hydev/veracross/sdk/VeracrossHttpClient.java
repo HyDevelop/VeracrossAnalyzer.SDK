@@ -1,6 +1,8 @@
 package org.hydev.veracross.sdk;
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 /**
  * HTTP Client for the veracross sdk.
@@ -15,6 +17,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class VeracrossHttpClient
 {
     private final String schoolCode;
+
+    private final CloseableHttpClient httpClient;
 
     /**
      * Construct a veracross http client.
