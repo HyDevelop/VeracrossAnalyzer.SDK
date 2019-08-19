@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -9,6 +10,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,9 +70,20 @@ public class VeracrossHttpClient
         params.add(new BasicNameValuePair("username", username));
         params.add(new BasicNameValuePair("password", password));
 
-        // Create a post request.
-        HttpPost post = new HttpPost(loginUrl);
+        try
+        {
+            // Create from entity from param pairs
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params);
 
-        
+            // Create a post request.
+            HttpPost post = new HttpPost(loginUrl);
+
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            // This would never happen during runtime if the JVM encoding
+            // is correctly configured.
+            throw new RuntimeException(e);
+        }
     }
 }
