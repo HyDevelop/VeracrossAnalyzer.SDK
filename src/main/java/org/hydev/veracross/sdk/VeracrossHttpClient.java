@@ -1,10 +1,16 @@
 package org.hydev.veracross.sdk;
 
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * HTTP Client for the veracross sdk.
@@ -57,8 +63,14 @@ public class VeracrossHttpClient
         // Combine the login url
         String loginUrl = "https://accounts.veracross.com/" + schoolCode + "/portals/login";
 
-        // Create a get request.
-        HttpGet request = new HttpGet(loginUrl);
+        // Create param pairs
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("password", password));
 
+        // Create a post request.
+        HttpPost post = new HttpPost(loginUrl);
+
+        
     }
 }
