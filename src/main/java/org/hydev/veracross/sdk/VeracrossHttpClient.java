@@ -1,7 +1,9 @@
 package org.hydev.veracross.sdk;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -9,7 +11,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,16 +81,23 @@ public class VeracrossHttpClient
 
             // Create a post request.
             HttpPost request = new HttpPost(loginUrl);
-
-            // Add the entity to the request.
             request.setEntity(formEntity);
-            
+
+            // Send request
+            CloseableHttpResponse response = httpClient.execute(request);
+            int status = response.getStatusLine().getStatusCode();
+            String responseText = EntityUtils.toString(response.getEntity(), "UTF-8");
         }
         catch (UnsupportedEncodingException e)
         {
             // This would never happen during runtime if the JVM encoding
             // is correctly configured to UTF-8.
             throw new RuntimeException(e);
+        }
+        catch (IOException e)
+        {
+            // There is not much to do.
+            throw new RuntimeException("Veracross SDK: Login Failed", e);
         }
     }
 }
