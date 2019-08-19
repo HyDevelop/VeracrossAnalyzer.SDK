@@ -17,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class VeracrossHttpClientTest
 {
-    
+    VeracrossHttpClient httpClient;
 
     @BeforeAll
     void init()
     {
-
+        httpClient = new VeracrossHttpClient("sjp");
     }
 
     @Test
     void login()
     {
-
+        
     }
 }
