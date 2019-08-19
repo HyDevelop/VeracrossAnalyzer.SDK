@@ -19,7 +19,7 @@ public class VeracrossHttpClient
 {
     private final String schoolCode;
 
-    private final CloseableHttpClient httpClient;
+    private CloseableHttpClient httpClient;
 
     /**
      * Construct a veracross http client.
@@ -41,6 +41,9 @@ public class VeracrossHttpClient
 
         // Set the user agent
         builder.setUserAgent(VeracrossConstants.USER_AGENT);
+
+        // Build http client
+        httpClient = builder.build();
     }
 
     /**
