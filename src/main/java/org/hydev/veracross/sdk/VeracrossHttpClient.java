@@ -1,5 +1,6 @@
 package org.hydev.veracross.sdk;
 
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -55,6 +56,9 @@ public class VeracrossHttpClient
     {
         // Combine the login url
         String loginUrl = "https://accounts.veracross.com/" + schoolCode + "/portals/login";
+
+        // Create a get request.
+        HttpGet request = new HttpGet(loginUrl);
 
     }
 }
