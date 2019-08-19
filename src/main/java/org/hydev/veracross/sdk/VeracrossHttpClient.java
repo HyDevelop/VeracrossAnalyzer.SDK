@@ -15,7 +15,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VeracrossHttpClient
 {
-    private final String baseUrl;
+    /**
+     * Veracross school code (Eg. "sjp")
+     */
+    private final String schoolCode;
 
     /**
      * Login and save the session
