@@ -3,6 +3,7 @@ package org.hydev.veracross.sdk;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 
 /**
  * HTTP Client for the veracross sdk.
@@ -28,6 +29,18 @@ public class VeracrossHttpClient
     public VeracrossHttpClient(String schoolCode)
     {
         this.schoolCode = schoolCode;
+    }
+
+    /**
+     * Initialize the apache http client
+     */
+    private void initHttpClient()
+    {
+        // Create a http client builder
+        HttpClientBuilder builder = HttpClients.custom();
+
+        // Set the user agent
+        builder.setUserAgent(VeracrossConstants.USER_AGENT);
     }
 
     /**
