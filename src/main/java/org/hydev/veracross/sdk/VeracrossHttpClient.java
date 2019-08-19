@@ -29,6 +29,8 @@ public class VeracrossHttpClient
     public VeracrossHttpClient(String schoolCode)
     {
         this.schoolCode = schoolCode;
+
+        initHttpClient();
     }
 
     /**
