@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -80,4 +81,38 @@ public class StJohnsHttpClient extends GeneralHttpClient
         }
     }
 
+    /**
+     * Get the veracross single sign on token.
+     *
+     * @return SSO Token string
+     */
+    public String getVeracrossSSOToken()
+    {
+        // Create request
+        HttpGet get = new HttpGet("https://www.stjohnsprep.org/fs/sso/?type=Veracross-SSO");
+
+        try
+        {
+            // Send it
+            CloseableHttpResponse response = httpClient.execute(get);
+
+            // Get text
+            String responseText = EntityUtils.toString(response.getEntity(), "UTF-8");
+
+            // Match text
+            Matcher matcher = SSO_TOKEN_PATTERN.matcher(responseText);
+            if (!matcher.find())
+            {
+                throw new RuntimeException("Veracross SDK: Unsupported response: " + responseText);
+            }
+
+            // Return result
+            return matcher.group();
+        }
+        catch (IOException e)
+        {
+            // There is not much to do.
+            throw new RuntimeException("Veracross SDK: Failed to obtain SSO token", e);
+        }
+    }
 }
