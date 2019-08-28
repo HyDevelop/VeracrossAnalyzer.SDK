@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 /**
  * HTTP Client for the veracross sdk specific to SJP.
  * <p>
@@ -24,6 +26,9 @@ import java.util.List;
  */
 public class StJohnsHttpClient extends GeneralHttpClient
 {
+    private static final Pattern SSO_USERNAME_PATTERN = Pattern.compile("(?<=name=\"username\" value=\").*(?=\">)");
+    private static final Pattern SSO_TOKEN_PATTERN = Pattern.compile("(?<=name=\"token\" value=\").*(?=\">)");
+
     /**
      * Login and save the session
      */
