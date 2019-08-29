@@ -29,27 +29,19 @@ public class StJohnsHttpClient extends GeneralHttpClient
     /**
      * Login and save the session
      */
-    public void login(String username, String password)
+    public void login(String username, String password) throws IOException
     {
         // Keep the username
         this.username = username;
 
-        try
-        {
-            // Post request
-            HttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
-                            "username", username,
-                            "password", password,
-                            "submit", "login");
+        // Post request
+        HttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
+                        "username", username,
+                        "password", password,
+                        "submit", "login");
 
-            int status = response.getStatusLine().getStatusCode();
-            String responseText = getResponseBody(response);
-        }
-        catch (IOException e)
-        {
-            // There is not much to do.
-            throw new RuntimeException("Veracross SDK: Login Failed", e);
-        }
+        int status = response.getStatusLine().getStatusCode();
+        String responseText = getResponseBody(response);
     }
 
     /**
@@ -92,7 +84,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
      *
      * @return Veracross http client
      */
-    public VeracrossHttpClient veracrossLoginSSO()
+    public VeracrossHttpClient veracrossLoginSSO() throws IOException
     {
         // Create veracross client
         VeracrossHttpClient client = new VeracrossHttpClient();
