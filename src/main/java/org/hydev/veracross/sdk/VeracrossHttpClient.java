@@ -24,19 +24,14 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param username Username
      * @param ssoToken SJP Single sign on token
      */
-    public void loginSJP(String username, String ssoToken)
+    public void loginSJP(String username, String ssoToken) throws IOException
     {
-        try
-        {
-            // Post response
-            HttpResponse response = postForm("https://portals.veracross.com/sjp/login?WCI=Login&WCE=Submit", null,
-                            "username", username,
-                            "token", ssoToken);
+        // Post response
+        HttpResponse response = postForm("https://portals.veracross.com/sjp/login?WCI=Login&WCE=Submit", null,
+                        "username", username,
+                        "token", ssoToken);
+    }
 
-            int status = response.getStatusLine().getStatusCode();
-            String responseText = getResponseBody(response);
-        }
-        catch (IOException e)
         {
             // There is not much to do.
             throw new RuntimeException("Veracross SDK: Login Failed", e);
