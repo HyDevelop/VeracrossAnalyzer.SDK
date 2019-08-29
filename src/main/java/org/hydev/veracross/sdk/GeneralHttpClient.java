@@ -29,7 +29,7 @@ import java.util.List;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-08-28 17:12
  */
-public class GeneralHttpClient
+public abstract class GeneralHttpClient
 {
     protected CloseableHttpClient httpClient;
     protected CookieStore cookies;
