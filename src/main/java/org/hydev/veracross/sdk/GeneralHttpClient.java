@@ -2,6 +2,7 @@ package org.hydev.veracross.sdk;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -10,8 +11,12 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO: Write a description for this class!
@@ -55,6 +60,30 @@ public class GeneralHttpClient
 
         // Build http client
         httpClient = builder.build();
+    }
+
+
+    protected HttpResponse postForm(String url, PreProcessor preProcessor, String... entity) throws IOException
+    {
+        try
+        {
+            // Map param pairs
+            List<NameValuePair> params = new ArrayList<>();
+            for (int i = 0; i < entity.length; i += 2)
+            {
+                params.add(new BasicNameValuePair(entity[i], entity[i + 1]));
+            }
+
+            // Create form entity
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
+
+            return postForm(url, preProcessor, formEntity);
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            // Never happenes
+            throw new RuntimeException(e);
+        }
     }
 
     /**
