@@ -5,6 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -133,5 +134,20 @@ public abstract class GeneralHttpClient
     protected String getResponseBody(HttpResponse response) throws IOException
     {
         return EntityUtils.toString(response.getEntity(), "UTF-8");
+    }
+
+    /**
+     * Send a GET request
+     *
+     * @param url Request URL
+     * @return Response
+     */
+    protected HttpResponse get(String url) throws IOException
+    {
+        // Create request
+        HttpGet get = new HttpGet(url);
+
+        // Send request
+        return httpClient.execute(get);
     }
 }
