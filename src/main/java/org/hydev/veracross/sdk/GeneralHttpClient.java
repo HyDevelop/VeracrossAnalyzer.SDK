@@ -150,4 +150,15 @@ public abstract class GeneralHttpClient
         // Send request
         return httpClient.execute(get);
     }
+
+    /**
+     * Send a GET request and return the response body.
+     *
+     * @param url Request URL
+     * @return Response
+     */
+    protected String getBody(String url) throws IOException
+    {
+        return getResponseBody(get(url));
+    }
 }
