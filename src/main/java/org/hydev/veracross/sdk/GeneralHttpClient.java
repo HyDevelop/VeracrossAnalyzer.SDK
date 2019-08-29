@@ -5,6 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -65,7 +66,8 @@ public abstract class GeneralHttpClient
     }
 
 
-    protected HttpResponse postForm(String url, PreProcessor preProcessor, String... entity) throws IOException
+    protected CloseableHttpResponse postForm(String url, PreProcessor preProcessor, String... entity)
+            throws IOException
     {
         try
         {
@@ -96,7 +98,8 @@ public abstract class GeneralHttpClient
      * @param entity Form entity.
      * @return HTTP Response
      */
-    protected HttpResponse postForm(String url, PreProcessor preProcessor, UrlEncodedFormEntity entity) throws IOException
+    protected CloseableHttpResponse postForm(String url, PreProcessor preProcessor, UrlEncodedFormEntity entity)
+            throws IOException
     {
         // Create a post request.
         HttpPost request = new HttpPost(url);
@@ -142,7 +145,7 @@ public abstract class GeneralHttpClient
      * @param url Request URL
      * @return Response
      */
-    protected HttpResponse get(String url) throws IOException
+    protected CloseableHttpResponse get(String url) throws IOException
     {
         // Create request
         HttpGet get = new HttpGet(url);
