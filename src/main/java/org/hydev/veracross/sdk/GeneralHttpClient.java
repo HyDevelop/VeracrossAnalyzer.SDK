@@ -2,7 +2,6 @@ package org.hydev.veracross.sdk;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -61,12 +60,11 @@ public class GeneralHttpClient
     /**
      * Post a form
      *
-     * @param client HTTP Client
      * @param url Request URL.
      * @param entity Form entity.
      * @return HTTP Response
      */
-    protected HttpResponse postForm(HttpClient client, String url, UrlEncodedFormEntity entity) throws IOException
+    protected HttpResponse postForm(String url, UrlEncodedFormEntity entity) throws IOException
     {
         // Create a post request.
         HttpPost request = new HttpPost(url);
