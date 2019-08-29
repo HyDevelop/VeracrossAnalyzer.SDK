@@ -162,6 +162,16 @@ public abstract class GeneralHttpClient
      */
     protected String getBody(String url) throws IOException
     {
-        return getResponseBody(get(url));
+        // Get response
+        CloseableHttpResponse response = get(url);
+
+        // Read response body
+        String body = getResponseBody(response);
+
+        // Close response
+        response.close();
+
+        // Return result
+        return body;
     }
 }
