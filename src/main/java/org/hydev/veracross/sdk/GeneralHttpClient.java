@@ -61,10 +61,11 @@ public class GeneralHttpClient
      * Post a form
      *
      * @param url Request URL.
+     * @param preProcessor Pre-processor
      * @param entity Form entity.
      * @return HTTP Response
      */
-    protected HttpResponse postForm(String url, UrlEncodedFormEntity entity) throws IOException
+    protected HttpResponse postForm(String url, PreProcessor preProcessor, UrlEncodedFormEntity entity) throws IOException
     {
         // Create a post request.
         HttpPost request = new HttpPost(url);
@@ -74,6 +75,12 @@ public class GeneralHttpClient
 
         // Create from entity from param pairs
         request.setEntity(entity);
+
+        // PreProcess
+        if (preProcessor != null)
+        {
+            request = (HttpPost) preProcessor.process(request);
+        }
 
         // Send request
         return httpClient.execute(request);
