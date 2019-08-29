@@ -33,9 +33,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public void loginSJP(String username, String ssoToken) throws IOException
     {
         // Post response
-        HttpResponse response = postForm("https://portals.veracross.com/sjp/login?WCI=Login&WCE=Submit", null,
+        postForm("https://portals.veracross.com/sjp/login?WCI=Login&WCE=Submit", null,
                         "username", username,
-                        "token", ssoToken);
+                        "token", ssoToken).close();
     }
 
         {

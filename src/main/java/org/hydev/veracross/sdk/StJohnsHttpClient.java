@@ -1,6 +1,5 @@
 package org.hydev.veracross.sdk;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
@@ -35,13 +34,16 @@ public class StJohnsHttpClient extends GeneralHttpClient
         this.username = username;
 
         // Post request
-        HttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
+        CloseableHttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
                         "username", username,
                         "password", password,
                         "submit", "login");
 
         int status = response.getStatusLine().getStatusCode();
         String responseText = getResponseBody(response);
+
+        // Close it
+        response.close();
     }
 
     /**
