@@ -18,6 +18,12 @@ import java.io.IOException;
  */
 public class VeracrossHttpClient extends GeneralHttpClient
 {
+    private static final String URL_BASE = "https://portals-app.veracross.com/sjp/";
+    private static final String API_MESSAGES = "mailbox/messages";
+    private static final String API_CALENDAR_EVENTS = "student/calendar/student/calendar_events";
+    private static final String API_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
+    private static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
+
     /**
      * Login and save the session
      *
