@@ -3,7 +3,6 @@ package org.hydev.veracross.sdk;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -76,8 +75,6 @@ public class GeneralHttpClient
         request.setEntity(entity);
 
         // Send request
-        CloseableHttpResponse response = httpClient.execute(request);
-
-        return response;
+        return httpClient.execute(request);
     }
 }
