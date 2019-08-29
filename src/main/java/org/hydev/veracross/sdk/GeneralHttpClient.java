@@ -1,5 +1,6 @@
 package org.hydev.veracross.sdk;
 
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -76,5 +77,13 @@ public class GeneralHttpClient
 
         // Send request
         return httpClient.execute(request);
+    }
+
+    /**
+     * This interface is used to preprocess the request before it is sent.
+     */
+    protected interface PreProcessor
+    {
+        HttpRequest process(HttpRequest request);
     }
 }
