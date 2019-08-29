@@ -12,6 +12,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -121,5 +122,16 @@ public class GeneralHttpClient
     protected interface PreProcessor
     {
         HttpRequest process(HttpRequest request);
+    }
+
+    /**
+     * Get the response body from a response
+     *
+     * @param response Http response
+     * @return String
+     */
+    protected String getResponseBody(HttpResponse response) throws IOException
+    {
+        return EntityUtils.toString(response.getEntity(), "UTF-8");
     }
 }
