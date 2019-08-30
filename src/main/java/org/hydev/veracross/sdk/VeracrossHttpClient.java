@@ -1,9 +1,12 @@
 package org.hydev.veracross.sdk;
 
+import com.google.gson.reflect.TypeToken;
 import org.hydev.veracross.sdk.model.VeracrossAssignments;
 import org.hydev.veracross.sdk.model.VeracrossCourse;
+import org.hydev.veracross.sdk.model.VeracrossMessage;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,5 +72,21 @@ public class VeracrossHttpClient extends GeneralHttpClient
     {
         String url = URL_BASE + String.format(API_COURSE_ASSIGNMENTS, courseId);
         return getJson(url, VeracrossAssignments.class);
+    }
+
+    /**
+     * Get the list of messages from the specified starting index to the
+     * latest.
+     *
+     * @param start Starting index.
+     * @return List of messages
+     */
+    public List<VeracrossMessage> getMessages(long start) throws IOException
+    {
+        // Since I can't pass in list of a specific type as a type,
+        // a TypeToken is used to generate the type.
+        Type type = new TypeToken<List<VeracrossMessage>>(){}.getType();
+
+        return getJson(URL_BASE + API_MESSAGES, type, "start", start);
     }
 }
