@@ -1,8 +1,10 @@
 package org.hydev.veracross.sdk;
 
-import org.apache.http.HttpResponse;
+import org.hydev.veracross.sdk.model.VeracrossCourse;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * HTTP Client for the veracross sdk (Currently, this SDK is for St.
@@ -38,9 +40,20 @@ public class VeracrossHttpClient extends GeneralHttpClient
                         "token", ssoToken).close();
     }
 
-        {
-            // There is not much to do.
-            throw new RuntimeException("Veracross SDK: Login Failed", e);
-        }
+    /**
+     * Get courses.
+     *
+     * @return List of courses.
+     */
+    public List<VeracrossCourse> getCourses() throws IOException
+    {
+        // Create result array
+        List<VeracrossCourse> result = new ArrayList<>();
+
+        // Get html
+        String responseHtml = getBody(URL_BASE);
+
+        // Parse HTML
+        return VeracrossHtmlParser.parseCourses(responseHtml);
     }
 }
