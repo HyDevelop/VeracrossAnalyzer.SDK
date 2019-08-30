@@ -1,5 +1,6 @@
 package org.hydev.veracross.sdk;
 
+import org.hydev.veracross.sdk.model.VeracrossAssignments;
 import org.hydev.veracross.sdk.model.VeracrossCourse;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
-     * Get courses.
+     * Get the list of courses.
      *
      * @return List of courses.
      */
@@ -55,5 +56,18 @@ public class VeracrossHttpClient extends GeneralHttpClient
 
         // Parse HTML
         return VeracrossHtmlParser.parseCourses(responseHtml);
+    }
+
+    /**
+     * Get the list of assignments from the start of the semester for the
+     * specified course.
+     *
+     * @param courseId ID of the course
+     * @return List of assignments
+     */
+    public VeracrossAssignments getAssignments(long courseId) throws IOException
+    {
+        String url = URL_BASE + String.format(API_COURSE_ASSIGNMENTS, courseId);
+        return getJson(url, VeracrossAssignments.class);
     }
 }
