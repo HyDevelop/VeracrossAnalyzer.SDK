@@ -1,5 +1,8 @@
 package org.hydev.veracross.sdk;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * This class contains utility methods that parse the html pages on
  * Veracross into more useful information.
@@ -13,5 +16,5 @@ package org.hydev.veracross.sdk;
  */
 public class VeracrossHtmlParser
 {
-    
+    private static final Pattern URL_NUMBER_PATTERN = Pattern.compile("(?<=/).[0-9]*(?=/)");
 }
