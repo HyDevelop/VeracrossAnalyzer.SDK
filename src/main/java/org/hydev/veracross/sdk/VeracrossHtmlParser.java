@@ -17,4 +17,19 @@ import java.util.regex.Pattern;
 public class VeracrossHtmlParser
 {
     private static final Pattern URL_NUMBER_PATTERN = Pattern.compile("(?<=/).[0-9]*(?=/)");
+    
+    /**
+     * Find the first number in a url.
+     *
+     * @param url Url (eg. "/course/12345/website/")
+     * @return The first number, -1 if not found.
+     */
+    private static long findNumberInUrl(String url)
+    {
+        url += "/";
+        Matcher matcher = URL_NUMBER_PATTERN.matcher(url);
+
+        if (matcher.find()) return Long.parseLong(matcher.group());
+        return -1;
+    }
 }
