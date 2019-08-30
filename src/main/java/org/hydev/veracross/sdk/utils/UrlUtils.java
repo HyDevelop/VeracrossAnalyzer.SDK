@@ -26,13 +26,13 @@ public class UrlUtils
      */
     public static String buildURL(String base, Object... params)
     {
-        // Null / empty cases
-        if (params == null || params.length < 2) return "";
-
         try
         {
             // Create url builder
             URIBuilder builder = new URIBuilder(base);
+
+            // Null / empty cases
+            if (params == null || params.length < 2) return builder.build().toURL().toString();
 
             // Add params
             for (int i = 0; i < params.length; i += 2)
