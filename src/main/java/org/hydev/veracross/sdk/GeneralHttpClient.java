@@ -134,7 +134,7 @@ public abstract class GeneralHttpClient
      * @param response Http response
      * @return String
      */
-    protected String getResponseBody(HttpResponse response) throws IOException
+    protected String getBody(HttpResponse response) throws IOException
     {
         return EntityUtils.toString(response.getEntity(), "UTF-8");
     }
@@ -166,7 +166,7 @@ public abstract class GeneralHttpClient
         CloseableHttpResponse response = get(url);
 
         // Read response body
-        String body = getResponseBody(response);
+        String body = getBody(response);
 
         // Close response
         response.close();
