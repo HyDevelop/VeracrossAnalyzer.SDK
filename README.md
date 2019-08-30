@@ -27,7 +27,10 @@ you need to find out how your school handles single-sign-on and implement it you
 ### Features:
 
 * Log in to Veracross with single-sign-on.
-
+* Get the list of courses the student is taking.
+* Get a list of all the assignments in a course.
+* Get the list of messages, or notifications.
+* Get the list of calendar events in between dates.
 
 <br>
 
