@@ -18,12 +18,6 @@
 Introduction:
 --------
 
-**Note**: Currently, this SDK library only works for St. John's with single-sign-on, 
-because logging in directly to Veracross would require an authenticity token from Recaptcha.
-If you want to use this library and you are from another school,
-you need to find out how your school handles single-sign-on and implement it yourself.
-(Look into [StJohnsHttpClient.java](./src/main/java/org/hydev/veracross/sdk/StJohnsHttpClient.java) for details)
-
 ### Features:
 
 * Log in to Veracross with single-sign-on.
@@ -31,6 +25,12 @@ you need to find out how your school handles single-sign-on and implement it you
 * Get a list of all the assignments in a course.
 * Get the list of messages, or notifications.
 * Get the list of calendar events in between dates.
+
+**Note**: Currently, this SDK library only works for St. John's with single-sign-on, 
+because logging in directly to Veracross would require an authenticity token from Recaptcha.
+If you want to use this library and you are from another school,
+you need to find out how your school handles single-sign-on and implement it yourself.
+(Look into [StJohnsHttpClient.java](./src/main/java/org/hydev/veracross/sdk/StJohnsHttpClient.java) for details)
 
 <br>
 
