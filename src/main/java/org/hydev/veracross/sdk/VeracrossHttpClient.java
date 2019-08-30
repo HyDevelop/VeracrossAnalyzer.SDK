@@ -2,12 +2,16 @@ package org.hydev.veracross.sdk;
 
 import com.google.gson.reflect.TypeToken;
 import org.hydev.veracross.sdk.model.VeracrossAssignments;
+import org.hydev.veracross.sdk.model.VeracrossCalendarEvent;
 import org.hydev.veracross.sdk.model.VeracrossCourse;
 import org.hydev.veracross.sdk.model.VeracrossMessage;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -88,5 +92,32 @@ public class VeracrossHttpClient extends GeneralHttpClient
         Type type = new TypeToken<List<VeracrossMessage>>(){}.getType();
 
         return getJson(URL_BASE + API_MESSAGES, type, "start", start);
+    }
+
+    /**
+     * Get the list of calendar events in between two dates.
+     *
+     * @param begin Begin date.
+     * @param end Ending date.
+     * @return List of Calendar Events
+     */
+    public List<VeracrossCalendarEvent> getEvents(Date begin, Date end) throws IOException
+    {
+        return getJson(URL_BASE + API_CALENDAR_EVENTS, new TypeToken<List<VeracrossCalendarEvent>>(){}.getType()
+                ,"begin_date", toVeracrossDate(begin)
+                ,"end_date", toVeracrossDate(end));
+    }
+
+    /**
+     * Convert Date object to Veracross parameter date format.
+     *
+     * @param date Date object
+     * @return Date string.
+     */
+    private static String toVeracrossDate(Date date)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return new SimpleDateFormat("MM/dd/yyyy").format(date);
     }
 }
