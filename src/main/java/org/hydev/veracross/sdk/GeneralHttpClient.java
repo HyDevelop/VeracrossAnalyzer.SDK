@@ -1,5 +1,6 @@
 package org.hydev.veracross.sdk;
 
+import com.google.gson.Gson;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -15,9 +16,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.hydev.veracross.sdk.utils.UrlUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,5 +176,23 @@ public abstract class GeneralHttpClient
 
         // Return result
         return body;
+    }
+
+    /**
+     * Send a GET request to a url and parse the result as a JSON object.
+     *
+     * @param url Request URL
+     * @param type JSON Pojo Type
+     * @param params URL Parameters
+     * @param <T> Return type (Same as the type param)
+     * @return The requested json pojo object.
+     */
+    protected <T> T getJson(String url, Type type, Object... params) throws IOException
+    {
+        // Get json string
+        String jsonString = getBody(UrlUtils.buildURL(url, params));
+
+        // Parse to object
+        return new Gson().fromJson(jsonString, type);
     }
 }
