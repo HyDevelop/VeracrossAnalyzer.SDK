@@ -109,6 +109,19 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Get the list of calendar events in between two dates, represented
+     * by offsets to today.
+     *
+     * @param begin Begin offset.
+     * @param end Ending offset.
+     * @return Calendar Events
+     */
+    public List<VeracrossCalendarEvent> getEvents(int begin, int end) throws IOException
+    {
+        return getEvents(getDate(begin), getDate(end));
+    }
+
+    /**
      * Convert Date object to Veracross parameter date format.
      *
      * @param date Date object
@@ -119,5 +132,19 @@ public class VeracrossHttpClient extends GeneralHttpClient
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return new SimpleDateFormat("MM/dd/yyyy").format(date);
+    }
+
+    /**
+     * Get date with day offset.
+     * Eg. getDate(-5) would return a Date from 5 days ago.
+     *
+     * @param dayOffset Day offset
+     * @return Date
+     */
+    private static Date getDate(int dayOffset)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, dayOffset);
+        return calendar.getTime();
     }
 }
