@@ -40,7 +40,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         "submit", "login");
 
         int status = response.getStatusLine().getStatusCode();
-        String responseText = getResponseBody(response);
+        String responseText = getBody(response);
 
         // Close it
         response.close();
