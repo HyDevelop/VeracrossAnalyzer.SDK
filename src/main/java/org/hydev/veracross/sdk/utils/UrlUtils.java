@@ -24,7 +24,7 @@ public class UrlUtils
      * @param params Param key value pairs (Eg. ["key", "value"])
      * @return URL params
      */
-    public static String buildURL(String base, Object... params) throws MalformedURLException
+    public static String buildURL(String base, Object... params)
     {
         // Null / empty cases
         if (params == null || params.length < 2) return "";
@@ -43,9 +43,9 @@ public class UrlUtils
             // Return the result.
             return builder.build().toURL().toString();
         }
-        catch (URISyntaxException e)
+        catch (URISyntaxException | MalformedURLException e)
         {
-            throw new MalformedURLException("URI Syntax error: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }
