@@ -104,7 +104,7 @@ class StJohnsHttpClientTest
     @Order(7)
     void veracrossEvents2() throws IOException
     {
-        // Get calendar events from 5 days ago to 5 days later.
+        // Get calendar events in between two dates.
         List<VeracrossCalendarEvent> events = veracross.getEvents(new Date(), new Date());
         log(events);
     }
