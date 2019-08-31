@@ -34,25 +34,45 @@ you need to find out how your school handles single-sign-on and implement it you
 
 <br>
 
+<a name="maven"></a>
+Maven Import:
+--------
+
+Add the JitPack repo into your `pom.xml` first:
+
+```xml
+<repositories>
+    <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Then you can add this library as dependency:
+
+```xml
+<dependency>
+    <groupId>com.github.hydevelop</groupId>
+    <artifactId>VeracrossAnalyzer.SDK</artifactId>
+    <version>1.1.0.85</version>
+</dependency>
+```
+
+Make sure you reimport if you're using IntelliJ IDEA!
+
+<br>
+
 <a name="development"></a>
 Development:
 --------
 
 ### Setting Up:
 
-#### For IntelliJ IDEA Users:
-
-* I didn't set up a Maven repo yet, so you have to manually copy some files.
-* Clone or download this repo as a zip first if you don't want to copy all code manually.
-* Just copy the `src/main/java` folder of the module you want to import to your `src/main/java` folder.
-* Then copy the Maven dependencies from the `pom.xml` of the module you want to your `pom.xml`.
-
-#### For Eclipse Users:
-
-* Well... Eclipse sucks!
-* IDK where the src folder for Eclipse is. 
-* Download [IntelliJ IDEA](https://www.jetbrains.com/idea/) for free [here](https://www.jetbrains.com/idea/download/).
-* And if you're a student like me, you can get a free IntelliJ Ultimate license with your school email [here](https://www.jetbrains.com/student/).
+Look at the Maven section,
+if you have successfully imported the maven dependency,
+you should be able to access the classes.
+If you don't know what maven is, (click here)[https://lmgtfy.com/?q=maven].
 
 ### Veracross SDK:
 
