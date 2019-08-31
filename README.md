@@ -72,7 +72,7 @@ Development:
 Look at the Maven section,
 if you have successfully imported the maven dependency,
 you should be able to access the classes.
-If you don't know what maven is, (click here)[https://lmgtfy.com/?q=maven].
+If you don't know what maven is, [click here](https://lmgtfy.com/?q=maven).
 
 ### Veracross SDK:
 
