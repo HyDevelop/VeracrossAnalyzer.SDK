@@ -137,3 +137,5 @@ List<VeracrossCalendarEvent> events2 = veracross.getEvents(new Date(), new Date(
 <a name="license"></a>
 License: [MIT](https://choosealicense.com/licenses/mit/)
 --------
+
+The MIT license basically means that this project is open-soucred and you can do whatever you want with it, as long as you include a copy of this license in your distribution. You don't have to ask for permissions to use or anything. However, if you do bad things with it, I'm not responsible.
