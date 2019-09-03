@@ -3,6 +3,7 @@ package org.hydev.veracross.sdk;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
+import org.hydev.veracross.sdk.exceptions.VeracrossException;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -28,7 +29,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
     /**
      * Login and save the session
      */
-    public void login(String username, String password) throws IOException
+    public void login(String username, String password) throws IOException, VeracrossException
     {
         // Keep the username
         this.username = username;
@@ -39,8 +40,21 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         "password", password,
                         "submit", "login");
 
+        // Get response
         int status = response.getStatusLine().getStatusCode();
         String responseText = getBody(response);
+
+        // Unknown http problem
+        if (status != 200)
+        {
+            throw new VeracrossException("Login Failed: HTTP Connection Problem, status code: " + status);
+        }
+
+        // Invalid password
+        if (responseText.contains("<div class=\"fsLoginMessage\">Invalid username or password. Please try again.</div><br>"))
+        {
+            throw new VeracrossException("Login Failed: Invalid username or password.");
+        }
 
         // Close it
         response.close();
