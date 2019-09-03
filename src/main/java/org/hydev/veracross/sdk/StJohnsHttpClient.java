@@ -48,7 +48,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
         response.close();
 
         // Unknown http problem
-        if (status != 200)
+        if (status != 200 && status != 301 && status != 302)
         {
             throw new VeracrossException("Login Failed: HTTP Connection Problem, status code: " + status);
         }
