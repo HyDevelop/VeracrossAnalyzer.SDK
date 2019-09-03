@@ -10,6 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -68,7 +69,23 @@ public abstract class GeneralHttpClient
         httpClient = builder.build();
     }
 
+    /**
+     * Replace the current cookies with a new list of cookies.
+     *
+     * @param cookies Cookies
+     */
+    public void restoreCookies(List<Cookie> cookies)
+    {
+        // Clear current cookies
+        this.cookies.clear();
 
+        // Add the new cookies in
+        for (Cookie cookie : cookies)
+        {
+            this.cookies.addCookie(cookie);
+        }
+    }
+    
     protected CloseableHttpResponse postForm(String url, PreProcessor preProcessor, String... entity)
             throws IOException
     {
