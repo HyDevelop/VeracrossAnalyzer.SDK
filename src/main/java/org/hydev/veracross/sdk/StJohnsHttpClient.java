@@ -65,7 +65,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
      *
      * @return SSO Token string
      */
-    public String getVeracrossSSOToken()
+    public String getVeracrossSSOToken() throws VeracrossException
     {
         // Create request
         HttpGet get = new HttpGet("https://www.stjohnsprep.org/fs/sso/?type=Veracross-SSO");
@@ -82,7 +82,8 @@ public class StJohnsHttpClient extends GeneralHttpClient
             Matcher matcher = SSO_TOKEN_PATTERN.matcher(responseText);
             if (!matcher.find())
             {
-                throw new RuntimeException("Veracross SDK: Unsupported response: " + responseText);
+                // There's not much to do on runtime.
+                throw new RuntimeException("SSO Login Failed: Unsupported response: " + responseText);
             }
 
             // Return result
@@ -91,7 +92,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
         catch (IOException e)
         {
             // There is not much to do.
-            throw new RuntimeException("Veracross SDK: Failed to obtain SSO token", e);
+            throw new VeracrossException("SSO Login Failed: Failed to obtain token", e);
         }
     }
 
