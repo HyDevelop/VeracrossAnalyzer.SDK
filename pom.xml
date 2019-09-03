@@ -6,7 +6,7 @@
 
     <groupId>org.hydev.veracross-analyzer</groupId>
     <artifactId>VeracrossAnalyzer.SDK</artifactId>
-    <version>1.1.0.85</version>
+    <version>1.2.0.97</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
