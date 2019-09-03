@@ -101,7 +101,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
      *
      * @return Veracross http client
      */
-    public VeracrossHttpClient veracrossLoginSSO() throws IOException
+    public VeracrossHttpClient veracrossLoginSSO() throws IOException, VeracrossException
     {
         // Create veracross client
         VeracrossHttpClient client = new VeracrossHttpClient();

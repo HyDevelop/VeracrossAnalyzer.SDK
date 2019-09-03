@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
+import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.VeracrossAssignments;
 import org.hydev.veracross.sdk.model.VeracrossCalendarEvent;
 import org.hydev.veracross.sdk.model.VeracrossCourse;
@@ -50,7 +51,7 @@ class StJohnsHttpClientTest
 
     @Test
     @Order(1)
-    void login() throws IOException
+    void login() throws IOException, VeracrossException
     {
         // Login St Johns
         stJohns.login(username, password);
@@ -58,7 +59,7 @@ class StJohnsHttpClientTest
 
     @Test
     @Order(2)
-    void veracross() throws IOException
+    void veracross() throws IOException, VeracrossException
     {
         // Login Veracross
         veracross = stJohns.veracrossLoginSSO();
