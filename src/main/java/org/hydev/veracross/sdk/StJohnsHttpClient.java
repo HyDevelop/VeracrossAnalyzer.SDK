@@ -44,6 +44,9 @@ public class StJohnsHttpClient extends GeneralHttpClient
         int status = response.getStatusLine().getStatusCode();
         String responseText = getBody(response);
 
+        // Close it
+        response.close();
+
         // Unknown http problem
         if (status != 200)
         {
@@ -55,9 +58,6 @@ public class StJohnsHttpClient extends GeneralHttpClient
         {
             throw new VeracrossException("Login Failed: Invalid username or password.");
         }
-
-        // Close it
-        response.close();
     }
 
     /**
