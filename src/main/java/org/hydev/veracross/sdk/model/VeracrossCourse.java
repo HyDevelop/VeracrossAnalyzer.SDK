@@ -17,8 +17,15 @@ import lombok.Data;
 @Builder
 public class VeracrossCourse implements VeracrossData
 {
+    // Name of the course
     private String name;
+
+    // Name of the teacher teaching the course
     private String teacherName;
+
+    // ID to access the course details page
     private long id;
+
+    // ID to access the course assignments page
     private long assignmentsId;
 }
