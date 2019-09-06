@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
+import lombok.Getter;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -35,6 +36,7 @@ import java.util.List;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-08-28 17:12
  */
+@Getter
 public abstract class GeneralHttpClient
 {
     protected CloseableHttpClient httpClient;
