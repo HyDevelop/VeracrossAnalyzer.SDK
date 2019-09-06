@@ -49,24 +49,21 @@ class StJohnsHttpClientTest
         password = in.nextLine();
     }
 
-    @Test
-    @Order(1)
+    @Test @Order(1)
     void login() throws IOException, VeracrossException
     {
         // Login St Johns
         stJohns.login(username, password);
     }
 
-    @Test
-    @Order(2)
+    @Test @Order(2)
     void veracross() throws IOException, VeracrossException
     {
         // Login Veracross
         veracross = stJohns.veracrossLoginSSO();
     }
 
-    @Test
-    @Order(3)
+    @Test @Order(3)
     void veracrossCourses() throws IOException
     {
         // Get courses
@@ -74,8 +71,7 @@ class StJohnsHttpClientTest
         log(courses);
     }
 
-    @Test
-    @Order(4)
+    @Test @Order(4)
     void veracrossAssignments() throws IOException
     {
         // Get assignments of the course at index 1 of the list.
@@ -83,8 +79,7 @@ class StJohnsHttpClientTest
         log(assignments);
     }
 
-    @Test
-    @Order(5)
+    @Test @Order(5)
     void veracrossMessages() throws IOException
     {
         // Get messages starting at index 0.
@@ -92,8 +87,7 @@ class StJohnsHttpClientTest
         log(messages);
     }
 
-    @Test
-    @Order(6)
+    @Test @Order(6)
     void veracrossEvents1() throws IOException
     {
         // Get calendar events from 5 days ago to 5 days later.
@@ -101,8 +95,7 @@ class StJohnsHttpClientTest
         log(events);
     }
 
-    @Test
-    @Order(7)
+    @Test @Order(7)
     void veracrossEvents2() throws IOException
     {
         // Get calendar events in between two dates.
