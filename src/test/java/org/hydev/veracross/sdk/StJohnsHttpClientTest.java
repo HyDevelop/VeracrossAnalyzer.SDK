@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
+import org.apache.http.cookie.Cookie;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.VeracrossAssignments;
 import org.hydev.veracross.sdk.model.VeracrossCalendarEvent;
@@ -101,6 +102,16 @@ class StJohnsHttpClientTest
         // Get calendar events in between two dates.
         List<VeracrossCalendarEvent> events = veracross.getEvents(new Date(), new Date());
         log(events);
+    }
+
+    List<Cookie> savedCookies;
+
+    @Test @Order(8)
+    void saveCookies()
+    {
+        // Save cookies
+        savedCookies = veracross.getCookies().getCookies();
+        log(savedCookies);
     }
 
     private static void log(Object object)
