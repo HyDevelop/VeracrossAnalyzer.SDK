@@ -21,145 +21,145 @@ public class VeracrossAssignment implements VeracrossData
 {
     @SerializedName("score_id")
     @Expose
-    public Long scoreId;
+    private Long scoreId;
 
     @SerializedName("id")
     @Expose
-    public Long id;
+    private Long id;
 
     @SerializedName("assignment_id")
     @Expose
-    public Long assignmentId;
+    private Long assignmentId;
 
     @SerializedName("assignment_type_id")
     @Expose
-    public Long assignmentTypeId;
+    private Long assignmentTypeId;
 
     @SerializedName("assignment_type")
     @Expose
-    public String assignmentType;
+    private String assignmentType;
 
     @SerializedName("assignment_type_sort_key")
     @Expose
-    public Long assignmentTypeSortKey;
+    private Long assignmentTypeSortKey;
 
     @SerializedName("assignment_description")
     @Expose
-    public String assignmentDescription;
+    private String assignmentDescription;
 
     @SerializedName("assignment_notes")
     @Expose
-    public Object assignmentNotes;
+    private Object assignmentNotes;
 
     @SerializedName("grading_period")
     @Expose
-    public String gradingPeriod;
+    private String gradingPeriod;
 
     @SerializedName("assignment_date_long")
     @Expose
-    public String assignmentDateLong;
+    private String assignmentDateLong;
 
     @SerializedName("due_date_long")
     @Expose
-    public String dueDateLong;
+    private String dueDateLong;
 
     @SerializedName("due_date")
     @Expose
-    public String dueDate;
+    private String dueDate;
 
     @SerializedName("due_day")
     @Expose
-    public String dueDay;
+    private String dueDay;
 
     @SerializedName("_date")
     @Expose
-    public String date;
+    private String date;
 
     @SerializedName("include_in_calculated_grade")
     @Expose
-    public Long includeInCalculatedGrade;
+    private Long includeInCalculatedGrade;
 
     @SerializedName("extra_credit")
     @Expose
-    public Object extraCredit;
+    private Object extraCredit;
 
     @SerializedName("dropbox_status")
     @Expose
-    public Object dropboxStatus;
+    private Object dropboxStatus;
 
     @SerializedName("display_dropbox_submit")
     @Expose
-    public Object displayDropboxSubmit;
+    private Object displayDropboxSubmit;
 
     @SerializedName("num_attachments")
     @Expose
-    public Long numAttachments;
+    private Long numAttachments;
 
     @SerializedName("num_criteria")
     @Expose
-    public Long numCriteria;
+    private Long numCriteria;
 
     @SerializedName("num_feedback")
     @Expose
-    public Long numFeedback;
+    private Long numFeedback;
 
     @SerializedName("maximum_score")
     @Expose
-    public Long maximumScore;
+    private Long maximumScore;
 
     @SerializedName("points_possible")
     @Expose
-    public Long pointsPossible;
+    private Long pointsPossible;
 
     @SerializedName("raw_score")
     @Expose
-    public String rawScore;
+    private String rawScore;
 
     @SerializedName("percent_grade")
     @Expose
-    public String percentGrade;
+    private String percentGrade;
 
     @SerializedName("completion_status_id")
     @Expose
-    public Long completionStatusId;
+    private Long completionStatusId;
 
     @SerializedName("completion_status")
     @Expose
-    public String completionStatus;
+    private String completionStatus;
 
     @SerializedName("is_unread")
     @Expose
-    public Object isUnread;
+    private Object isUnread;
 
     @SerializedName("is_notification")
     @Expose
-    public Long isNotification;
+    private Long isNotification;
 
     @SerializedName("is_problem")
     @Expose
-    public Long isProblem;
+    private Long isProblem;
 
     @SerializedName("display_grade")
     @Expose
-    public Long displayGrade;
+    private Long displayGrade;
 
     @SerializedName("display_score")
     @Expose
-    public Long displayScore;
+    private Long displayScore;
 
     @SerializedName("display_maximum_score")
     @Expose
-    public Long displayMaximumScore;
+    private Long displayMaximumScore;
 
     @SerializedName("display_percent_grade")
     @Expose
-    public Long displayPercentGrade;
+    private Long displayPercentGrade;
 
     @SerializedName("display_points_possible")
     @Expose
-    public Long displayPointsPossible;
+    private Long displayPointsPossible;
 
     @SerializedName("allow_student_feedback")
     @Expose
-    public Long allowStudentFeedback;
+    private Long allowStudentFeedback;
 }

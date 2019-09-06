@@ -21,45 +21,45 @@ public class VeracrossCalendarEvent implements VeracrossData
 {
     @SerializedName("id")
     @Expose
-    public String id;
+    private String id;
 
     @SerializedName("record_type")
     @Expose
-    public Long recordType;
+    private Long recordType;
 
     @SerializedName("start_date")
     @Expose
-    public String startDate;
+    private String startDate;
 
     @SerializedName("start_time")
     @Expose
-    public Object startTime;
+    private Object startTime;
 
     @SerializedName("end_date")
     @Expose
-    public String endDate;
+    private String endDate;
 
     @SerializedName("end_time")
     @Expose
-    public Object endTime;
+    private Object endTime;
 
     @SerializedName("description")
     @Expose
-    public String description;
+    private String description;
 
     @SerializedName("tooltip")
     @Expose
-    public String tooltip;
+    private String tooltip;
 
     @SerializedName("location")
     @Expose
-    public Object location;
+    private Object location;
 
     @SerializedName("link_style")
     @Expose
-    public String linkStyle;
+    private String linkStyle;
 
     @SerializedName("event_url")
     @Expose
-    public String eventUrl;
+    private String eventUrl;
 }
