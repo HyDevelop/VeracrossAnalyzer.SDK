@@ -114,6 +114,19 @@ class StJohnsHttpClientTest
         log(savedCookies);
     }
 
+    @Test @Order(9)
+    void restoreCookies() throws IOException
+    {
+        // Create new instance
+        VeracrossHttpClient veracross = new VeracrossHttpClient();
+        veracross.restoreCookies(savedCookies);
+
+        // Test it
+        List<VeracrossCourse> courses = veracross.getCourses();
+        log(courses);
+
+    }
+
     private static void log(Object object)
     {
         System.out.println(String.valueOf(new Gson().toJson(object)));
