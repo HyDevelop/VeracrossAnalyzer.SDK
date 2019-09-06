@@ -21,33 +21,33 @@ public class VeracrossMessage implements VeracrossData
 {
     @SerializedName("id")
     @Expose
-    public Long id;
+    private Long id;
 
     @SerializedName("type")
     @Expose
-    public Long type;
+    private Long type;
 
     @SerializedName("message_person_pk")
     @Expose
-    public Long messagePersonPk;
+    private Long messagePersonPk;
 
     @SerializedName("message_pk")
     @Expose
-    public Long messagePk;
+    private Long messagePk;
 
     @SerializedName("subject")
     @Expose
-    public String subject;
+    private String subject;
 
     @SerializedName("date_sent")
     @Expose
-    public String dateSent;
+    private String dateSent;
 
     @SerializedName("date")
     @Expose
-    public String date;
+    private String date;
 
     @SerializedName("opened")
     @Expose
-    public Boolean opened;
+    private Boolean opened;
 }

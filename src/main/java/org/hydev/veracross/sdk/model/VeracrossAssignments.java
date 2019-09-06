@@ -23,7 +23,7 @@ public class VeracrossAssignments implements VeracrossData
 {
     @SerializedName("assignments")
     @Expose
-    public List<VeracrossAssignment> assignments = null;
+    private List<VeracrossAssignment> assignments = null;
 
     // The type for attachments, criteria, and criteriaGradeScaleLevels are not sure
     //   because I don't have them in any class I have.
@@ -31,15 +31,15 @@ public class VeracrossAssignments implements VeracrossData
     @SerializedName("attachments")
     @Expose
     @Deprecated
-    public List<Object> attachments = null;
+    private List<Object> attachments = null;
 
     @SerializedName("criteria")
     @Expose
     @Deprecated
-    public List<Object> criteria = null;
+    private List<Object> criteria = null;
 
     @SerializedName("criteria_grade_scale_levels")
     @Expose
     @Deprecated
-    public List<Object> criteriaGradeScaleLevels = null;
+    private List<Object> criteriaGradeScaleLevels = null;
 }
