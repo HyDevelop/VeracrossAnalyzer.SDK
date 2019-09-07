@@ -34,4 +34,15 @@ public class VeracrossCourse implements VeracrossData
 
     // Numeric grade (nullable)
     private Double numericGrade;
+
+    /**
+     * Self-constructor that copies all field from the other
+     *
+     * @param other Other
+     */
+    public VeracrossCourse(VeracrossCourse other)
+    {
+        this(other.name, other.teacherName, other.id, other.assignmentsId,
+                other.letterGrade, other.numericGrade);
+    }
 }
