@@ -30,8 +30,7 @@ public class StJohnsCourse extends VeracrossCourse
      */
     public StJohnsCourse(VeracrossCourse course)
     {
-        // Copy info
-        super(course.getName(), course.getTeacherName(), course.getId(), course.getAssignmentsId());
+        super(course);
 
         // Detect level
         if (course.getName().startsWith("AP"))
