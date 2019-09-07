@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import org.hydev.veracross.sdk.model.VeracrossCourse;
+import org.hydev.veracross.sdk.model.VeracrossCourse.VeracrossCourseBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -46,22 +47,24 @@ public class VeracrossHtmlParser
         // Loops through each course to find detailed information.
         for (Element courseElement : courseElements)
         {
+            // Create builder
+            VeracrossCourseBuilder builder = VeracrossCourse.builder();
+
             // Find course name element and extract the course name.
             Element courseNameElement = courseElement.selectFirst(".class-name");
-            String courseName = courseNameElement.html();
+            builder.name(courseNameElement.html());
 
             // Find teacher name element and extract the teacher name.
-            String teacherName = courseElement.selectFirst(".teacher-name").html();
+            builder.teacherName(courseElement.selectFirst(".teacher-name").html());
 
             // Find course information link, and find the course id in it.
-            long courseId = findNumberInUrl(courseNameElement.attr("href"));
+            builder.id(findNumberInUrl(courseNameElement.attr("href")));
 
             // Find assignments info link, and find the assignment id in it.
-            long assignmentsId = findNumberInUrl(courseElement.selectFirst(".view-assignments").attr("href"));
+            builder.assignmentsId(findNumberInUrl(courseElement.selectFirst(".view-assignments").attr("href")));
 
-            // Add to result.
-            result.add(VeracrossCourse.builder().name(courseName).teacherName(teacherName)
-                    .id(courseId).assignmentsId(assignmentsId).build());
+            // Add to result
+            result.add(builder.build());
         }
 
         return result;
