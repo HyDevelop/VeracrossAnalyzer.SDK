@@ -28,4 +28,10 @@ public class VeracrossCourse implements VeracrossData
 
     // ID to access the course assignments page
     private long assignmentsId;
+
+    // Letter grade (nullable)
+    private String letterGrade;
+
+    // Numeric grade (nullable)
+    private Integer numericGrade;
 }
