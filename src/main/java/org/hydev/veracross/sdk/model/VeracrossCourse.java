@@ -33,5 +33,5 @@ public class VeracrossCourse implements VeracrossData
     private String letterGrade;
 
     // Numeric grade (nullable)
-    private Integer numericGrade;
+    private Double numericGrade;
 }
