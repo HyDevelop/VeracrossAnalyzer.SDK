@@ -63,6 +63,13 @@ public class VeracrossHtmlParser
             // Find assignments info link, and find the assignment id in it.
             builder.assignmentsId(findNumberInUrl(courseElement.selectFirst(".view-assignments").attr("href")));
 
+
+            // Find grades
+            if (courseElement.select(".calculated-grade").size() != 0)
+            {
+                builder.letterGrade(courseElement.selectFirst(".letter-grade").html());
+            }
+
             // Add to result
             result.add(builder.build());
         }
