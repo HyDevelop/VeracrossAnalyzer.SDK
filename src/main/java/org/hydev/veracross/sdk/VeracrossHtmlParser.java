@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Double.parseDouble;
+
 /**
  * This class contains utility methods that parse the html pages on
  * Veracross into more useful information.
@@ -63,11 +65,11 @@ public class VeracrossHtmlParser
             // Find assignments info link, and find the assignment id in it.
             builder.assignmentsId(findNumberInUrl(courseElement.selectFirst(".view-assignments").attr("href")));
 
-
             // Find grades
             if (courseElement.select(".calculated-grade").size() != 0)
             {
                 builder.letterGrade(courseElement.selectFirst(".letter-grade").html());
+                builder.numericGrade(parseDouble(courseElement.selectFirst(".numeric-grade").html().replace("%", "")));
             }
 
             // Add to result
