@@ -164,7 +164,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return All faculties
      */
-    public List<VeracrossFaculty> getDirectoryFaculty() throws IOException
+    public List<VeracrossFaculty> getDirectoryFaculties() throws IOException
     {
         return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeracrossFaculty>>(){}.getType(),
                 "directory", "faculty",
