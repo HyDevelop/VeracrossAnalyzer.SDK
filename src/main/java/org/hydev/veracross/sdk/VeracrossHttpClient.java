@@ -1,10 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.reflect.TypeToken;
-import org.hydev.veracross.sdk.model.VeracrossAssignments;
-import org.hydev.veracross.sdk.model.VeracrossCalendarEvent;
-import org.hydev.veracross.sdk.model.VeracrossCourse;
-import org.hydev.veracross.sdk.model.VeracrossMessage;
+import org.hydev.veracross.sdk.model.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -33,6 +30,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     private static final String API_CALENDAR_EVENTS = "student/calendar/student/calendar_events";
     private static final String API_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
     private static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
+    private static final String API_DIRECTORY = "directory/entries.json";
 
     /**
      * Login and save the session
@@ -146,5 +144,31 @@ public class VeracrossHttpClient extends GeneralHttpClient
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, dayOffset);
         return calendar.getTime();
+    }
+
+    /**
+     * Get information of all the students in a directory.
+     *
+     * @return All students
+     */
+    public List<VeracrossStudent> getDirectoryStudents() throws IOException
+    {
+        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeracrossStudent>>(){}.getType(),
+                "directory", "student",
+                "portal", "student",
+                "refresh", 0);
+    }
+
+    /**
+     * Get information of all the faculties in a directory.
+     *
+     * @return All faculties
+     */
+    public List<VeracrossFaculty> getDirectoryFaculty() throws IOException
+    {
+        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeracrossFaculty>>(){}.getType(),
+                "directory", "faculty",
+                "portal", "student",
+                "refresh", 0);
     }
 }
