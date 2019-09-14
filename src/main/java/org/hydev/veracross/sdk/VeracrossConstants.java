@@ -21,5 +21,5 @@ public class VeracrossConstants
      * The version of THIS MODULE. Other modules of the Veracross
      * analyzer project have different versions.
      */
-    public static String VERSION = "1.2.2.113";
+    public static String VERSION = "1.3.2.130";
 }
