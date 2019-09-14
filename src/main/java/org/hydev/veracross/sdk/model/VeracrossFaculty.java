@@ -30,7 +30,7 @@ public class VeracrossFaculty implements VeracrossData
 
     @SerializedName("is_faculty")
     @Expose
-    private Boolean isFaculty;
+    private Byte isFaculty;
 
     @SerializedName("first_name")
     @Expose
