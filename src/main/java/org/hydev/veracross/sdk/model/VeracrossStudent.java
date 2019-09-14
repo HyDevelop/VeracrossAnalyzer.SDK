@@ -20,7 +20,7 @@ public class VeracrossStudent
 {
     @SerializedName("person_pk")
     @Expose
-    public Long personPk;
+    public Integer personPk;
 
     @SerializedName("name_sort")
     @Expose
@@ -28,7 +28,7 @@ public class VeracrossStudent
 
     @SerializedName("student")
     @Expose
-    public String student;
+    public String fullName;
 
     @SerializedName("first_name")
     @Expose
@@ -48,11 +48,11 @@ public class VeracrossStudent
 
     @SerializedName("sibilings")
     @Expose
-    public Object sibilings;
+    public String sibilings;
 
     @SerializedName("school_level_id")
     @Expose
-    public Long schoolLevelId;
+    public Short schoolLevelId;
 
     @SerializedName("grade_level")
     @Expose
@@ -60,47 +60,47 @@ public class VeracrossStudent
 
     @SerializedName("current_grade_id")
     @Expose
-    public Long currentGradeId;
+    public Short currentGradeId;
 
     @SerializedName("graduation_year")
     @Expose
-    public Long graduationYear;
+    public Short graduationYear;
 
     @SerializedName("student_group")
     @Expose
-    public Object studentGroup;
+    public String studentGroup;
 
     @SerializedName("student_group_id")
     @Expose
-    public Long studentGroupId;
+    public Integer studentGroupId;
 
     @SerializedName("dorm")
     @Expose
-    public Object dorm;
+    public String dorm;
 
     @SerializedName("dorm_id")
     @Expose
-    public Long dormId;
+    public Integer dormId;
 
     @SerializedName("boarding_day")
     @Expose
-    public Object boardingDay;
+    public String boardingDay;
 
     @SerializedName("campus")
     @Expose
-    public Object campus;
+    public String campus;
 
     @SerializedName("campus_id")
     @Expose
-    public Long campusId;
+    public Integer campusId;
 
     @SerializedName("homeroom")
     @Expose
-    public Object homeroom;
+    public String homeroom;
 
     @SerializedName("homeroom_id")
     @Expose
-    public Long homeroomId;
+    public Integer homeroomId;
 
     @SerializedName("advisor")
     @Expose
@@ -112,15 +112,15 @@ public class VeracrossStudent
 
     @SerializedName("address_url")
     @Expose
-    public String addressUrl;
+    public String mapUrl;
 
     @SerializedName("phone_home")
     @Expose
-    public Object phoneHome;
+    public String phoneHome;
 
     @SerializedName("phone_mobile")
     @Expose
-    public Object phoneMobile;
+    public String phoneMobile;
 
     @SerializedName("email")
     @Expose
@@ -128,7 +128,7 @@ public class VeracrossStudent
 
     @SerializedName("sports")
     @Expose
-    public Object sports;
+    public String sports;
 
     @SerializedName("all_classes")
     @Expose
@@ -136,7 +136,7 @@ public class VeracrossStudent
 
     @SerializedName("resident_household_fk")
     @Expose
-    public Long residentHouseholdFk;
+    public Integer residentHouseholdFk;
 
     @SerializedName("resident_parents")
     @Expose
@@ -148,11 +148,11 @@ public class VeracrossStudent
 
     @SerializedName("resident_address_url")
     @Expose
-    public String residentAddressUrl;
+    public String residentMapUrl;
 
     @SerializedName("resident_phone")
     @Expose
-    public Object residentPhone;
+    public String residentPhone;
 
     @SerializedName("p1_name")
     @Expose
@@ -180,45 +180,45 @@ public class VeracrossStudent
 
     @SerializedName("nonresident_household_fk")
     @Expose
-    public Object nonresidentHouseholdFk;
+    public Integer nonresidentHouseholdFk;
 
     @SerializedName("nonresident_parents")
     @Expose
-    public Object nonresidentParents;
+    public String nonresidentParents;
 
     @SerializedName("nonresident_address")
     @Expose
-    public Object nonresidentAddress;
+    public String nonresidentAddress;
 
     @SerializedName("nonresident_address_url")
     @Expose
-    public Object nonresidentAddressUrl;
+    public String nonresidentAddressUrl;
 
     @SerializedName("nonresident_phone")
     @Expose
-    public Object nonresidentPhone;
+    public String nonresidentPhone;
 
     @SerializedName("p3_name")
     @Expose
-    public Object p3Name;
+    public String p3Name;
 
     @SerializedName("p3_mobile")
     @Expose
-    public Object p3Mobile;
+    public String p3Mobile;
 
     @SerializedName("p3_email")
     @Expose
-    public Object p3Email;
+    public String p3Email;
 
     @SerializedName("p4_name")
     @Expose
-    public Object p4Name;
+    public String p4Name;
 
     @SerializedName("p4_mobile")
     @Expose
-    public Object p4Mobile;
+    public String p4Mobile;
 
     @SerializedName("p4_email")
     @Expose
-    public Object p4Email;
+    public String p4Email;
 }
