@@ -104,9 +104,22 @@ class StJohnsHttpClientTest
         log(events);
     }
 
+    @Test @Order(8)
+    void veracrossDirectoryStudents() throws IOException
+    {
+        // Get all student info
+        List<VeracrossStudent> students = veracross.getDirectoryStudents();
+
+        // Filter them, select the students in Yoga course
+        students.removeIf(student -> !student.getAllClasses().contains("33070"));
+
+        // Print results
+        log(students);
+    }
+
     List<Cookie> savedCookies;
 
-    @Test @Order(8)
+    @Test @Order(50)
     void saveCookies()
     {
         // Save cookies
@@ -114,7 +127,7 @@ class StJohnsHttpClientTest
         log(savedCookies);
     }
 
-    @Test @Order(9)
+    @Test @Order(51)
     void restoreCookies() throws IOException
     {
         // Create new instance
@@ -124,7 +137,6 @@ class StJohnsHttpClientTest
         // Test it
         List<VeracrossCourse> courses = veracross.getCourses();
         log(courses);
-
     }
 
     private static void log(Object object)
