@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VeracrossStudent implements VeracrossData
+public class VeracrossStudent extends VeracrossData<VeracrossStudent>
 {
     @SerializedName("person_pk")
     @Expose

@@ -19,7 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VeracrossAssignments implements VeracrossData
+public class VeracrossAssignments extends VeracrossData<VeracrossAssignments>
 {
     @SerializedName("assignments")
     @Expose
