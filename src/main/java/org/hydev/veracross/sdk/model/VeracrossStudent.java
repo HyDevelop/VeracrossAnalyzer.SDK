@@ -20,205 +20,205 @@ public class VeracrossStudent
 {
     @SerializedName("person_pk")
     @Expose
-    public Integer personPk;
+    private Integer personPk;
 
     @SerializedName("name_sort")
     @Expose
-    public String nameSort;
+    private String nameSort;
 
     @SerializedName("student")
     @Expose
-    public String fullName;
+    private String fullName;
 
     @SerializedName("first_name")
     @Expose
-    public String firstName;
+    private String firstName;
 
     @SerializedName("last_name")
     @Expose
-    public String lastName;
+    private String lastName;
 
     @SerializedName("birthday")
     @Expose
-    public String birthday;
+    private String birthday;
 
     @SerializedName("photo_url")
     @Expose
-    public String photoUrl;
+    private String photoUrl;
 
     @SerializedName("sibilings")
     @Expose
-    public String sibilings;
+    private String sibilings;
 
     @SerializedName("school_level_id")
     @Expose
-    public Short schoolLevelId;
+    private Short schoolLevelId;
 
     @SerializedName("grade_level")
     @Expose
-    public String gradeLevel;
+    private String gradeLevel;
 
     @SerializedName("current_grade_id")
     @Expose
-    public Short currentGradeId;
+    private Short currentGradeId;
 
     @SerializedName("graduation_year")
     @Expose
-    public Short graduationYear;
+    private Short graduationYear;
 
     @SerializedName("student_group")
     @Expose
-    public String studentGroup;
+    private String studentGroup;
 
     @SerializedName("student_group_id")
     @Expose
-    public Integer studentGroupId;
+    private Integer studentGroupId;
 
     @SerializedName("dorm")
     @Expose
-    public String dorm;
+    private String dorm;
 
     @SerializedName("dorm_id")
     @Expose
-    public Integer dormId;
+    private Integer dormId;
 
     @SerializedName("boarding_day")
     @Expose
-    public String boardingDay;
+    private String boardingDay;
 
     @SerializedName("campus")
     @Expose
-    public String campus;
+    private String campus;
 
     @SerializedName("campus_id")
     @Expose
-    public Integer campusId;
+    private Integer campusId;
 
     @SerializedName("homeroom")
     @Expose
-    public String homeroom;
+    private String homeroom;
 
     @SerializedName("homeroom_id")
     @Expose
-    public Integer homeroomId;
+    private Integer homeroomId;
 
     @SerializedName("advisor")
     @Expose
-    public String advisor;
+    private String advisor;
 
     @SerializedName("address")
     @Expose
-    public String address;
+    private String address;
 
     @SerializedName("address_url")
     @Expose
-    public String mapUrl;
+    private String mapUrl;
 
     @SerializedName("phone_home")
     @Expose
-    public String phoneHome;
+    private String phoneHome;
 
     @SerializedName("phone_mobile")
     @Expose
-    public String phoneMobile;
+    private String phoneMobile;
 
     @SerializedName("email")
     @Expose
-    public String email;
+    private String email;
 
     @SerializedName("sports")
     @Expose
-    public String sports;
+    private String sports;
 
     @SerializedName("all_classes")
     @Expose
-    public String allClasses;
+    private String allClasses;
 
     @SerializedName("resident_household_fk")
     @Expose
-    public Integer residentHouseholdFk;
+    private Integer residentHouseholdFk;
 
     @SerializedName("resident_parents")
     @Expose
-    public String residentParents;
+    private String residentParents;
 
     @SerializedName("resident_address")
     @Expose
-    public String residentAddress;
+    private String residentAddress;
 
     @SerializedName("resident_address_url")
     @Expose
-    public String residentMapUrl;
+    private String residentMapUrl;
 
     @SerializedName("resident_phone")
     @Expose
-    public String residentPhone;
+    private String residentPhone;
 
     @SerializedName("p1_name")
     @Expose
-    public String p1Name;
+    private String p1Name;
 
     @SerializedName("p1_mobile")
     @Expose
-    public String p1Mobile;
+    private String p1Mobile;
 
     @SerializedName("p1_email")
     @Expose
-    public String p1Email;
+    private String p1Email;
 
     @SerializedName("p2_name")
     @Expose
-    public String p2Name;
+    private String p2Name;
 
     @SerializedName("p2_mobile")
     @Expose
-    public String p2Mobile;
+    private String p2Mobile;
 
     @SerializedName("p2_email")
     @Expose
-    public String p2Email;
+    private String p2Email;
 
     @SerializedName("nonresident_household_fk")
     @Expose
-    public Integer nonresidentHouseholdFk;
+    private Integer nonresidentHouseholdFk;
 
     @SerializedName("nonresident_parents")
     @Expose
-    public String nonresidentParents;
+    private String nonresidentParents;
 
     @SerializedName("nonresident_address")
     @Expose
-    public String nonresidentAddress;
+    private String nonresidentAddress;
 
     @SerializedName("nonresident_address_url")
     @Expose
-    public String nonresidentAddressUrl;
+    private String nonresidentAddressUrl;
 
     @SerializedName("nonresident_phone")
     @Expose
-    public String nonresidentPhone;
+    private String nonresidentPhone;
 
     @SerializedName("p3_name")
     @Expose
-    public String p3Name;
+    private String p3Name;
 
     @SerializedName("p3_mobile")
     @Expose
-    public String p3Mobile;
+    private String p3Mobile;
 
     @SerializedName("p3_email")
     @Expose
-    public String p3Email;
+    private String p3Email;
 
     @SerializedName("p4_name")
     @Expose
-    public String p4Name;
+    private String p4Name;
 
     @SerializedName("p4_mobile")
     @Expose
-    public String p4Mobile;
+    private String p4Mobile;
 
     @SerializedName("p4_email")
     @Expose
-    public String p4Email;
+    private String p4Email;
 }

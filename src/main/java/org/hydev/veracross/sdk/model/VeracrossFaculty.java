@@ -20,77 +20,77 @@ public class VeracrossFaculty
 {
     @SerializedName("person_pk")
     @Expose
-    public Integer personPk;
+    private Integer personPk;
 
     @SerializedName("is_faculty")
     @Expose
-    public Boolean isFaculty;
+    private Boolean isFaculty;
 
     @SerializedName("first_name")
     @Expose
-    public String firstName;
+    private String firstName;
 
     @SerializedName("nick_name")
     @Expose
-    public String nickName;
+    private String nickName;
 
     @SerializedName("last_name")
     @Expose
-    public String lastName;
+    private String lastName;
 
     @SerializedName("spouse")
     @Expose
-    public String spouse;
+    private String spouse;
 
     @SerializedName("address")
     @Expose
-    public String address;
+    private String address;
 
     @SerializedName("job_title")
     @Expose
-    public String jobTitle;
+    private String jobTitle;
 
     @SerializedName("faculty_type")
     @Expose
-    public String facultyType;
+    private String facultyType;
 
     @SerializedName("phone_home")
     @Expose
-    public String phoneHome;
+    private String phoneHome;
 
     @SerializedName("phone_business")
     @Expose
-    public String phoneBusiness;
+    private String phoneBusiness;
 
     @SerializedName("cell")
     @Expose
-    public String cell;
+    private String cell;
 
     @SerializedName("email")
     @Expose
-    public String email;
+    private String email;
 
     @SerializedName("photo_url")
     @Expose
-    public String photoUrl;
+    private String photoUrl;
 
     @SerializedName("map_url")
     @Expose
-    public String mapUrl;
+    private String mapUrl;
 
     @SerializedName("school_level_id")
     @Expose
-    public String schoolLevelId;
+    private String schoolLevelId;
 
     @SerializedName("department_id")
     @Expose
-    public Short departmentId;
+    private Short departmentId;
 
     @SerializedName("campus_id")
     @Expose
-    public Short campusId;
+    private Short campusId;
 
     @SerializedName("faculty_type_id")
     @Expose
-    public Short facultyTypeId;
+    private Short facultyTypeId;
 }
