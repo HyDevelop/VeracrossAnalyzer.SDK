@@ -3,10 +3,7 @@ package org.hydev.veracross.sdk;
 import com.google.gson.Gson;
 import org.apache.http.cookie.Cookie;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
-import org.hydev.veracross.sdk.model.VeracrossAssignments;
-import org.hydev.veracross.sdk.model.VeracrossCalendarEvent;
-import org.hydev.veracross.sdk.model.VeracrossCourse;
-import org.hydev.veracross.sdk.model.VeracrossMessage;
+import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -115,6 +112,19 @@ class StJohnsHttpClientTest
 
         // Print results
         log(students);
+    }
+
+    @Test @Order(9)
+    void veracrossDirectoryFaculty() throws IOException
+    {
+        // Get all faculty info
+        List<VeracrossFaculty> faculties = veracross.getDirectoryFaculties();
+
+        // Filter them, select the faculty in Information Services department
+        faculties.removeIf(faculty -> !faculty.getFacultyType().contains("Information Services"));
+
+        // Print results
+        log(faculties);
     }
 
     List<Cookie> savedCookies;
