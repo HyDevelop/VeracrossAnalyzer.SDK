@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class VeracrossCourse extends VeracrossData<VeracrossCourse>
+public class VeracrossCourse implements VeracrossData
 {
     // Name of the course
     private String name;
