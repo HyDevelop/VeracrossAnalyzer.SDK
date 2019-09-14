@@ -2,6 +2,9 @@ package org.hydev.veracross.sdk.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * This class is the data POJO class for faculty and staff directory:
@@ -16,6 +19,9 @@ import com.google.gson.annotations.SerializedName;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-09-14 15:47
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VeracrossFaculty
 {
     @SerializedName("person_pk")
