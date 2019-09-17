@@ -35,7 +35,7 @@ public class VeracrossCourse implements VeracrossData
     // Numeric grade (nullable)
     private Double numericGrade;
 
-    // Future / Present / Past
+    // Future / Present (Active) / Past
     private String status;
 
     /**
