@@ -72,6 +72,9 @@ public class VeracrossHtmlParser
                 builder.numericGrade(parseDouble(courseElement.selectFirst(".numeric-grade").html().replace("%", "")));
             }
 
+            // Find status
+            builder.status(courseElement.attr("data-status"));
+
             // Add to result
             result.add(builder.build());
         }
