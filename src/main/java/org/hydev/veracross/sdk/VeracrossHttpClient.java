@@ -59,6 +59,13 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // Get html
         String responseHtml = getBody(URL_BASE);
 
+        // The old version website uses XHR to display course list, which
+        // means there is an api for it. However, the new website shows
+        // a generated static page for courses, which means information
+        // can only be obtained from the html.
+        //
+        // More details in the JavaDoc comments for getWebsiteVersion().
+
         // Check version
         if (getWebsiteVersion().equals("portals"))
         {
