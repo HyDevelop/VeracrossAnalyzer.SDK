@@ -59,8 +59,19 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // Get html
         String responseHtml = getBody(URL_BASE);
 
-        // Parse HTML
-        return VeracrossHtmlParser.parseCourses(responseHtml);
+        // Check version
+        if (getWebsiteVersion().equals("portals"))
+        {
+            // Parse HTML, because for the new veracross, the course list
+            // info are all in the html.
+            return VeracrossHtmlParser.parseCourses(responseHtml);
+        }
+        else
+        {
+            // Access api url, because for the old veracross, the course
+            // list is accessed with a XHR request.
+
+        }
     }
 
     /**
