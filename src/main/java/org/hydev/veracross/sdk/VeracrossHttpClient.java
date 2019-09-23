@@ -80,7 +80,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             // Access api url, because for the old veracross, the course
             // list is accessed with a XHR request.
-
+            return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE, VeracrossCourse.class);
         }
     }
 
