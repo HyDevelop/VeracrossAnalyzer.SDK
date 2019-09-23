@@ -66,6 +66,13 @@ public class VeracrossHttpClient extends GeneralHttpClient
     /**
      * Get the version of the website.
      *
+     * Check if the website is the portals (old) version or the
+     * portals-app (new) version. They are in very different formats.
+     * The old version website accounts can access new version apis,
+     * but the new version accounts cannot access the old version
+     * apis. Also, if you try to access the old version website with
+     * a new version account, you would get redirected back.
+     *
      * @return Version ('portals-app' or 'portals')
      */
     public String getWebsiteVersion() throws IOException
