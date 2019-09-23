@@ -25,6 +25,7 @@ Introduction:
 * Get a list of all the assignments in a course.
 * Get the list of messages, or notifications.
 * Get the list of calendar events in between dates.
+* Supports both legacy apis on `portals.veracross.com` and new apis on `portals-app.veracross.com`.
 
 **Note**: Currently, this SDK library only works for St. John's with single-sign-on, 
 because logging in directly to Veracross would require an authenticity token from Recaptcha.
