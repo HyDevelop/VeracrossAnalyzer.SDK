@@ -78,7 +78,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * New version: portals-app.veracross.com
      * Old version: portals.veracross.com
      *
-     * @return Version ('portals-app' or 'portals')
+     * @return Version ("portals-app" or "portals")
      */
     public String getWebsiteVersion() throws IOException
     {
