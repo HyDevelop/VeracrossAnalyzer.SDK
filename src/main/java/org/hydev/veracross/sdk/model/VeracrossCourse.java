@@ -50,4 +50,22 @@ public class VeracrossCourse implements VeracrossData
         this(other.name, other.teacherName, other.id, other.assignmentsId,
                 other.letterGrade, other.numericGrade, other.status);
     }
+
+    /**
+     * Convert a legacy course to a course.
+     *
+     * @param other Legacy course.
+     */
+    public VeracrossCourse(VeracrossLegacyCourse other)
+    {
+        this(VeracrossCourse.builder()
+                .name(other.getClassName())
+                .teacherName(other.getTeacherFullName())
+                .id(other.getClassPk())
+                .assignmentsId(other.getEnrollmentPk())
+                .letterGrade(other.getPtdLetterGrade())
+                .numericGrade(other.getPtdGrade())
+                .status(other.getStatus())
+                .build());
+    }
 }
