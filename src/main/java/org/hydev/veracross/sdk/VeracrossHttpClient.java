@@ -32,6 +32,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
     private static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
     private static final String API_DIRECTORY = "directory/entries.json";
 
+    private static final String LEGACY_URL_BASE = "https://portals.veracross.com/sjp/";
+
     /**
      * Login and save the session
      *
