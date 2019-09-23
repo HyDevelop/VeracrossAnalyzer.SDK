@@ -108,8 +108,14 @@ public class VeracrossHttpClient extends GeneralHttpClient
         String url = getRedirectedUrl(URL_BASE);
 
         // Check domain name
-        return url.contains("portals-app.veracross.com") ? "portals-app" :
-                url.contains("portals.veracross.com") ? "portals" : "Error";
+        String result =  url.contains("portals-app.veracross.com") ? "portals-app" :
+                url.contains("portals.veracross.com") ? "portals" : null;
+
+        // Check error
+        if (result == null)
+        {
+            throw new RuntimeException("Veracross Error: Unsupported Version! Redirected URL: " + url);
+        }
     }
 
     /**
