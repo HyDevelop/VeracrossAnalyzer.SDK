@@ -7,12 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * 此类由 Hykilpikonna 在 2018/10/25 创建!
- * Created by Hykilpikonna on 2018/10/25!
- * Github: https://github.com/hykilpikonna
- * Meow!
+ * This class contains information about a course in Veracross
+ * <p>
+ * Class created by the HyDEV Team on 2019-09-23!
  *
- * @author Hykilpikonna
+ * @author HyDEV Team (https://github.com/HyDevelop)
+ * @author Hykilpikonna (https://github.com/hykilpikonna)
+ * @author Vanilla (https://github.com/VergeDX)
+ * @since 2018-10-25
  */
 @Data
 @AllArgsConstructor
