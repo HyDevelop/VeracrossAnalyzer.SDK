@@ -64,6 +64,18 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Get the version of the website.
+     *
+     * @return Version ('portals-app' or 'portals')
+     */
+    public String getWebsiteVersion() throws IOException
+    {
+        String url = getRedirectedUrl(URL_BASE);
+        System.out.println(url);
+        return url.contains("portals-app.veracross.com") ? "portals-app" : "portals";
+    }
+
+    /**
      * Get the list of assignments from the start of the semester for the
      * specified course.
      *
