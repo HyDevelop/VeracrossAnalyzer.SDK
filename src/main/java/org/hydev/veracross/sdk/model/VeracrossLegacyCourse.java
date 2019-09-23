@@ -77,19 +77,19 @@ public class VeracrossLegacyCourse
 
     @SerializedName("ptd_grade")
     @Expose
-    private Object ptdGrade;
+    private Double ptdGrade;
 
     @SerializedName("ptd_letter_grade")
     @Expose
-    private Object ptdLetterGrade;
+    private String ptdLetterGrade;
 
     @SerializedName("display_assignments")
     @Expose
-    private Long displayAssignments;
+    private Short displayAssignments;
 
     @SerializedName("display_notifications")
     @Expose
-    private Long displayNotifications;
+    private Short displayNotifications;
 
     @SerializedName("notifications_count")
     @Expose
