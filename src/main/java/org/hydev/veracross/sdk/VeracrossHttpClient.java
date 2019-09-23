@@ -2,6 +2,7 @@ package org.hydev.veracross.sdk;
 
 import com.google.gson.reflect.TypeToken;
 import org.hydev.veracross.sdk.model.*;
+import org.hydev.veracross.sdk.model.VeracrossLegacyCourse.CourseListContainer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -80,8 +81,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             // Access api url, because for the old veracross, the course
             // list is accessed with a XHR request.
-            return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE,
-                    new TypeToken<List<VeracrossCourse>>(){}.getType());
+            return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE, CourseListContainer.class);
         }
     }
 
