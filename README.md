@@ -1,5 +1,5 @@
 <h1 align="center"><br><br>
-  Veracross Analyzer SDK
+  Veracross SDK
 </h1>
 
 <h4 align="center">
@@ -56,7 +56,7 @@ Then you can add this library as dependency:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>VeracrossAnalyzer.SDK</artifactId>
-    <version>1.3.3.134</version>
+    <version>2.0.0.169</version>
 </dependency>
 ```
 
