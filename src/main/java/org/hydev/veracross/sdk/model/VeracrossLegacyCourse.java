@@ -114,4 +114,15 @@ public class VeracrossLegacyCourse
     @SerializedName("course_sort_key")
     @Expose
     private Long courseSortKey;
+
+    /**
+     * This is used because the list is contained under the "courses" key
+     * instead of the json base.
+     */
+    public static class CourseListContainer
+    {
+        @SerializedName("courses")
+        @Expose
+        public List<VeracrossLegacyCourse> courses = null;
+    }
 }
