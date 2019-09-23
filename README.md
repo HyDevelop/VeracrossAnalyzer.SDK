@@ -1,5 +1,5 @@
 <h1 align="center"><br><br>
-  Veracross SDK
+  Veracross Analyzer SDK
 </h1>
 
 <h4 align="center">
