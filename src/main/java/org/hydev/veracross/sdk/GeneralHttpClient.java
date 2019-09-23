@@ -2,14 +2,13 @@ package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
 import lombok.Getter;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -17,6 +16,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.hydev.veracross.sdk.utils.UrlUtils;
 
@@ -25,6 +26,9 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.http.protocol.HttpCoreContext.HTTP_REQUEST;
+import static org.apache.http.protocol.HttpCoreContext.HTTP_TARGET_HOST;
 
 /**
  * TODO: Write a description for this class!
@@ -174,6 +178,34 @@ public abstract class GeneralHttpClient
 
         // Send request
         return httpClient.execute(get);
+    }
+
+    /**
+     * Get the final url after all the redirection
+     * Credit to: https://stackoverflow.com/a/1457173
+     *
+     * @param url The requested url
+     * @return The final url
+     */
+    protected String getRedirectedUrl(String url) throws IOException
+    {
+        // Create request and temporary context
+        HttpGet httpget = new HttpGet(url);
+        HttpContext context = new BasicHttpContext();
+        HttpResponse response = httpClient.execute(httpget, context);
+
+        // Handle error
+        if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
+        {
+            throw new IOException(response.getStatusLine().toString());
+        }
+
+        // Get URI
+        HttpUriRequest currentReq = (HttpUriRequest) context.getAttribute(HTTP_REQUEST);
+        HttpHost currentHost = (HttpHost)  context.getAttribute(HTTP_TARGET_HOST);
+        return (currentReq.getURI().isAbsolute())
+                ? currentReq.getURI().toString()
+                : (currentHost.toURI() + currentReq.getURI());
     }
 
     /**
