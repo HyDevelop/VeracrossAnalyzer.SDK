@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  A Java SDK library for Veracross
+  A Java SDK library for Veracross Student API
 </h4>
 
 <h5 align="center">
