@@ -70,7 +70,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // More details in the JavaDoc comments for getWebsiteVersion().
 
         // Check version
-        if (getWebsiteVersion().equals("portals"))
+        if (getWebsiteVersion().equals("portals-app"))
         {
             // Parse HTML, because for the new veracross, the course list
             // info are all in the html.
