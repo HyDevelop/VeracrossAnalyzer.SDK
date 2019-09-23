@@ -73,6 +73,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * apis. Also, if you try to access the old version website with
      * a new version account, you would get redirected back.
      *
+     * TODO: Ask someone to test accessing the new website with an old account.
+     *
      * New version: portals-app.veracross.com
      * Old version: portals.veracross.com
      *
