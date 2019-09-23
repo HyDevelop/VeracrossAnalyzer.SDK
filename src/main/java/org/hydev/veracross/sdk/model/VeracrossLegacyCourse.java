@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -119,10 +120,23 @@ public class VeracrossLegacyCourse
      * This is used because the list is contained under the "courses" key
      * instead of the json base.
      */
+    @Data
     public static class CourseListContainer
     {
         @SerializedName("courses")
         @Expose
-        public List<VeracrossLegacyCourse> courses = null;
+        private List<VeracrossLegacyCourse> courses = null;
+
+        /**
+         * Convert legacy course to course
+         *
+         * @return List of courses
+         */
+        public List<VeracrossCourse> convert()
+        {
+            List<VeracrossCourse> result = new ArrayList<>();
+            courses.forEach(course -> result.add(new VeracrossCourse(course)));
+            return result;
+        }
     }
 }
