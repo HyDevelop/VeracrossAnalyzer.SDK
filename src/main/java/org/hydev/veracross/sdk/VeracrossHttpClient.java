@@ -33,6 +33,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     private static final String API_DIRECTORY = "directory/entries.json";
 
     private static final String LEGACY_URL_BASE = "https://portals.veracross.com/sjp/";
+    private static final String LEGACY_API_COURSE = "student/component/ClassListStudent/1308/load_data";
 
     /**
      * Login and save the session
