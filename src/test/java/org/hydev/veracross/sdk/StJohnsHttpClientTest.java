@@ -61,19 +61,24 @@ class StJohnsHttpClientTest
         veracross = stJohns.veracrossLoginSSO();
     }
 
+    private VeracrossCourse course;
+
     @Test @Order(3)
     void veracrossCourses() throws IOException
     {
         // Get courses
         List<VeracrossCourse> courses = veracross.getCourses();
         log(courses);
+
+        // Get ready to test assignments
+        course = courses.get(0);
     }
 
     @Test @Order(4)
     void veracrossAssignments() throws IOException
     {
         // Get assignments of the course at index 1 of the list.
-        VeracrossAssignments assignments = veracross.getAssignments(10934147);
+        VeracrossAssignments assignments = veracross.getAssignments(course.getAssignmentsId());
         log(assignments);
     }
 
