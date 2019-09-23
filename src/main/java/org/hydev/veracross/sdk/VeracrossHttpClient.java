@@ -116,6 +116,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             throw new RuntimeException("Veracross Error: Unsupported Version! Redirected URL: " + url);
         }
+
+        return result;
     }
 
     /**
