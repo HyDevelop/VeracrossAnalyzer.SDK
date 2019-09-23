@@ -128,6 +128,29 @@ List<VeracrossCalendarEvent> events = veracross.getEvents(-5, 5);
 List<VeracrossCalendarEvent> events2 = veracross.getEvents(new Date(), new Date());
 ```
 
+#### 7. Save cookies for later:
+
+```java
+// Get cookies
+List<Cookie> cookies = veracross.getCookies().getCookies();
+
+// Do whatever you want to save them.
+// In this case, I'll just use Gson to save them as JSON.
+String cookiesJson = new Gson().toJson(cookies);
+```
+
+#### 8. Restore cookies:
+
+```java
+// Get the original list of cookies back
+List<Cookie> restoredCookies = new Gson().fromJson(cookiesJson, 
+        new TypeToken<List<BasicClientCookie>>(){}.getType());
+        
+// Restore them to a new Veracross client
+Veracross restoredVeracross = new VeracrossHttpClient();
+restoredVeracross.restoreCookies(restoredCookies);
+```
+
 ### If you need help:
 
 1. **Ask Google**
