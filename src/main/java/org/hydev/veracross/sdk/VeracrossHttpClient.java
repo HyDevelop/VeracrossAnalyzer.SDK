@@ -106,7 +106,6 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // Get the fully redirected url. Why this can be used to detect
         // the version is explained above.
         String url = getRedirectedUrl(URL_BASE);
-        System.out.println(url);
 
         // Check domain name
         return url.contains("portals-app.veracross.com") ? "portals-app" :
