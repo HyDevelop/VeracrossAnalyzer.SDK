@@ -26,15 +26,19 @@ import java.util.List;
  */
 public class VeracrossHttpClient extends GeneralHttpClient
 {
-    private static final String URL_BASE = "https://portals-app.veracross.com/sjp/";
-    private static final String API_MESSAGES = "mailbox/messages";
-    private static final String API_CALENDAR_EVENTS = "student/calendar/student/calendar_events";
-    private static final String API_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
-    private static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
-    private static final String API_DIRECTORY = "directory/entries.json";
+    public static String SCHOOL_CODE = "sjp";
 
-    private static final String LEGACY_URL_BASE = "https://portals.veracross.com/sjp/";
-    private static final String LEGACY_API_COURSE = "student/component/ClassListStudent/1308/load_data";
+    public static String URL_BASE = "https://portals-app.veracross.com/" + SCHOOL_CODE + "/";
+    public static final String API_MESSAGES = "mailbox/messages";
+    public static final String API_CALENDAR_EVENTS = "student/calendar/student/calendar_events";
+    public static final String API_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
+    public static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
+    public static final String API_DIRECTORY = "directory/entries.json";
+
+    public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=1&key=_";
+
+    public static String LEGACY_URL_BASE = "https://portals.veracross.com/" + SCHOOL_CODE + "/";
+    public static final String LEGACY_API_COURSE = "student/component/ClassListStudent/1308/load_data";
 
     /**
      * Login and save the session
