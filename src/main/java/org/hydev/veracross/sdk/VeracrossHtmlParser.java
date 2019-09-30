@@ -115,7 +115,7 @@ public class VeracrossHtmlParser
         // If it says it's graded by assignment points, we are done.
         if (gradingHtml.contains("Assignment Points"))
         {
-            return new VeracrossCourseGrading(GradingMethod.TOTAL_MEAN, weightingMap);
+            return new VeracrossCourseGrading(GradingMethod.TOTAL_MEAN, null);
         }
 
         // Parse document
@@ -123,6 +123,9 @@ public class VeracrossHtmlParser
 
         // Find table element
         Element table = doc.selectFirst("#assignment_type_summary .data_table tbody");
+
+        // There are no table
+        if (table == null) return new VeracrossCourseGrading(GradingMethod.NOT_GRADED, null);
 
         // Loop through table rows
         for (Element tr : table.select("tr"))
