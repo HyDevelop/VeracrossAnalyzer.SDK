@@ -2,13 +2,17 @@ package org.hydev.veracross.sdk;
 
 import org.hydev.veracross.sdk.model.VeracrossCourse;
 import org.hydev.veracross.sdk.model.VeracrossCourse.VeracrossCourseBuilder;
+import org.hydev.veracross.sdk.model.VeracrossCourseGrading;
+import org.hydev.veracross.sdk.model.VeracrossCourseGrading.GradingMethod;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,5 +99,44 @@ public class VeracrossHtmlParser
 
         if (matcher.find()) return Long.parseLong(matcher.group());
         return -1;
+    }
+
+    /**
+     * Parse grading scheme information
+     *
+     * @param gradingHtml Grading page html
+     * @return Grading scheme information
+     */
+    public static VeracrossCourseGrading parseGrading(String gradingHtml)
+    {
+        // Create weighting map
+        Map<String, Double> weightingMap = new HashMap<>();
+
+        // If it says it's graded by assignment points, we are done.
+        if (gradingHtml.contains("Assignment Points"))
+        {
+            return new VeracrossCourseGrading(GradingMethod.TOTAL_MEAN, weightingMap);
+        }
+
+        // Parse document
+        Document doc = Jsoup.parse(gradingHtml);
+
+        // Find table element
+        Element table = doc.selectFirst("#assignment_type_summary .data_table tbody");
+
+        // Loop through table rows
+        for (Element tr : table.select("tr"))
+        {
+            // Find name (Eg. "Homework" or "Quiz")
+            Element name = tr.selectFirst("td.description.text strong");
+
+            // Find weight
+            Element weight = tr.selectFirst("td.weight div span.label");
+
+            // Add it to the weighting map
+            weightingMap.put(name.html(), Double.valueOf(weight.html().replace("%", "")) / 100d);
+        }
+
+        return new VeracrossCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);
     }
 }
