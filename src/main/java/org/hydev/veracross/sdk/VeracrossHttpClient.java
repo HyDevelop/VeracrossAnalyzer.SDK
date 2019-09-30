@@ -91,6 +91,16 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Get the list of courses with grading
+     *
+     * @return Courses
+     */
+    public List<VeracrossCourse> getCoursesWithGrading() throws IOException
+    {
+        return loadGradings(getCourses());
+    }
+
+    /**
      * Get the version of the website.
      *
      * Check if the website is the portals (old) version or the
