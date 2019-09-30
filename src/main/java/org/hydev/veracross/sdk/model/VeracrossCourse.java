@@ -40,6 +40,9 @@ public class VeracrossCourse implements VeracrossData
     // Future / Present (Active) / Past
     private String status;
 
+    // Grading
+    private VeracrossCourseGrading grading;
+
     /**
      * Self-constructor that copies all field from the other
      *
@@ -48,7 +51,7 @@ public class VeracrossCourse implements VeracrossData
     public VeracrossCourse(VeracrossCourse other)
     {
         this(other.name, other.teacherName, other.id, other.assignmentsId,
-                other.letterGrade, other.numericGrade, other.status);
+                other.letterGrade, other.numericGrade, other.status, other.grading);
     }
 
     /**
