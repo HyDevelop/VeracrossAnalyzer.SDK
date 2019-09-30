@@ -278,4 +278,19 @@ public class VeracrossHttpClient extends GeneralHttpClient
         }
         return result;
     }
+
+    /**
+     * Load grading scheme information to courses
+     *
+     * @param courses Courses
+     * @return Courses with gradings (but it actually modifies the object)
+     */
+    public List<VeracrossCourse> loadGradings(List<VeracrossCourse> courses) throws IOException
+    {
+        for (VeracrossCourse course : courses)
+        {
+            course.setGrading(getGrading(course));
+        }
+        return courses;
+    }
 }
