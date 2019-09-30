@@ -61,7 +61,7 @@ class StJohnsHttpClientTest
         veracross = stJohns.veracrossLoginSSO();
     }
 
-    private VeracrossCourse course;
+    private List<VeracrossCourse> courses;
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
@@ -71,14 +71,14 @@ class StJohnsHttpClientTest
         log(courses);
 
         // Get ready to test assignments
-        course = courses.get(0);
+        this.courses = courses;
     }
 
     @Test @Order(4)
     void veracrossAssignments() throws IOException
     {
         // Get assignments of the course at index 1 of the list.
-        VeracrossAssignments assignments = veracross.getAssignments(course.getAssignmentsId());
+        VeracrossAssignments assignments = veracross.getAssignments(courses.get(0).getAssignmentsId());
         log(assignments);
     }
 
@@ -130,6 +130,14 @@ class StJohnsHttpClientTest
 
         // Print results
         log(faculties);
+    }
+
+    @Test @Order(10)
+    void testGrading() throws IOException
+    {
+        // Get grading info
+        List<VeracrossCourseGrading> gradings = veracross.getGradings(courses);
+        log(gradings);
     }
 
     List<Cookie> savedCookies;
