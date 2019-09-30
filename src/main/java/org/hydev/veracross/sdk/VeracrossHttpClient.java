@@ -262,4 +262,20 @@ public class VeracrossHttpClient extends GeneralHttpClient
     {
         return getGrading(course.getAssignmentsId());
     }
+
+    /**
+     * Get the grading scheme information of a list of courses
+     *
+     * @param courses Courses
+     * @return Grading scheme info list
+     */
+    public List<VeracrossCourseGrading> getGradings(List<VeracrossCourse> courses) throws IOException
+    {
+        List<VeracrossCourseGrading> result = new ArrayList<>();
+        for (VeracrossCourse course : courses)
+        {
+            result.add(getGrading(course));
+        }
+        return result;
+    }
 }
