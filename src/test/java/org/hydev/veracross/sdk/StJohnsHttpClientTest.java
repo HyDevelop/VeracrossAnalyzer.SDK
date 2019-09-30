@@ -67,7 +67,7 @@ class StJohnsHttpClientTest
     void veracrossCourses() throws IOException
     {
         // Get courses
-        List<VeracrossCourse> courses = veracross.getCourses();
+        List<VeracrossCourse> courses = veracross.getCoursesWithGrading();
         log(courses);
 
         // Get ready to test assignments
