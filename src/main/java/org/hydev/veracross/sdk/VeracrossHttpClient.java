@@ -234,4 +234,21 @@ public class VeracrossHttpClient extends GeneralHttpClient
                 "portal", "student",
                 "refresh", 0);
     }
+
+    /**
+     * Get the grading scheme information
+     *
+     * @param assignmentsId Assignments ID of a course
+     * @return Grading scheme info for a course
+     */
+    public VeracrossCourseGrading getGrading(long assignmentsId) throws IOException
+    {
+        // Get HTML
+        String html = getBody(String.format(WEB_GRADING, assignmentsId));
+
+        // Parse it
+        VeracrossCourseGrading grading = VeracrossHtmlParser.parseGrading(html);
+
+        return grading;
+    }
 }
