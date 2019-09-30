@@ -251,4 +251,15 @@ public class VeracrossHttpClient extends GeneralHttpClient
 
         return grading;
     }
+
+    /**
+     * Get the grading scheme information
+     *
+     * @param course Course
+     * @return Grading scheme info of the course
+     */
+    public VeracrossCourseGrading getGrading(VeracrossCourse course) throws IOException
+    {
+        return getGrading(course.getAssignmentsId());
+    }
 }
