@@ -31,6 +31,6 @@ public class VeracrossCourseGrading
 
     public enum GradingMethod
     {
-        TOTAL_MEAN, PERCENT_TYPE
+        TOTAL_MEAN, PERCENT_TYPE, NOT_GRADED
     }
 }
