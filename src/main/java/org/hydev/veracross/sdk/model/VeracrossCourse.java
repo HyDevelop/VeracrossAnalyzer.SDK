@@ -66,7 +66,8 @@ public class VeracrossCourse implements VeracrossData
                 .teacherName(other.getTeacherFullName())
                 .id(other.getClassPk())
                 .assignmentsId(other.getEnrollmentPk())
-                .letterGrade(other.getPtdLetterGrade().replace(" ", ""))
+                .letterGrade(other.getPtdLetterGrade() == null ? null :
+                        other.getPtdLetterGrade().replace(" ", ""))
                 .numericGrade(other.getPtdGrade())
                 .status(other.getStatus())
                 .build());
