@@ -72,7 +72,7 @@ public class VeracrossHtmlParser
             // Find grades
             if (courseElement.select(".calculated-grade").size() != 0)
             {
-                builder.letterGrade(courseElement.selectFirst(".letter-grade").html());
+                builder.letterGrade(courseElement.selectFirst(".letter-grade").html().replace(" ", ""));
                 builder.numericGrade(parseDouble(courseElement.selectFirst(".numeric-grade").html().replace("%", "")));
             }
 
