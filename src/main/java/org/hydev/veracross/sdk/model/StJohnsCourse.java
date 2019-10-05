@@ -82,4 +82,20 @@ public class StJohnsCourse extends VeracrossCourse
             scaleUp = -1;
         }
     }
+
+    /**
+     * String.endsWith() with multiple suffixes
+     *
+     * @param str Tested string
+     * @param suffixes Suffixes
+     * @return Ends with at least one of them or not.
+     */
+    private boolean endsWith(String str, String... suffixes)
+    {
+        for (String suffix : suffixes)
+        {
+            if (str.endsWith(suffix)) return true;
+        }
+        return false;
+    }
 }
