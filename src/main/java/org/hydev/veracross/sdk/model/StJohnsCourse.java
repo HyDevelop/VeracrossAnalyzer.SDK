@@ -17,6 +17,13 @@ import lombok.EqualsAndHashCode;
 @Data
 public class StJohnsCourse extends VeracrossCourse
 {
+    private static final String[][] LEVEL_ENDING_ALIAS =
+    {
+            {"H", " h", " honors"},
+            {"A", " a", " acc", " accelerated"},
+            {"CP", " c", " college prep"}
+    };
+
     // Level of the course
     private String level;
 
