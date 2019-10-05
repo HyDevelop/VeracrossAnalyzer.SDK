@@ -61,17 +61,17 @@ public class StJohnsCourse extends VeracrossCourse
             level = "AP";
             scaleUp = 1;
         }
-        else if (course.getName().endsWith("H"))
+        else if (endsWith(name, " h", " honors"))
         {
             level = "H";
             scaleUp = 0.75;
         }
-        else if (course.getName().endsWith("A"))
+        else if (endsWith(name, " a", " acc", " accelerated"))
         {
             level = "A";
             scaleUp = 0.5;
         }
-        else if (course.getName().endsWith("CP"))
+        else if (endsWith(name, " cp", " college prep"))
         {
             level = "CP";
             scaleUp = 0.25;
