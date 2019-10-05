@@ -3,6 +3,9 @@ package org.hydev.veracross.sdk.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This data model class represents a course in St. John's.
  * <p>
@@ -23,6 +26,18 @@ public class StJohnsCourse extends VeracrossCourse
             {"A", " a", " acc", " accelerated"},
             {"CP", " c", " college prep"}
     };
+
+    private static final Map<String, Float> LEVEL_SCALE_MAP;
+
+    static
+    {
+        // Initialize level scale map
+        LEVEL_SCALE_MAP = new HashMap<>();
+        LEVEL_SCALE_MAP.put("AP", 1f);
+        LEVEL_SCALE_MAP.put("H", 0.75f);
+        LEVEL_SCALE_MAP.put("A", 0.5f);
+        LEVEL_SCALE_MAP.put("CP", 0.25f);
+    }
 
     // Level of the course
     private String level;
