@@ -40,7 +40,8 @@ public class StJohnsCourse extends VeracrossCourse
         super(course);
 
         // Detect level
-        if (course.getName().startsWith("AP"))
+        String name = course.getName().toLowerCase();
+        if (name.startsWith("ap "))
         {
             level = "AP";
             scaleUp = 1;
