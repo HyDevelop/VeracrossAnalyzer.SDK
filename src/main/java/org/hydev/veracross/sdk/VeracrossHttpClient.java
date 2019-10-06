@@ -1,6 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.reflect.TypeToken;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.hydev.veracross.sdk.model.*;
 import org.hydev.veracross.sdk.model.VeracrossLegacyCourse.CourseListContainer;
 
@@ -320,5 +321,31 @@ public class VeracrossHttpClient extends GeneralHttpClient
 
         // Get token
         return VeracrossHtmlParser.findCsrfToken(html);
+    }
+
+    /**
+     * Mark assignment as read
+     *
+     * @param csrf CSRF Token
+     * @param scoreId Score id in Assignment
+     */
+    public void markAssignmentAsRead(String csrf, long scoreId) throws IOException
+    {
+        CloseableHttpResponse response = postForm(URL_BASE + API_ASSIGNMENT_MARK_READ, (request) ->
+                {
+                    request.addHeader("accept", "*/*");
+                    request.addHeader("accept-encoding", "gzip, deflate, br");
+                    request.addHeader("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+                    request.addHeader("dnt", "1");
+                    request.addHeader("origin", "https://portals-app.veracross.com");
+                    request.addHeader("sec-fetch-mode", "cors");
+                    request.addHeader("sec-fetch-site", "same-origin");
+                    request.addHeader("x-requested-with", "XMLHttpRequest");
+                    request.addHeader("x-csrf-token", csrf);
+                    return request;
+                },
+                "class_assignment_person_pk", scoreId + "");
+
+        System.out.println(response);
     }
 }
