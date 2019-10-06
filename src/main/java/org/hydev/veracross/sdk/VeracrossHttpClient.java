@@ -305,4 +305,20 @@ public class VeracrossHttpClient extends GeneralHttpClient
         }
         return courses;
     }
+
+    /**
+     * Get a csrf token.
+     * Learn more about csrf tokens here:
+     * https://stackoverflow.com/q/5207160/7346633
+     *
+     * @return csrf token
+     */
+    public String getCsrfToken() throws IOException
+    {
+        // Fetch html body
+        String html = getBody(URL_BASE + WEB_CSRF_TOKEN);
+
+        // Get token
+        return VeracrossHtmlParser.findCsrfToken(html);
+    }
 }
