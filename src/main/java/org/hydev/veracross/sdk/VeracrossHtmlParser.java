@@ -142,4 +142,7 @@ public class VeracrossHtmlParser
 
         return new VeracrossCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);
     }
+
+    private static final Pattern CSRF_PATTERN =
+            Pattern.compile("(?<=<meta name=\"csrf-token\" content=\").*(?=\")");
 }
