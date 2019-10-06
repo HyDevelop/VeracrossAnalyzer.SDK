@@ -157,7 +157,15 @@ class StJohnsHttpClientTest
     @Test @Order(12)
     void testMarkAsRead() throws IOException
     {
-        veracross.markAssignmentAsRead(csrf, 5677615);
+        boolean success = veracross.markAssignmentAsRead(csrf, 5677615);
+        assertTrue(success);
+    }
+
+    @Test @Order(13)
+    void testMarkAsReadMultiple() throws IOException
+    {
+        boolean success = veracross.markAssignmentAsRead(5677615, 5677615, 5677615);
+        assertTrue(success);
     }
 
     List<Cookie> savedCookies;
