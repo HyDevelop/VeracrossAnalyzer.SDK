@@ -348,4 +348,27 @@ public class VeracrossHttpClient extends GeneralHttpClient
 
         return response.getStatusLine().getStatusCode() == 200;
     }
+
+    /**
+     * Get csrf token and mark assignment as read.
+     *
+     * @param scoreIds Score ids in Assignment
+     * @return Success or not
+     */
+    public boolean markAssignmentAsRead(long... scoreIds) throws IOException
+    {
+        // Get token
+        String token = getCsrfToken();
+
+        // Loop through all scores
+        boolean allSuccess = true;
+        for (long scoreId : scoreIds)
+        {
+            if (!markAssignmentAsRead(token, scoreId))
+            {
+                allSuccess = false;
+            }
+        }
+        return allSuccess;
+    }
 }
