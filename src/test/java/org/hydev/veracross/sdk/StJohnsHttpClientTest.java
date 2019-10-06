@@ -153,6 +153,13 @@ class StJohnsHttpClientTest
     {
         csrf = veracross.getCsrfToken();
     }
+
+    @Test @Order(12)
+    void testMarkAsRead() throws IOException
+    {
+        veracross.markAssignmentAsRead(csrf, 5677615);
+    }
+
     List<Cookie> savedCookies;
 
     @Test @Order(50)
