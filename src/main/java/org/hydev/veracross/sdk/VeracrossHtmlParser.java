@@ -145,4 +145,19 @@ public class VeracrossHtmlParser
 
     private static final Pattern CSRF_PATTERN =
             Pattern.compile("(?<=<meta name=\"csrf-token\" content=\").*(?=\")");
+
+    /**
+     * Find the csrf token in any page
+     *
+     * @param html HTML page
+     * @return CSRF token
+     */
+    public static String findCsrfToken(String html)
+    {
+        Matcher matcher = CSRF_PATTERN.matcher(html);
+        if (matcher.find())
+        {
+            return matcher.group();
+        }
+    }
 }
