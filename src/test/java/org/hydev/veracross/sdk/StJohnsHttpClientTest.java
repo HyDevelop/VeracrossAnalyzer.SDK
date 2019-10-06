@@ -146,6 +146,13 @@ class StJohnsHttpClientTest
         log(gradings);
     }
 
+    private String csrf = "";
+
+    @Test @Order(11)
+    void testGetCsrf() throws IOException
+    {
+        csrf = veracross.getCsrfToken();
+    }
     List<Cookie> savedCookies;
 
     @Test @Order(50)
