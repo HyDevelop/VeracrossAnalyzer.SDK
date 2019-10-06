@@ -332,6 +332,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public boolean markAssignmentAsRead(String csrf, long scoreId) throws IOException
     {
+        // Fetch request
         CloseableHttpResponse response = postForm(URL_BASE + API_ASSIGNMENT_MARK_READ, (request) ->
         {
             request.addHeader("accept", "*/*");
@@ -346,7 +347,14 @@ public class VeracrossHttpClient extends GeneralHttpClient
             return request;
         }, "class_assignment_person_pk", scoreId + "");
 
-        return response.getStatusLine().getStatusCode() == 200;
+        // Check for success status
+        boolean success = response.getStatusLine().getStatusCode() == 200;
+
+        // Close response
+        response.close();
+
+        // Return success status
+        return success;
     }
 
     /**
