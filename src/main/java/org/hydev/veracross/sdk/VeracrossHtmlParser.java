@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Double.parseDouble;
+import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 
 /**
  * This class contains utility methods that parse the html pages on
@@ -159,5 +160,7 @@ public class VeracrossHtmlParser
         {
             return matcher.group();
         }
+        throw new RuntimeException("CSRF Token Not Found! " +
+                "Please check for update, VXAnalyzer.Server v" + VERSION + " might be deprecated.");
     }
 }
