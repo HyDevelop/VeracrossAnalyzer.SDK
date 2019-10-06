@@ -34,6 +34,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public static final String API_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
     public static final String API_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
     public static final String API_DIRECTORY = "directory/entries.json";
+    public static final String API_ASSIGNMENT_MARK_READ = "enrollment/mark_notification_read";
 
     public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=1&key=_";
 
