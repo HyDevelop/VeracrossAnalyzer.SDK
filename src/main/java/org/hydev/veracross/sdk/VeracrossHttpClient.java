@@ -37,6 +37,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public static final String API_ASSIGNMENT_MARK_READ = "enrollment/mark_notification_read";
 
     public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=1&key=_";
+    public static final String WEB_CSRF_TOKEN = "student/directory"; // Because it has the smallest html
 
     public static String LEGACY_URL_BASE = "https://portals.veracross.com/" + SCHOOL_CODE + "/";
     public static final String LEGACY_API_COURSE = "student/component/ClassListStudent/1308/load_data";
