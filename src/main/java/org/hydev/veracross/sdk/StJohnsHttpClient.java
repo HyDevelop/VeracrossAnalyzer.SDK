@@ -172,7 +172,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
 
                     // Combine paragraphs to get description
                     StringBuilder description = new StringBuilder();
-                    String prerequisites = "none";
+                    String prerequisites = "None";
                     Elements paragraphs = course.select("p");
 
                     // Loop through paragraphs
@@ -184,7 +184,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         // See if text is prerequisites
                         if (text.startsWith("Prerequisite") || text.startsWith("Prerequisites"))
                         {
-                            prerequisites = text;
+                            prerequisites = text.replaceFirst("Prerequisite: ", "").replaceFirst("Prerequisites: ", "");
                         }
                         else
                         {
