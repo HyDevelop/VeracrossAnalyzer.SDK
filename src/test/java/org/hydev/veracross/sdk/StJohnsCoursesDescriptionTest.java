@@ -23,6 +23,6 @@ public class StJohnsCoursesDescriptionTest
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         StJohnsHttpClient client = new StJohnsHttpClient();
         List<StJohnsCourseDescription> list = client.getCourseDescriptions();
-        System.out.println(new Gson().toJson(list));
+        System.out.println(gson.toJson(list));
     }
 }

@@ -172,7 +172,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
 
                     // Combine paragraphs to get description
                     StringBuilder description = new StringBuilder();
-                    String prerequisits = "none";
+                    String prerequisites = "none";
                     Elements paragraphs = course.select("p");
 
                     // Loop through paragraphs
@@ -184,7 +184,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         // See if text is prerequisites
                         if (text.startsWith("Prerequisite") || text.startsWith("Prerequisites"))
                         {
-                            prerequisits = text;
+                            prerequisites = text;
                         }
                         else
                         {
@@ -194,7 +194,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
 
                     // Add to result
                     result.add(new StJohnsCourseDescription(name, level, credit,
-                            description.toString(), prerequisits));
+                            description.toString(), prerequisites));
                 }
             }
             catch (IOException e)
