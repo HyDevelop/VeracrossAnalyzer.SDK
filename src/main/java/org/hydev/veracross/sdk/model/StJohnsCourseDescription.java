@@ -21,5 +21,5 @@ public class StJohnsCourseDescription
     private String levels;
     private String credit;
     private String description;
-    private String prerequisits;
+    private String prerequisites;
 }
