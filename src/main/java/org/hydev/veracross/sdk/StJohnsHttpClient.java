@@ -170,6 +170,11 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         split = title.split(" \\[");
                         split[1] = "AP [" + split[1];
                     }
+                    if (split.length == 1)
+                    {
+                        split = title.split(" \\[");
+                        split[1] = "Unknown [" + split[1];
+                    }
 
 
                     // Continue splitting
