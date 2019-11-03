@@ -4,6 +4,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
+import org.hydev.veracross.sdk.model.StJohnsCourseDescription;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -110,5 +111,16 @@ public class StJohnsHttpClient extends GeneralHttpClient
         client.loginSJP(username, getVeracrossSSOToken());
 
         return client;
+    }
+
+    /**
+     * Get course descriptions
+     * Eg. https://www.stjohnsprep.org/page.cfm?p=9248
+     *
+     * @return Descriptions of all courses
+     */
+    public StJohnsCourseDescription getCourseDescriptions()
+    {
+
     }
 }
