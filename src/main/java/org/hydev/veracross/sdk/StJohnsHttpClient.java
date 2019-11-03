@@ -162,12 +162,12 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     // Special case
                     if (split.length == 1)
                     {
-                        split = new String[]{"None", split[0]};
+                        split = new String[]{"", split[0]};
                     }
 
                     // Continue splitting
                     split = split[1].split(" \\[");
-                    String level = split[0];
+                    String level = split[0].contains("AP ") ? "AP" : split[0];
                     String credit = split.length == 1 ? "Unknown" : split[1].split(" ")[0];
 
                     // Combine paragraphs to get description
