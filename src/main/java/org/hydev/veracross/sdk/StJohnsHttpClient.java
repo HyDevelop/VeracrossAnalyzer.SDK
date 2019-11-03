@@ -168,7 +168,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     // Continue splitting
                     split = split[1].split(" \\[");
                     String level = split[0];
-                    String credit = split[1].split(" ")[0];
+                    String credit = split.length == 1 ? "Unknown" : split[1].split(" ")[0];
 
                     // Combine paragraphs to get description
                     StringBuilder description = new StringBuilder();
