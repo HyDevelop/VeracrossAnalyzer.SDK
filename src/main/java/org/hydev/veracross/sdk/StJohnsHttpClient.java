@@ -158,6 +158,14 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     // Get other stuff from title
                     String[] split = title.contains(" - ") ? title.split(" - ") : title.split("-");
                     String name = split[0];
+
+                    // Special case
+                    if (split.length == 1)
+                    {
+                        split = new String[]{"None", split[0]};
+                    }
+
+                    // Continue splitting
                     split = split[1].split(" \\[");
                     String level = split[0];
                     String credit = split[1].split(" ")[0];
