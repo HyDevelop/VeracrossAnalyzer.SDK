@@ -17,6 +17,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class StJohnsCourseDescription
 {
+    private String title;
     private String name;
     private String levels;
     private String credit;
