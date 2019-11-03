@@ -152,7 +152,8 @@ public class StJohnsHttpClient extends GeneralHttpClient
                 for (Element course : elements)
                 {
                     // Get title
-                    String title = course.selectFirst("h5").html();
+                    Element titleElement = course.selectFirst("h5");
+                    String title = titleElement != null ? titleElement.text() : course.selectFirst("p").text();
 
                     // Get other stuff from title
                     String[] split = title.split(" - ");
