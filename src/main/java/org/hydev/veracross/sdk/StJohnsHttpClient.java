@@ -156,7 +156,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     String title = titleElement != null ? titleElement.text() : course.selectFirst("p").text();
 
                     // Get other stuff from title
-                    String[] split = title.split(" - ");
+                    String[] split = title.contains(" - ") ? title.split(" - ") : title.split("-");
                     String name = split[0];
                     split = split[1].split(" \\[");
                     String level = split[0];
