@@ -181,8 +181,8 @@ public class StJohnsHttpClient extends GeneralHttpClient
                         // Get text
                         String text = paragraph.text();
 
-                        // See if text is prerequisits
-                        if (text.startsWith("Prerequisits"))
+                        // See if text is prerequisites
+                        if (text.startsWith("Prerequisite") || text.startsWith("Prerequisites"))
                         {
                             prerequisits = text;
                         }
