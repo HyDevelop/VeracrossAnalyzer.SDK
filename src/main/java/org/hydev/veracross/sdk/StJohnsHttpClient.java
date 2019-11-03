@@ -7,6 +7,7 @@ import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.StJohnsCourseDescription;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -119,8 +120,11 @@ public class StJohnsHttpClient extends GeneralHttpClient
      *
      * @return Descriptions of all courses
      */
-    public StJohnsCourseDescription getCourseDescriptions()
+    public List<StJohnsCourseDescription> getCourseDescriptions()
     {
+        // Collect data for those urls
+        final String baseUrl = "https://www.stjohnsprep.org/page.cfm?p=";
+        final int[] urlCodes = {9246, 9247, 9248, 9249, 9250, 9251, 9252, 9253, 9254};
 
     }
 }
