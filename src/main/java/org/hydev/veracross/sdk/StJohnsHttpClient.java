@@ -5,6 +5,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.StJohnsCourseDescription;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,7 +133,68 @@ public class StJohnsHttpClient extends GeneralHttpClient
 
         // Declare results
         List<StJohnsCourseDescription> result = new ArrayList<>();
-        
+
+        // Loop through them
+        for (int urlCode : urlCodes)
+        {
+            // Combine to form final url
+            String url = baseUrl + urlCode;
+
+            try
+            {
+                // Parse html
+                Document doc = Jsoup.parse(getBody(url));
+
+                // Get courses
+                Elements elements = doc.select("div.contentElementDesc");
+
+                // Loop through them
+                for (Element course : elements)
+                {
+                    // Get title
+                    String title = course.selectFirst("h5").html();
+
+                    // Get other stuff from title
+                    String[] split = title.split(" - ");
+                    String name = split[0];
+                    split = split[1].split(" \\[");
+                    String level = split[0];
+                    String credit = split[1].split(" ")[0];
+
+                    // Combine paragraphs to get description
+                    StringBuilder description = new StringBuilder();
+                    String prerequisits = "none";
+                    Elements paragraphs = course.select("p");
+
+                    // Loop through paragraphs
+                    for (Element paragraph : paragraphs)
+                    {
+                        // Get text
+                        String text = paragraph.text();
+
+                        // See if text is prerequisits
+                        if (text.startsWith("Prerequisits"))
+                        {
+                            prerequisits = text;
+                        }
+                        else
+                        {
+                            description.append(text).append("\n");
+                        }
+                    }
+
+                    // Add to result
+                    result.add(new StJohnsCourseDescription(name, level, credit,
+                            description.toString(), prerequisits));
+                }
+            }
+            catch (IOException e)
+            {
+                // Error in one page doesn't mean every page would fail.
+                e.printStackTrace();
+            }
+        }
+
         return result;
     }
 }
