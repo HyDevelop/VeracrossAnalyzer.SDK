@@ -158,6 +158,8 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     // Get other stuff from title
                     String[] split = title.split(" - ");
                     if (split.length == 1) split = title.split("-");
+                    if (split.length == 1) split = title.split(" – "); // En dash
+                    if (split.length == 1) split = title.split("–");
                     if (split.length == 1 && split[0].contains(" Honors"))
                     {
                         split = title.split(" Honors");
