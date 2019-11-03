@@ -156,18 +156,24 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     String title = titleElement != null ? titleElement.text() : course.selectFirst("p").text();
 
                     // Get other stuff from title
-                    String[] split = title.contains(" - ") ? title.split(" - ") : title.split("-");
-                    String name = split[0];
-
-                    // Special case
-                    if (split.length == 1)
+                    String[] split = title.split(" - ");
+                    if (split.length == 1) split = title.split("-");
+                    if (split.length == 1 && split[0].contains(" Honors"))
                     {
-                        split = new String[]{"", split[0]};
+                        split = title.split(" Honors");
+                        split[1] = "Honors" + split[1];
+                    }
+                    if (split.length == 1 && split[0].contains("AP"))
+                    {
+                        split = title.split(" \\[");
+                        split[1] = "AP [" + split[1];
                     }
 
+
                     // Continue splitting
+                    String name = split[0];
                     split = split[1].split(" \\[");
-                    String level = split[0].contains("AP ") ? "AP" : split[0];
+                    String level = split[0];
                     String credit = split.length == 1 ? "Unknown" : split[1].split(" ")[0];
 
                     // Combine paragraphs to get description
@@ -193,7 +199,7 @@ public class StJohnsHttpClient extends GeneralHttpClient
                     }
 
                     // Add to result
-                    result.add(new StJohnsCourseDescription(name, level, credit,
+                    result.add(new StJohnsCourseDescription(title, name, level, credit,
                             description.toString(), prerequisites));
                 }
             }
