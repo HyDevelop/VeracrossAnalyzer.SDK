@@ -9,7 +9,6 @@ import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,16 +70,8 @@ class StJohnsHttpClientTest
     void veracrossCourses() throws IOException
     {
         // Get courses
-        VeracrossCourses courses = veracross.getCourses();
+        courses = veracross.getCourses();
         log(courses);
-
-        // Convert to st johns course
-        List<StJohnsCourse> stJohnsCourses = new ArrayList<>();
-        courses.forEach(course -> stJohnsCourses.add(new StJohnsCourse(course)));
-        log(stJohnsCourses);
-
-        // Get ready to test assignments
-        this.courses = courses;
     }
 
     @Test @Order(4)
