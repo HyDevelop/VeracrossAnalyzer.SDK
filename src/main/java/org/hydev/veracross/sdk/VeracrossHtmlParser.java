@@ -4,19 +4,19 @@ import org.hydev.veracross.sdk.model.VeracrossCourse;
 import org.hydev.veracross.sdk.model.VeracrossCourse.VeracrossCourseBuilder;
 import org.hydev.veracross.sdk.model.VeracrossCourseGrading;
 import org.hydev.veracross.sdk.model.VeracrossCourseGrading.GradingMethod;
+import org.hydev.veracross.sdk.model.VeracrossCourses;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
 import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 
 /**
@@ -37,10 +37,10 @@ public class VeracrossHtmlParser
     /**
      * Parse courses information from the html on the main page.
      *
-     * @param mainPageHtml Html string on the main page.
+     * @param mainPageHtml The html string of the main page.
      * @return A list of courses
      */
-    public static List<VeracrossCourse> parseCourses(String mainPageHtml)
+    public static VeracrossCourses parseCourses(String mainPageHtml)
     {
         // Create result list.
         List<VeracrossCourse> result = new ArrayList<>();
@@ -98,7 +98,7 @@ public class VeracrossHtmlParser
         url += "/";
         Matcher matcher = URL_NUMBER_PATTERN.matcher(url);
 
-        if (matcher.find()) return Long.parseLong(matcher.group());
+        if (matcher.find()) return parseLong(matcher.group());
         return -1;
     }
 
@@ -138,7 +138,7 @@ public class VeracrossHtmlParser
             Element weight = tr.selectFirst("td.weight div span.label");
 
             // Add it to the weighting map
-            weightingMap.put(name.html(), Double.valueOf(weight.html().replace("%", "")) / 100d);
+            weightingMap.put(name.html(), Double.parseDouble(weight.html().replace("%", "")) / 100d);
         }
 
         return new VeracrossCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);

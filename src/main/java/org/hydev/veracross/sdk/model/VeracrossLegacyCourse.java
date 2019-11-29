@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -132,9 +131,9 @@ public class VeracrossLegacyCourse
          *
          * @return List of courses
          */
-        public List<VeracrossCourse> convert()
+        public VeracrossCourses convert()
         {
-            List<VeracrossCourse> result = new ArrayList<>();
+            VeracrossCourses result = new VeracrossCourses();
             courses.forEach(course -> result.add(new VeracrossCourse(course)));
             return result;
         }

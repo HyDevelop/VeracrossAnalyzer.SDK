@@ -62,7 +62,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return List of courses.
      */
-    public List<VeracrossCourse> getCourses() throws IOException
+    public VeracrossCourses getCourses() throws IOException
     {
         // Create result array
         List<VeracrossCourse> result = new ArrayList<>();
@@ -98,7 +98,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return Courses
      */
-    public List<VeracrossCourse> getCoursesWithGrading() throws IOException
+    public VeracrossCourses getCoursesWithGrading() throws IOException
     {
         return loadGradings(getCourses());
     }
@@ -269,9 +269,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         String html = getBody(String.format(WEB_GRADING, assignmentsId));
 
         // Parse it
-        VeracrossCourseGrading grading = VeracrossHtmlParser.parseGrading(html);
-
-        return grading;
+        return VeracrossHtmlParser.parseGrading(html);
     }
 
     /**
@@ -291,7 +289,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param courses Courses
      * @return Grading scheme info list
      */
-    public List<VeracrossCourseGrading> getGradings(List<VeracrossCourse> courses) throws IOException
+    public List<VeracrossCourseGrading> getGradings(VeracrossCourses courses) throws IOException
     {
         List<VeracrossCourseGrading> result = new ArrayList<>();
         for (VeracrossCourse course : courses)
@@ -307,7 +305,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param courses Courses
      * @return Courses with gradings (but it actually modifies the object)
      */
-    public List<VeracrossCourse> loadGradings(List<VeracrossCourse> courses) throws IOException
+    public VeracrossCourses loadGradings(VeracrossCourses courses) throws IOException
     {
         for (VeracrossCourse course : courses)
         {
