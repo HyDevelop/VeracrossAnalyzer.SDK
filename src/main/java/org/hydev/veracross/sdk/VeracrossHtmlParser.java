@@ -50,8 +50,10 @@ public class VeracrossHtmlParser
         VeracrossCourses result = new VeracrossCourses();
 
         // Get username and person pk
-        result.setUsernameEmail(USERNAME_PATTERN.matcher(mainPageHtml).group(1));
-        result.setPersonPk(parseLong(PERSON_PK_PATTERN.matcher(mainPageHtml).group(1)));
+        Matcher matcher = USERNAME_PATTERN.matcher(mainPageHtml);
+        if (matcher.find()) result.setUsernameEmail(matcher.group(0));
+        matcher = PERSON_PK_PATTERN.matcher(mainPageHtml);
+        if (matcher.find()) result.setPersonPk(parseLong(matcher.group(0)));
 
         // Parse with Jsoup
         Document doc = Jsoup.parse(mainPageHtml);
