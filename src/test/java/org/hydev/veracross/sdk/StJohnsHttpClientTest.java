@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * This class tests {@code VeracrossHttpClient} class.
  * <p>
@@ -60,7 +58,11 @@ class StJohnsHttpClientTest
     @Test @Order(2)
     void validateLogin() throws IOException
     {
-        assertTrue(veracross.validateLogin());
+        if (!veracross.validateLogin())
+        {
+            System.out.println("Error: Login Expired");
+            System.exit(-1);
+        }
     }
 
     private VeracrossCourses courses;
