@@ -1,7 +1,9 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -10,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * This class tests {@code VeracrossHttpClient} class.
@@ -54,12 +55,13 @@ class StJohnsHttpClientTest
                 new TypeToken<List<BasicClientCookie>>(){}.getType()));
     }
 
+    private VeracrossCourses courses;
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
     {
         // Get courses
-        List<VeracrossCourse> courses = veracross.getCourses();
+        VeracrossCourses courses = veracross.getCourses();
         log(courses);
 
         // Convert to st johns course
@@ -177,7 +179,7 @@ class StJohnsHttpClientTest
         veracross.restoreCookies(savedCookies);
 
         // Test it
-        List<VeracrossCourse> courses = veracross.getCourses();
+        VeracrossCourses courses = veracross.getCourses();
         log(courses);
     }
 
