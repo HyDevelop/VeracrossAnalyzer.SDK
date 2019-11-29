@@ -97,7 +97,7 @@ VeracrossHttpClient veracross = stJohns.veracrossLoginSSO();
 #### 3. Get the list of courses the student is taking:
 
 ```java
-List<VeracrossCourse> courses = veracross.getCourses();
+VeracrossCourses courses = veracross.getCourses();
 ```
 
 #### 4. Get a list of all the assignments in a course:
