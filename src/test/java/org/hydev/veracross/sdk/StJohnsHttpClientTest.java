@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * This class tests {@code VeracrossHttpClient} class.
  * <p>
@@ -53,6 +55,12 @@ class StJohnsHttpClientTest
         veracross = new VeracrossHttpClient();
         veracross.restoreCookies(new Gson().fromJson("-- HIDDEN --",
                 new TypeToken<List<BasicClientCookie>>(){}.getType()));
+    }
+
+    @Test @Order(2)
+    void validateLogin() throws IOException
+    {
+        assertTrue(veracross.validateLogin());
     }
 
     private VeracrossCourses courses;
