@@ -192,7 +192,7 @@ public abstract class GeneralHttpClient
         // Create request and temporary context
         HttpGet httpget = new HttpGet(url);
         HttpContext context = new BasicHttpContext();
-        HttpResponse response = httpClient.execute(httpget, context);
+        CloseableHttpResponse response = httpClient.execute(httpget, context);
 
         // Handle error
         if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
@@ -203,9 +203,15 @@ public abstract class GeneralHttpClient
         // Get URI
         HttpUriRequest currentReq = (HttpUriRequest) context.getAttribute(HTTP_REQUEST);
         HttpHost currentHost = (HttpHost)  context.getAttribute(HTTP_TARGET_HOST);
-        return (currentReq.getURI().isAbsolute())
+        String finalUrl = (currentReq.getURI().isAbsolute())
                 ? currentReq.getURI().toString()
                 : (currentHost.toURI() + currentReq.getURI());
+
+        // Close connection
+        response.close();
+
+        // Return
+        return finalUrl;
     }
 
     /**
