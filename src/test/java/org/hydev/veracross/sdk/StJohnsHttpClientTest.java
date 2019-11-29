@@ -29,25 +29,7 @@ class StJohnsHttpClientTest
     private StJohnsHttpClient stJohns;
     private VeracrossHttpClient veracross;
 
-    private String username;
-    private String password;
-
-    @BeforeAll
-    void init()
-    {
-        stJohns = new StJohnsHttpClient();
-
-        Scanner in = new Scanner(System.in);
-
-        // Ask for username
-        System.out.println("Veracross Username?");
-        username = in.nextLine();
-
-        // Ask for passwd
-        System.out.println("Veracross Password?");
-        password = in.nextLine();
-    }
-
+    /*
     @Test @Order(1)
     void login() throws IOException, VeracrossException
     {
@@ -61,8 +43,17 @@ class StJohnsHttpClientTest
         // Login Veracross
         veracross = stJohns.veracrossLoginSSO();
     }
+     */
 
-    private List<VeracrossCourse> courses;
+    @Test @Order(1)
+    void veracross() throws IOException, VeracrossException
+    {
+        // Login Veracross
+        veracross = new VeracrossHttpClient();
+        veracross.restoreCookies(new Gson().fromJson("-- HIDDEN --",
+                new TypeToken<List<BasicClientCookie>>(){}.getType()));
+    }
+
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
