@@ -64,9 +64,6 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public VeracrossCourses getCourses() throws IOException
     {
-        // Create result array
-        List<VeracrossCourse> result = new ArrayList<>();
-
         // Get html
         String responseHtml = getBody(URL_BASE);
 
