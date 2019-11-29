@@ -104,16 +104,25 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Check if logged in.
+     *
+     * @return Logged in or not
+     * @throws IOException Exception
+     */
+    public boolean validateLogin() throws IOException
+    {
+        return !getRedirectedUrl(URL_BASE).contains("accounts.veracross.com");
+    }
+
+    /**
      * Get the version of the website.
      *
      * Check if the website is the portals (old) version or the
      * portals-app (new) version. They are in very different formats.
-     * The old version website accounts can access new version apis,
+     * The old version website accounts can access the new version apis,
      * but the new version accounts cannot access the old version
      * apis. Also, if you try to access the old version website with
      * a new version account, you would get redirected back.
-     *
-     * TODO: Ask someone to test accessing the new website with an old account.
      *
      * New version: portals-app.veracross.com
      * Old version: portals.veracross.com
@@ -123,7 +132,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public String getWebsiteVersion() throws IOException
     {
         // Get the fully redirected url. Why this can be used to detect
-        // the version is explained above.
+        // the reason is explained above.
         String url = getRedirectedUrl(URL_BASE);
 
         // Check domain name
