@@ -246,4 +246,22 @@ public abstract class GeneralHttpClient
         // Parse to object
         return new Gson().fromJson(jsonString, type);
     }
+
+    /**
+     * Send a GET request to a url and parse the result as a JSON object.
+     *
+     * @param url Request URL
+     * @param type JSON Pojo Type
+     * @param params URL Parameters
+     * @param <T> Return type (Same as the type param)
+     * @return The requested json pojo object.
+     */
+    protected <T> T getJson(String url, Class<T> type, Object... params) throws IOException
+    {
+        // Get json string
+        String jsonString = getBody(UrlUtils.buildURL(url, params));
+
+        // Parse to object
+        return new Gson().fromJson(jsonString, type);
+    }
 }
