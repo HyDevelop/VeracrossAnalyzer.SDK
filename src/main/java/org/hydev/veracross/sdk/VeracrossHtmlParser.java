@@ -36,6 +36,8 @@ public class VeracrossHtmlParser
 {
     private static final Pattern URL_NUMBER_PATTERN = Pattern.compile("(?<=/).[0-9]*(?=/)");
     private static final Pattern USERNAME_PATTERN =
+            Pattern.compile("(?<=Portals\\.currentUser\\.username = \").*(?=@)");
+    private static final Pattern USERNAME_PATTERN_FALLBACK =
             Pattern.compile("(?<=Portals\\.currentUser\\.username = \").*(?=\";)");
     private static final Pattern PERSON_PK_PATTERN =
             Pattern.compile("(?<=Portals\\.currentUser\\.personPk = ).*(?=;)");
