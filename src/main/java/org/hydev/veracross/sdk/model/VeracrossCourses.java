@@ -19,6 +19,12 @@ import java.util.ArrayList;
 @EqualsAndHashCode(callSuper = true)
 public class VeracrossCourses extends ArrayList<VeracrossCourse>
 {
-    private String usernameEmail;
-    private long personPk;
+    private String username;
+    private Integer personPk;
+
+    public void setPerson(VeracrossPerson person)
+    {
+        username = person.getUsername();
+        personPk = person.getPersonPk();
+    }
 }
