@@ -71,6 +71,8 @@ class StJohnsHttpClientTest
     {
         // Get courses
         courses = veracross.getCourses();
+        System.out.println(courses.getPersonPk());
+        System.out.println(courses.getUsername());
         log(courses);
     }
 
