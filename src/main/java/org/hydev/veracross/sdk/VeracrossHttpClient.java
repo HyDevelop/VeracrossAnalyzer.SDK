@@ -13,6 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static org.hydev.veracross.sdk.VeracrossHtmlParser.parsePerson;
+
 /**
  * HTTP Client for the veracross sdk (Currently, this SDK is for St.
  * John's only, because logging in directly to Veracross requires a
@@ -85,7 +87,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             // Access api url, because for the old veracross, the course
             // list is accessed with a XHR request.
-            return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE, CourseListContainer.class).convert();
+            return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE, CourseListContainer.class).convert()
+                    .setPerson(parsePerson(getBody(LEGACY_URL_BASE), true));
         }
     }
 
