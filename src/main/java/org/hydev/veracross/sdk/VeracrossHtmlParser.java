@@ -37,6 +37,10 @@ public class VeracrossHtmlParser
             Pattern.compile("(?<=Portals\\.currentUser\\.username = \").*(?=\";)");
     private static final Pattern PERSON_PK_PATTERN =
             Pattern.compile("(?<=Portals\\.currentUser\\.personPk = ).*(?=;)");
+    private static final Pattern USERNAME_PATTERN_LEGACY =
+            Pattern.compile("(?<=username: \").*(?=\",)");
+    private static final Pattern PERSON_PK_PATTERN_LEGACY =
+            Pattern.compile("(?<=user_id: ).*(?=,)");
 
     /**
      * Parse courses information from the html on the main page.
