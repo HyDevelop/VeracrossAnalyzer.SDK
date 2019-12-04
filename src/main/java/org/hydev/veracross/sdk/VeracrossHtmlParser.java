@@ -5,6 +5,7 @@ import org.hydev.veracross.sdk.model.VeracrossCourse.VeracrossCourseBuilder;
 import org.hydev.veracross.sdk.model.VeracrossCourseGrading;
 import org.hydev.veracross.sdk.model.VeracrossCourseGrading.GradingMethod;
 import org.hydev.veracross.sdk.model.VeracrossCourses;
+import org.hydev.veracross.sdk.model.VeracrossPerson;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 
@@ -41,6 +43,38 @@ public class VeracrossHtmlParser
             Pattern.compile("(?<=username: \").*(?=\",)");
     private static final Pattern PERSON_PK_PATTERN_LEGACY =
             Pattern.compile("(?<=user_id: ).*(?=,)");
+
+    /**
+     * Get basic person info
+     *
+     * @param pageHtml Html
+     * @param legacy Is legacy html page or not
+     * @return Person info
+     */
+    public static VeracrossPerson parsePerson(String pageHtml, boolean legacy)
+    {
+        String username = "";
+        int personPk = -1;
+
+        if (!legacy)
+        {
+            // Get username and person pk
+            Matcher matcher = USERNAME_PATTERN.matcher(pageHtml);
+            if (matcher.find()) username = matcher.group(0);
+            matcher = PERSON_PK_PATTERN.matcher(pageHtml);
+            if (matcher.find()) personPk = parseInt(matcher.group(0));
+        }
+        else
+        {
+            // Get username and person pk
+            Matcher matcher = USERNAME_PATTERN_LEGACY.matcher(pageHtml);
+            if (matcher.find()) username = matcher.group(0);
+            matcher = USERNAME_PATTERN_LEGACY.matcher(pageHtml);
+            if (matcher.find()) personPk = parseInt(matcher.group(0));
+        }
+
+        return new VeracrossPerson(username, personPk);
+    }
 
     /**
      * Parse courses information from the html on the main page.
