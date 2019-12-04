@@ -87,11 +87,8 @@ public class VeracrossHtmlParser
         // Create result list.
         VeracrossCourses result = new VeracrossCourses();
 
-        // Get username and person pk
-        Matcher matcher = USERNAME_PATTERN.matcher(mainPageHtml);
-        if (matcher.find()) result.setUsernameEmail(matcher.group(0));
-        matcher = PERSON_PK_PATTERN.matcher(mainPageHtml);
-        if (matcher.find()) result.setPersonPk(parseLong(matcher.group(0)));
+        // Parse person
+        result.setPerson(parsePerson(mainPageHtml, false));
 
         // Parse with Jsoup
         Document doc = Jsoup.parse(mainPageHtml);
