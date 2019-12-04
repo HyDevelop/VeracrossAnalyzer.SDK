@@ -22,9 +22,11 @@ public class VeracrossCourses extends ArrayList<VeracrossCourse>
     private String username;
     private Integer personPk;
 
-    public void setPerson(VeracrossPerson person)
+    public VeracrossCourses setPerson(VeracrossPerson person)
     {
         username = person.getUsername();
         personPk = person.getPersonPk();
+
+        return this;
     }
 }
