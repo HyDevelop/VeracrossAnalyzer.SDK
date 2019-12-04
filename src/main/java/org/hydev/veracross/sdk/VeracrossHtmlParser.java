@@ -63,6 +63,12 @@ public class VeracrossHtmlParser
             // Get username and person pk
             Matcher matcher = USERNAME_PATTERN.matcher(pageHtml);
             if (matcher.find()) username = matcher.group(0);
+            if (username.equals(""))
+            {
+                matcher = USERNAME_PATTERN_FALLBACK.matcher(pageHtml);
+                if (matcher.find()) username = matcher.group(0);
+
+            }
             matcher = PERSON_PK_PATTERN.matcher(pageHtml);
             if (matcher.find()) personPk = parseInt(matcher.group(0));
         }
