@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VeracrossCalendarEvent implements VeracrossData
+public class VeraCalendarEvent implements VeraData
 {
     @SerializedName("id")
     @Expose

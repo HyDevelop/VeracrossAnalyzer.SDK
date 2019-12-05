@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class VeracrossCourse implements VeracrossData
+public class VeraCourse implements VeraData
 {
     // Name of the course
     private String name;
@@ -41,14 +41,14 @@ public class VeracrossCourse implements VeracrossData
     private String status;
 
     // Grading
-    private VeracrossCourseGrading grading;
+    private VeraCourseGrading grading;
 
     /**
      * Self-constructor that copies all field from the other
      *
      * @param other Other
      */
-    public VeracrossCourse(VeracrossCourse other)
+    public VeraCourse(VeraCourse other)
     {
         this(other.name, other.teacherName, other.id, other.assignmentsId,
                 other.letterGrade, other.numericGrade, other.status, other.grading);
@@ -59,9 +59,9 @@ public class VeracrossCourse implements VeracrossData
      *
      * @param other Legacy course.
      */
-    public VeracrossCourse(VeracrossLegacyCourse other)
+    public VeraCourse(VeraLegacyCourse other)
     {
-        this(VeracrossCourse.builder()
+        this(VeraCourse.builder()
                 .name(other.getClassName())
                 .teacherName(other.getTeacherFullName())
                 .id(other.getClassPk())

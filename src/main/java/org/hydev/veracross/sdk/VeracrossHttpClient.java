@@ -3,7 +3,7 @@ package org.hydev.veracross.sdk;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.hydev.veracross.sdk.model.*;
-import org.hydev.veracross.sdk.model.VeracrossLegacyCourse.CourseListContainer;
+import org.hydev.veracross.sdk.model.VeraLegacyCourse.CourseListContainer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -64,7 +64,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return List of courses.
      */
-    public VeracrossCourses getCourses() throws IOException
+    public VeraCourses getCourses() throws IOException
     {
         // Get html
         String responseHtml = getBody(URL_BASE);
@@ -97,7 +97,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return Courses
      */
-    public VeracrossCourses getCoursesWithGrading() throws IOException
+    public VeraCourses getCoursesWithGrading() throws IOException
     {
         return loadGradings(getCourses());
     }
@@ -154,10 +154,10 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param courseId ID of the course
      * @return List of assignments
      */
-    public VeracrossAssignments getAssignments(long courseId) throws IOException
+    public VeraAssignments getAssignments(long courseId) throws IOException
     {
         String url = URL_BASE + String.format(API_COURSE_ASSIGNMENTS, courseId);
-        return getJson(url, VeracrossAssignments.class);
+        return getJson(url, VeraAssignments.class);
     }
 
     /**
@@ -167,11 +167,11 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param start Starting index.
      * @return List of messages
      */
-    public List<VeracrossMessage> getMessages(long start) throws IOException
+    public List<VeraMessage> getMessages(long start) throws IOException
     {
         // Since I can't pass in list of a specific type as a type,
         // a TypeToken is used to generate the type.
-        Type type = new TypeToken<List<VeracrossMessage>>(){}.getType();
+        Type type = new TypeToken<List<VeraMessage>>(){}.getType();
 
         return getJson(URL_BASE + API_MESSAGES, type, "start", start);
     }
@@ -183,9 +183,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param end Ending date.
      * @return List of Calendar Events
      */
-    public List<VeracrossCalendarEvent> getEvents(Date begin, Date end) throws IOException
+    public List<VeraCalendarEvent> getEvents(Date begin, Date end) throws IOException
     {
-        return getJson(URL_BASE + API_CALENDAR_EVENTS, new TypeToken<List<VeracrossCalendarEvent>>(){}.getType()
+        return getJson(URL_BASE + API_CALENDAR_EVENTS, new TypeToken<List<VeraCalendarEvent>>(){}.getType()
                 ,"begin_date", toVeracrossDate(begin)
                 ,"end_date", toVeracrossDate(end));
     }
@@ -198,7 +198,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param end Ending offset.
      * @return Calendar Events
      */
-    public List<VeracrossCalendarEvent> getEvents(int begin, int end) throws IOException
+    public List<VeraCalendarEvent> getEvents(int begin, int end) throws IOException
     {
         return getEvents(getDate(begin), getDate(end));
     }
@@ -235,9 +235,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return All students
      */
-    public List<VeracrossStudent> getDirectoryStudents() throws IOException
+    public List<VeraStudent> getDirectoryStudents() throws IOException
     {
-        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeracrossStudent>>(){}.getType(),
+        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeraStudent>>(){}.getType(),
                 "directory", "student",
                 "portal", "student",
                 "refresh", 0);
@@ -248,9 +248,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return All faculties
      */
-    public List<VeracrossFaculty> getDirectoryFaculties() throws IOException
+    public List<VeraFaculty> getDirectoryFaculties() throws IOException
     {
-        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeracrossFaculty>>(){}.getType(),
+        return getJson(URL_BASE + API_DIRECTORY, new TypeToken<List<VeraFaculty>>(){}.getType(),
                 "directory", "faculty",
                 "portal", "student",
                 "refresh", 0);
@@ -262,7 +262,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param assignmentsId Assignments ID of a course
      * @return Grading scheme info for a course
      */
-    public VeracrossCourseGrading getGrading(long assignmentsId) throws IOException
+    public VeraCourseGrading getGrading(long assignmentsId) throws IOException
     {
         // Get HTML
         String html = getBody(String.format(WEB_GRADING, assignmentsId));
@@ -277,7 +277,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param course Course
      * @return Grading scheme info of the course
      */
-    public VeracrossCourseGrading getGrading(VeracrossCourse course) throws IOException
+    public VeraCourseGrading getGrading(VeraCourse course) throws IOException
     {
         return getGrading(course.getAssignmentsId());
     }
@@ -288,10 +288,10 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param courses Courses
      * @return Grading scheme info list
      */
-    public List<VeracrossCourseGrading> getGradings(VeracrossCourses courses) throws IOException
+    public List<VeraCourseGrading> getGradings(VeraCourses courses) throws IOException
     {
-        List<VeracrossCourseGrading> result = new ArrayList<>();
-        for (VeracrossCourse course : courses)
+        List<VeraCourseGrading> result = new ArrayList<>();
+        for (VeraCourse course : courses)
         {
             result.add(getGrading(course));
         }
@@ -304,9 +304,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param courses Courses
      * @return Courses with gradings (but it actually modifies the object)
      */
-    public VeracrossCourses loadGradings(VeracrossCourses courses) throws IOException
+    public VeraCourses loadGradings(VeraCourses courses) throws IOException
     {
-        for (VeracrossCourse course : courses)
+        for (VeraCourse course : courses)
         {
             course.setGrading(getGrading(course));
         }

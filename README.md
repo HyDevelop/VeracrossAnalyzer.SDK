@@ -97,7 +97,7 @@ VeracrossHttpClient veracross = stJohns.veracrossLoginSSO();
 #### 3. Get the list of courses the student is taking:
 
 ```java
-VeracrossCourses courses = veracross.getCourses();
+VeraCourses courses = veracross.getCourses();
 ```
 
 #### 4. Get a list of all the assignments in a course:
@@ -108,24 +108,24 @@ long assignmentsId = courses.get(0).getAssignmentsId();
 
 // Pass in the assignments id to get the list of assignments.
 // Note: the assignments id is different from the course id!
-VeracrossAssignments assignments = veracross.getAssignments(assignmentsId);
+VeraAssignments assignments = veracross.getAssignments(assignmentsId);
 ```
 
 #### 5. Get the list of messages, or notifications:
 
 ```java
 // Get messages starting at index 0 (Which is all the messages).
-List<VeracrossMessage> messages = veracross.getMessages(0);
+List<VeraMessage> messages = veracross.getMessages(0);
 ```
 
 #### 6. Get the list of calendar events in between dates:
 
 ```java
 // Get calendar events from 5 days ago to 5 days later.
-List<VeracrossCalendarEvent> events = veracross.getEvents(-5, 5);
+List<VeraCalendarEvent> events = veracross.getEvents(-5, 5);
 
 // Get calendar events in between two dates.
-List<VeracrossCalendarEvent> events2 = veracross.getEvents(new Date(), new Date());
+List<VeraCalendarEvent> events2 = veracross.getEvents(new Date(), new Date());
 ```
 
 #### 7. Save cookies for later:
@@ -147,7 +147,7 @@ List<Cookie> restoredCookies = new Gson().fromJson(cookiesJson,
         new TypeToken<List<BasicClientCookie>>(){}.getType());
         
 // Restore them to a new Veracross client
-Veracross restoredVeracross = new VeracrossHttpClient();
+VeracrossHttpClient restoredVeracross = new VeracrossHttpClient();
 restoredVeracross.restoreCookies(restoredCookies);
 ```
 

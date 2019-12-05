@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VeracrossLegacyCourse
+public class VeraLegacyCourse
 {
     @SerializedName("enrollment_pk")
     @Expose
@@ -124,17 +124,17 @@ public class VeracrossLegacyCourse
     {
         @SerializedName("courses")
         @Expose
-        private List<VeracrossLegacyCourse> courses = null;
+        private List<VeraLegacyCourse> courses = null;
 
         /**
          * Convert legacy course to course
          *
          * @return List of courses
          */
-        public VeracrossCourses convert()
+        public VeraCourses convert()
         {
-            VeracrossCourses result = new VeracrossCourses();
-            courses.forEach(course -> result.add(new VeracrossCourse(course)));
+            VeraCourses result = new VeraCourses();
+            courses.forEach(course -> result.add(new VeraCourse(course)));
             return result;
         }
     }

@@ -1,11 +1,11 @@
 package org.hydev.veracross.sdk;
 
-import org.hydev.veracross.sdk.model.VeracrossCourse;
-import org.hydev.veracross.sdk.model.VeracrossCourse.VeracrossCourseBuilder;
-import org.hydev.veracross.sdk.model.VeracrossCourseGrading;
-import org.hydev.veracross.sdk.model.VeracrossCourseGrading.GradingMethod;
-import org.hydev.veracross.sdk.model.VeracrossCourses;
-import org.hydev.veracross.sdk.model.VeracrossPerson;
+import org.hydev.veracross.sdk.model.VeraCourse;
+import org.hydev.veracross.sdk.model.VeraCourse.VeracrossCourseBuilder;
+import org.hydev.veracross.sdk.model.VeraCourseGrading;
+import org.hydev.veracross.sdk.model.VeraCourseGrading.GradingMethod;
+import org.hydev.veracross.sdk.model.VeraCourses;
+import org.hydev.veracross.sdk.model.VeraPerson;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -53,7 +53,7 @@ public class VeracrossHtmlParser
      * @param legacy Is legacy html page or not
      * @return Person info
      */
-    public static VeracrossPerson parsePerson(String pageHtml, boolean legacy)
+    public static VeraPerson parsePerson(String pageHtml, boolean legacy)
     {
         String username = "";
         int personPk = -1;
@@ -81,7 +81,7 @@ public class VeracrossHtmlParser
             if (matcher.find()) personPk = parseInt(matcher.group(0));
         }
 
-        return new VeracrossPerson(username, personPk);
+        return new VeraPerson(username, personPk);
     }
 
     /**
@@ -90,10 +90,10 @@ public class VeracrossHtmlParser
      * @param mainPageHtml The html string of the main page.
      * @return A list of courses
      */
-    public static VeracrossCourses parseCourses(String mainPageHtml)
+    public static VeraCourses parseCourses(String mainPageHtml)
     {
         // Create result list.
-        VeracrossCourses result = new VeracrossCourses();
+        VeraCourses result = new VeraCourses();
 
         // Parse person
         result.setPerson(parsePerson(mainPageHtml, false));
@@ -108,7 +108,7 @@ public class VeracrossHtmlParser
         for (Element courseElement : courseElements)
         {
             // Create builder
-            VeracrossCourseBuilder builder = VeracrossCourse.builder();
+            VeracrossCourseBuilder builder = VeraCourse.builder();
 
             // Find course name element and extract the course name.
             Element courseNameElement = courseElement.selectFirst(".class-name");
@@ -161,7 +161,7 @@ public class VeracrossHtmlParser
      * @param gradingHtml Grading page html
      * @return Grading scheme information
      */
-    public static VeracrossCourseGrading parseGrading(String gradingHtml)
+    public static VeraCourseGrading parseGrading(String gradingHtml)
     {
         // Create weighting map
         Map<String, Double> weightingMap = new HashMap<>();
@@ -169,7 +169,7 @@ public class VeracrossHtmlParser
         // If it says it's graded by assignment points, we are done.
         if (gradingHtml.contains("Assignment Points"))
         {
-            return new VeracrossCourseGrading(GradingMethod.TOTAL_MEAN, null);
+            return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
         }
 
         // Parse document
@@ -179,7 +179,7 @@ public class VeracrossHtmlParser
         Element table = doc.selectFirst("#assignment_type_summary .data_table tbody");
 
         // There are no table
-        if (table == null) return new VeracrossCourseGrading(GradingMethod.NOT_GRADED, null);
+        if (table == null) return new VeraCourseGrading(GradingMethod.NOT_GRADED, null);
 
         // Loop through table rows
         for (Element tr : table.select("tr"))
@@ -194,7 +194,7 @@ public class VeracrossHtmlParser
             weightingMap.put(name.html(), Double.parseDouble(weight.html().replace("%", "")) / 100d);
         }
 
-        return new VeracrossCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);
+        return new VeraCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);
     }
 
     private static final Pattern CSRF_PATTERN =

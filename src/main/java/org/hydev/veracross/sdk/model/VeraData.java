@@ -10,6 +10,6 @@ package org.hydev.veracross.sdk.model;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-08-29 07:00
  */
-public interface VeracrossData
+public interface VeraData
 {
 }
