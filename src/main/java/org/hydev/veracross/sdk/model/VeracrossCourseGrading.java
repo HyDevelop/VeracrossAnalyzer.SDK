@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,9 +26,8 @@ public class VeracrossCourseGrading
     // Weighting method: total_mean vs. percent_type
     private GradingMethod method;
 
-    // Weighting maps if it is weighted by type
-    // Eg. weightingMaps[0] is the map for the 1st term
-    private List<Map<String, Double>> weightingMaps;
+    // Weighting map if it is weighted by type
+    private Map<String, Double> weightingMap;
 
     public enum GradingMethod
     {
