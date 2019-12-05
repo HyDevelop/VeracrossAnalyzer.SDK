@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class VeracrossCourses extends ArrayList<VeracrossCourse>
+public class VeraCourses extends ArrayList<VeraCourse>
 {
     private String username;
     private Integer personPk;
 
-    public VeracrossCourses setPerson(VeracrossPerson person)
+    public VeraCourses setPerson(VeraPerson person)
     {
         username = person.getUsername();
         personPk = person.getPersonPk();

@@ -19,11 +19,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VeracrossAssignments implements VeracrossData
+public class VeraAssignments implements VeraData
 {
     @SerializedName("assignments")
     @Expose
-    private List<VeracrossAssignment> assignments = null;
+    private List<VeraAssignment> assignments = null;
 
     // The type for attachments, criteria, and criteriaGradeScaleLevels are not sure
     //   because I don't have them in any class I have.

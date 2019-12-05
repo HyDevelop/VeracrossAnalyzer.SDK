@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class VeracrossPerson
+public class VeraPerson
 {
     private String username;
     private Integer personPk;

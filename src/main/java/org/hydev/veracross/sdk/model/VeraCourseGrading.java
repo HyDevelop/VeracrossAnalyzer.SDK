@@ -21,7 +21,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class VeracrossCourseGrading
+public class VeraCourseGrading
 {
     // Weighting method: total_mean vs. percent_type
     private GradingMethod method;
