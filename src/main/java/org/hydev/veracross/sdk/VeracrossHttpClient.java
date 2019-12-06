@@ -264,11 +264,12 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * Get the grading scheme information
      *
      * @param course Course
+     * @param quarter Quarter (0 to 3)
      * @return Grading scheme info of the course
      */
-    public VeraCourseGrading getGrading(VeraCourse course) throws IOException
+    public VeraCourseGrading getGrading(VeraCourse course, int quarter) throws IOException
     {
-        return getGrading(course.getAssignmentsId());
+        return getGrading(course.getAssignmentsId(), quarter);
     }
 
     /**
