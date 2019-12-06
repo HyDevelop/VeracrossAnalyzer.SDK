@@ -2,13 +2,13 @@ package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
 import org.apache.http.cookie.Cookie;
-import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This class tests {@code VeracrossHttpClient} class.
@@ -22,17 +22,17 @@ import java.util.List;
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class StJohnsHttpClientTest
+class VeraTest
 {
-
     private VeracrossHttpClient veracross;
 
     @Test @BeforeAll
-    void init() throws IOException, VeracrossException
+    void init()
     {
         // Login Veracross
         veracross = new VeracrossHttpClient();
-        veracross.restoreSession(SESSION);
+        veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("session.txt"), "UTF-8")
+                .useDelimiter("\\A").next());
     }
 
     @Test @Order(2)
