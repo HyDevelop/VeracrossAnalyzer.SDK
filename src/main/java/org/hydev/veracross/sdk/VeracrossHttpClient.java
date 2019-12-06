@@ -289,6 +289,17 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Get the grading scheme information of all the terms
+     *
+     * @param course Course
+     * @return Grading scheme info list
+     */
+    public List<VeraCourseGrading> getGradings(VeraCourse course) throws IOException
+    {
+        return getGradings(course.getAssignmentsId());
+    }
+
+    /**
      * Get a csrf token.
      * Learn more about csrf tokens here:
      * https://stackoverflow.com/q/5207160/7346633
