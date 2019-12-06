@@ -8,10 +8,7 @@ import org.hydev.veracross.sdk.model.VeraLegacyCourse.CourseListContainer;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.hydev.veracross.sdk.VeracrossHtmlParser.parsePerson;
 
@@ -91,16 +88,6 @@ public class VeracrossHttpClient extends GeneralHttpClient
             return getJson(LEGACY_URL_BASE + LEGACY_API_COURSE, CourseListContainer.class).convert()
                     .setPerson(parsePerson(getBody(LEGACY_URL_BASE), true));
         }
-    }
-
-    /**
-     * Get the list of courses with grading
-     *
-     * @return Courses
-     */
-    public VeraCourses getCoursesWithGrading() throws IOException
-    {
-        return loadGradings(getCourses());
     }
 
     /**
