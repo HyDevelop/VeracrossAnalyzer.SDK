@@ -248,12 +248,13 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * Get the grading scheme information
      *
      * @param assignmentsId Assignments ID of a course
+     * @param quarter Quarter (0 to 3)
      * @return Grading scheme info for a course
      */
-    public VeraCourseGrading getGrading(long assignmentsId) throws IOException
+    public VeraCourseGrading getGrading(long assignmentsId, int quarter) throws IOException
     {
         // Get HTML
-        String html = getBody(String.format(WEB_GRADING, assignmentsId));
+        String html = getBody(String.format(WEB_GRADING, assignmentsId, quarter + 1));
 
         // Parse it
         return VeracrossHtmlParser.parseGrading(html);
