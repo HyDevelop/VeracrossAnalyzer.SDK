@@ -287,21 +287,6 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
-     * Load grading scheme information to courses
-     *
-     * @param courses Courses
-     * @return Courses with gradings (but it actually modifies the object)
-     */
-    public VeraCourses loadGradings(VeraCourses courses) throws IOException
-    {
-        for (VeraCourse course : courses)
-        {
-            course.setGrading(getGrading(course));
-        }
-        return courses;
-    }
-
-    /**
      * Get a csrf token.
      * Learn more about csrf tokens here:
      * https://stackoverflow.com/q/5207160/7346633
