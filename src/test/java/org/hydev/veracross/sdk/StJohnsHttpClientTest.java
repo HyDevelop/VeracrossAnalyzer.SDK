@@ -64,7 +64,7 @@ class StJohnsHttpClientTest
         }
     }
 
-    private VeracrossCourses courses;
+    private VeraCourses courses;
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
@@ -80,7 +80,7 @@ class StJohnsHttpClientTest
     void veracrossAssignments() throws IOException
     {
         // Get assignments of the course at index 1 of the list.
-        VeracrossAssignments assignments = veracross.getAssignments(courses.get(0).getAssignmentsId());
+        VeraAssignments assignments = veracross.getAssignments(courses.get(0).getAssignmentsId());
         log(assignments);
     }
 
@@ -88,7 +88,7 @@ class StJohnsHttpClientTest
     void veracrossMessages() throws IOException
     {
         // Get messages starting at index 0.
-        List<VeracrossMessage> messages = veracross.getMessages(0);
+        List<VeraMessage> messages = veracross.getMessages(0);
         log(messages);
     }
 
@@ -96,7 +96,7 @@ class StJohnsHttpClientTest
     void veracrossEvents1() throws IOException
     {
         // Get calendar events from 5 days ago to 5 days later.
-        List<VeracrossCalendarEvent> events = veracross.getEvents(-5, 5);
+        List<VeraCalendarEvent> events = veracross.getEvents(-5, 5);
         log(events);
     }
 
@@ -104,7 +104,7 @@ class StJohnsHttpClientTest
     void veracrossEvents2() throws IOException
     {
         // Get calendar events in between two dates.
-        List<VeracrossCalendarEvent> events = veracross.getEvents(new Date(), new Date());
+        List<VeraCalendarEvent> events = veracross.getEvents(new Date(), new Date());
         log(events);
     }
 
@@ -112,7 +112,7 @@ class StJohnsHttpClientTest
     void veracrossDirectoryStudents() throws IOException
     {
         // Get all student info
-        List<VeracrossStudent> students = veracross.getDirectoryStudents();
+        List<VeraStudent> students = veracross.getDirectoryStudents();
 
         // Filter them, select the students in Yoga course
         students.removeIf(student -> !student.getAllClasses().contains("33070"));
@@ -125,7 +125,7 @@ class StJohnsHttpClientTest
     void veracrossDirectoryFaculty() throws IOException
     {
         // Get all faculty info
-        List<VeracrossFaculty> faculties = veracross.getDirectoryFaculties();
+        List<VeraFaculty> faculties = veracross.getDirectoryFaculties();
 
         // Filter them, select the faculty in Information Services department
         faculties.removeIf(faculty -> !faculty.getFacultyType().contains("Information Services"));
@@ -138,7 +138,7 @@ class StJohnsHttpClientTest
     void testGrading() throws IOException
     {
         // Get grading info
-        List<VeracrossCourseGrading> gradings = veracross.getGradings(courses);
+        List<VeraCourseGrading> gradings = veracross.getGradings(courses);
         log(gradings);
     }
 
@@ -182,7 +182,7 @@ class StJohnsHttpClientTest
         veracross.restoreCookies(savedCookies);
 
         // Test it
-        VeracrossCourses courses = veracross.getCourses();
+        VeraCourses courses = veracross.getCourses();
         log(courses);
     }
 
