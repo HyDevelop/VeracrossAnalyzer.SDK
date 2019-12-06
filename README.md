@@ -56,7 +56,7 @@ Then you can add this library as dependency:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>VeracrossAnalyzer.SDK</artifactId>
-    <version>2.2.0.257</version>
+    <version>3.0.0.274</version>
 </dependency>
 ```
 
