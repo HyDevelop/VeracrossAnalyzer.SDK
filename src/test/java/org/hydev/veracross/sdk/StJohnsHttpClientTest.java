@@ -1,9 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.apache.http.cookie.Cookie;
-import org.apache.http.impl.cookie.BasicClientCookie;
 import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -26,32 +24,15 @@ import java.util.List;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class StJohnsHttpClientTest
 {
-    private StJohnsHttpClient stJohns;
+
     private VeracrossHttpClient veracross;
 
-    /*
-    @Test @Order(1)
-    void login() throws IOException, VeracrossException
-    {
-        // Login St Johns
-        stJohns.login(username, password);
-    }
-
-    @Test @Order(2)
-    void veracross() throws IOException, VeracrossException
-    {
-        // Login Veracross
-        veracross = stJohns.veracrossLoginSSO();
-    }
-     */
-
-    @Test @Order(1)
-    void veracross() throws IOException, VeracrossException
+    @Test @BeforeAll
+    void init() throws IOException, VeracrossException
     {
         // Login Veracross
         veracross = new VeracrossHttpClient();
-        veracross.restoreCookies(new Gson().fromJson("-- HIDDEN --",
-                new TypeToken<List<BasicClientCookie>>(){}.getType()));
+        veracross.restoreSession(SESSION);
     }
 
     @Test @Order(2)
@@ -138,7 +119,7 @@ class StJohnsHttpClientTest
     void testGrading() throws IOException
     {
         // Get grading info
-        List<VeraCourseGrading> gradings = veracross.getGradings(courses);
+        List<VeraCourseGrading> gradings = veracross.getGradings(courses.get(1));
         log(gradings);
     }
 
