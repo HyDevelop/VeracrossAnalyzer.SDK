@@ -1,7 +1,7 @@
 package org.hydev.veracross.sdk;
 
 import org.hydev.veracross.sdk.model.VeraCourse;
-import org.hydev.veracross.sdk.model.VeraCourse.VeracrossCourseBuilder;
+import org.hydev.veracross.sdk.model.VeraCourse.VeraCourseBuilder;
 import org.hydev.veracross.sdk.model.VeraCourseGrading;
 import org.hydev.veracross.sdk.model.VeraCourseGrading.GradingMethod;
 import org.hydev.veracross.sdk.model.VeraCourses;
@@ -108,7 +108,7 @@ public class VeracrossHtmlParser
         for (Element courseElement : courseElements)
         {
             // Create builder
-            VeracrossCourseBuilder builder = VeraCourse.builder();
+            VeraCourseBuilder builder = VeraCourse.builder();
 
             // Find course name element and extract the course name.
             Element courseNameElement = courseElement.selectFirst(".class-name");
