@@ -1,7 +1,9 @@
 package org.hydev.veracross.sdk;
 
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.hydev.veracross.sdk.model.*;
 import org.hydev.veracross.sdk.model.VeraLegacyCourse.CourseListContainer;
 
@@ -36,8 +38,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public static final String API_DIRECTORY = "directory/entries.json";
     public static final String API_ASSIGNMENT_MARK_READ = "enrollment/mark_notification_read";
 
-    public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s" +
-            "?grading_period=%s&key=_";
+    public static String WEB_GRADING =
+            "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=%s&key=_";
     public static final String WEB_CSRF_TOKEN = "student/directory"; // Because it has the smallest html
 
     public static String LEGACY_URL_BASE = "https://portals.veracross.com/" + SCHOOL_CODE + "/";
@@ -55,6 +57,19 @@ public class VeracrossHttpClient extends GeneralHttpClient
         postForm("https://portals.veracross.com/sjp/login?WCI=Login&WCE=Submit", null,
                         "username", username,
                         "token", ssoToken).close();
+    }
+
+    /**
+     * Restore cookie session
+     *
+     * @param session Session token
+     */
+    public void restoreSession(String session)
+    {
+        restoreCookies(new Gson().fromJson("[{\"name\":\"_veracross_session\",\"attribs\":" +
+                        "{\"path\":\"/\",\"domain\":\".veracross.com\"},\"value\":\"" + session +
+                        "\",\"cookieDomain\":\"veracross.com\",\"cookiePath\":\"/\",\"isSecur" +
+                        "e\":true,\"cookieVersion\":0}]", new TypeToken<List<BasicClientCookie>>(){}.getType()));
     }
 
     /**
