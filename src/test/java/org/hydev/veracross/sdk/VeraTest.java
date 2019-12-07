@@ -31,8 +31,8 @@ class VeraTest
     {
         // Login Veracross
         veracross = new VeracrossHttpClient();
-        veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("session.txt"), "UTF-8")
                 .useDelimiter("\\A").next());
+        veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("/session.txt"), "UTF-8")
     }
 
     @Test @Order(2)
