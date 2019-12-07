@@ -179,7 +179,8 @@ public class VeracrossHtmlParser
         Element table = doc.selectFirst("#assignment_type_summary .data_table tbody");
 
         // There are no table
-        if (table == null) return new VeraCourseGrading(GradingMethod.NOT_GRADED, null);
+        if (table == null || table.html().contains("No records found"))
+            return new VeraCourseGrading(GradingMethod.NOT_GRADED, null);
 
         // Loop through table rows
         for (Element tr : table.select("tr"))
