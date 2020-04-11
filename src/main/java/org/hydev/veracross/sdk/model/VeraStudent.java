@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is the data POJO class for student directory:
  * https://portals-app.veracross.com/.../student/directory/students
@@ -227,4 +230,19 @@ public class VeraStudent implements VeraData
     @SerializedName("p4_email")
     @Expose
     private String p4Email;
+
+    /**
+     * Get the ids of all classes
+     *
+     * @return List of ids.
+     */
+    public List<Integer> getClassesIds()
+    {
+        List<Integer> list = new ArrayList<>();
+        for (String classId : allClasses.split("\\|"))
+        {
+            list.add(Integer.parseInt(classId));
+        }
+        return list;
+    }
 }
