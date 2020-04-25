@@ -19,16 +19,16 @@ public class VeraLoginInfo
 {
     long personPk;
     String username; // Email
-    String securityRoles;
+    String securityRoles; // []
 
-    int schoolYear;
+    int schoolYear; // 2019
 
-    String client;
-    String clientRoute;
+    String client; // "sjp"
+    String clientRoute; // "sjp"
     String context; // "student"
     String env; // "production"
 
-    String forkliftDomain;
-    String forkliftAuth;
-    String tld;
+    String forkliftDomain; // "https://files.veracross.com"
+    String forkliftAuth; // "eyJ......." (Base 64)
+    String tld; // "com"
 }
