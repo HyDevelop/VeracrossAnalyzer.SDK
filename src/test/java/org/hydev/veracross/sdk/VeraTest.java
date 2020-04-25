@@ -38,6 +38,14 @@ class VeraTest
     @Test @Order(2)
     void validateLogin() throws IOException
     {
+        VeraLoginInfo loginInfo = veracross.getLoginInfo();
+
+        if (loginInfo == null)
+        {
+            System.out.println("Error: Login Expired");
+            System.exit(-1);
+        }
+
         if (!veracross.validateLogin())
         {
             System.out.println("Error: Login Expired");
