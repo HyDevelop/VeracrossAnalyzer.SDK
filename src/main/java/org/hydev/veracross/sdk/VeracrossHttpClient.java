@@ -331,6 +331,20 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
+     * Get the login info
+     *
+     * @return Login info
+     */
+    public VeraLoginInfo getLoginInfo() throws IOException
+    {
+        // Fetch html body
+        String html = getBody(URL_BASE + WEB_CSRF_TOKEN);
+
+        // Get token
+        return VeracrossHtmlParser.findLoginInfo(html);
+    }
+
+    /**
      * Mark assignment as read
      *
      * @param csrf CSRF Token
