@@ -219,7 +219,7 @@ public class VeracrossHtmlParser
      * Find login info from url
      *
      * @param html Html page
-     * @return Login info
+     * @return Login info or null
      */
     public static VeraLoginInfo findLoginInfo(String html)
     {
@@ -256,6 +256,6 @@ public class VeracrossHtmlParser
             }
         }
 
-        return result;
+        return result.username() == null ? null : result;
     }
 }
