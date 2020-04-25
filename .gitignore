@@ -29,3 +29,6 @@ hs_err_pid*
 .idea/uiDesigner.xml
 *.json
 src/test/resources/session.txt
+
+# This project
+VeraTestBackup.java
