@@ -235,6 +235,7 @@ public class VeracrossHtmlParser
 
                 // Split content into key / value pairs
                 String[] split = line.substring(8).split(" = ");
+                split[1] = split[1].replace("\"", "").replace(";", "");
 
                 // Assign values
                 switch (split[0])
