@@ -249,8 +249,6 @@ public class VeracrossHtmlParser
                     case "currentUser.username": result.username(split[1]); break;
                     case "currentUser.personPk": result.personPk(Long.parseLong(split[1])); break;
                     case "currentUser.securityRoles": result.securityRoles(split[1]); break;
-                    case "context": result.context(split[1]); break;
-                    case "env": result.env(split[1]); break;
                 }
 
                 // End of input

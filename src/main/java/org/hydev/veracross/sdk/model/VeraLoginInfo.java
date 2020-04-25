@@ -25,8 +25,6 @@ public class VeraLoginInfo
 
     String client; // "sjp"
     String clientRoute; // "sjp"
-    String context; // "student"
-    String env; // "production"
 
     String forkliftDomain; // "https://files.veracross.com"
     String forkliftAuth; // "eyJ......." (Base 64)
