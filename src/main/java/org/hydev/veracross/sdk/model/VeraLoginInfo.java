@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class VeraLoginInfo
 {
-    long personPk;
+    int personPk;
     String username; // Email
     String securityRoles; // []
 

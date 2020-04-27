@@ -247,7 +247,7 @@ public class VeracrossHtmlParser
                     case "forkliftAuth": result.forkliftAuth(split[1]); break;
                     case "tld": result.tld(split[1]); break;
                     case "currentUser.username": result.username(split[1]); break;
-                    case "currentUser.personPk": result.personPk(Long.parseLong(split[1])); break;
+                    case "currentUser.personPk": result.personPk(parseInt(split[1])); break;
                     case "currentUser.securityRoles": result.securityRoles(split[1]); break;
                 }
 
