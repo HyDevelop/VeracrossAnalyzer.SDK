@@ -214,48 +214,4 @@ public class VeracrossHtmlParser
         throw new RuntimeException("CSRF Token Not Found! " +
                 "Please check for update, VXAnalyzer.Server v" + VERSION + " might be deprecated.");
     }
-
-    /**
-     * Find login info from url
-     *
-     * @param html Html page
-     * @return Login info or null
-     */
-    public static VeraLoginInfo findLoginInfo(String html)
-    {
-        VeraLoginInfo result = new VeraLoginInfo();
-
-        // Go through html line by line
-        for (String line : html.split("\n"))
-        {
-            // Something related
-            if (line.contains("Portals."))
-            {
-                line = line.trim();
-
-                // Split content into key / value pairs
-                String[] split = line.substring(8).split(" = ");
-                split[1] = split[1].replace("\"", "").replace(";", "");
-
-                // Assign values
-                switch (split[0])
-                {
-                    case "client": result.client(split[1]); break;
-                    case "clientRoute": result.clientRoute(split[1]); break;
-                    case "schoolYear": result.schoolYear(parseInt(split[1])); break;
-                    case "forkliftDomain": result.forkliftDomain(split[1]); break;
-                    case "forkliftAuth": result.forkliftAuth(split[1]); break;
-                    case "tld": result.tld(split[1]); break;
-                    case "currentUser.username": result.username(split[1]); break;
-                    case "currentUser.personPk": result.personPk(parseInt(split[1])); break;
-                    case "currentUser.securityRoles": result.securityRoles(split[1]); break;
-                }
-
-                // End of input
-                if (line.contains("window.Portals.app")) break;
-            }
-        }
-
-        return result.username() == null ? null : result;
-    }
 }
