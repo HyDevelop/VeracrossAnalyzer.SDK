@@ -35,24 +35,6 @@ class VeraTest
                 .useDelimiter("\\A").next().split("\n")[0]);
     }
 
-    @Test @Order(2)
-    void validateLogin() throws IOException
-    {
-        VeraLoginInfo loginInfo = veracross.getLoginInfo();
-
-        if (loginInfo == null)
-        {
-            System.out.println("Error: Login Expired");
-            System.exit(-1);
-        }
-
-        if (!veracross.validateLogin())
-        {
-            System.out.println("Error: Login Expired");
-            System.exit(-1);
-        }
-    }
-
     private VeraCourses courses;
 
     @Test @Order(3)
@@ -127,8 +109,11 @@ class VeraTest
     void testGrading() throws IOException
     {
         // Get grading info
-        List<VeraCourseGrading> gradings = veracross.getGradings(courses.get(1));
-        log(gradings);
+        for (VeraCourse course : courses)
+        {
+            List<VeraCourseGrading> gradings = veracross.getGradings(course);
+            log(gradings);
+        }
     }
 
     private String csrf = "";
