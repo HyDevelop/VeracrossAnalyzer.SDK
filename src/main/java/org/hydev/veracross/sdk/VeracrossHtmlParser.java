@@ -1,19 +1,17 @@
 package org.hydev.veracross.sdk;
 
-import org.hydev.veracross.sdk.model.*;
-import org.hydev.veracross.sdk.model.VeraCourse.VeraCourseBuilder;
+import org.hydev.veracross.sdk.model.VeraCourseGrading;
 import org.hydev.veracross.sdk.model.VeraCourseGrading.GradingMethod;
+import org.hydev.veracross.sdk.model.VeraPerson;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
@@ -79,62 +77,6 @@ public class VeracrossHtmlParser
         }
 
         return new VeraPerson(username, personPk);
-    }
-
-    /**
-     * Parse courses information from the html on the main page.
-     *
-     * @param mainPageHtml The html string of the main page.
-     * @return A list of courses
-     */
-    public static VeraCourses parseCourses(String mainPageHtml)
-    {
-        // Create result list.
-        VeraCourses result = new VeraCourses();
-
-        // Parse person
-        result.setPerson(parsePerson(mainPageHtml, false));
-
-        // Parse with Jsoup
-        Document doc = Jsoup.parse(mainPageHtml);
-
-        // Search for class list elements.
-        Elements courseElements = doc.select(".class-list.clear > li");
-
-        // Loops through each course to find detailed information.
-        for (Element courseElement : courseElements)
-        {
-            // Create builder
-            VeraCourseBuilder builder = VeraCourse.builder();
-
-            // Find course name element and extract the course name.
-            Element courseNameElement = courseElement.selectFirst(".class-name");
-            builder.name(courseNameElement.html());
-
-            // Find teacher name element and extract the teacher name.
-            builder.teacherName(courseElement.selectFirst(".teacher-name").html());
-
-            // Find course information link, and find the course id in it.
-            builder.id(findNumberInUrl(courseNameElement.attr("href")));
-
-            // Find assignments info link, and find the assignment id in it.
-            builder.assignmentsId(findNumberInUrl(courseElement.selectFirst(".view-assignments").attr("href")));
-
-            // Find grades
-            if (courseElement.select(".calculated-grade").size() != 0)
-            {
-                builder.letterGrade(courseElement.selectFirst(".letter-grade").html().replace(" ", ""));
-                builder.numericGrade(parseDouble(courseElement.selectFirst(".numeric-grade").html().replace("%", "")));
-            }
-
-            // Find status
-            builder.status(courseElement.attr("data-status"));
-
-            // Add to result
-            result.add(builder.build());
-        }
-
-        return result;
     }
 
     /**
