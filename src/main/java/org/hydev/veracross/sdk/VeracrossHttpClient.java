@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.hydev.veracross.sdk.model.*;
-import org.hydev.veracross.sdk.model.VeraLegacyCourse.CourseListContainer;
+import org.hydev.veracross.sdk.model.CourseV3.CourseListContainer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -119,7 +119,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return List of courses.
      */
-    public VeraCourses getCourses() throws IOException
+    public CourseV3 getCourses() throws IOException
     {
         // Get html
         String responseHtml = getBody(V2_BASE);

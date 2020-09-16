@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * TODO: Write a description for this class!
  * <p>
@@ -21,7 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VeraLegacyCourse
+public class CourseV3
 {
     @SerializedName("enrollment_pk")
     @Expose
@@ -114,16 +112,4 @@ public class VeraLegacyCourse
     @SerializedName("course_sort_key")
     @Expose
     private Long courseSortKey;
-
-    /**
-     * This is used because the list is contained under the "courses" key
-     * instead of the json base.
-     */
-    @Data
-    public static class CourseListContainer
-    {
-        @SerializedName("courses")
-        @Expose
-        private List<VeraLegacyCourse> courses = null;
-    }
 }
