@@ -125,17 +125,5 @@ public class VeraLegacyCourse
         @SerializedName("courses")
         @Expose
         private List<VeraLegacyCourse> courses = null;
-
-        /**
-         * Convert legacy course to course
-         *
-         * @return List of courses
-         */
-        public VeraCourses convert()
-        {
-            VeraCourses result = new VeraCourses();
-            courses.forEach(course -> result.add(new VeraCourse(course)));
-            return result;
-        }
     }
 }
