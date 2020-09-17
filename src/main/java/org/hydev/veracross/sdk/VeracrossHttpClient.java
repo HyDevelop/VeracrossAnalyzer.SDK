@@ -5,14 +5,15 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.hydev.veracross.sdk.model.*;
-import org.hydev.veracross.sdk.model.CourseV3.CourseListContainer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-import static org.hydev.veracross.sdk.VeracrossConstants.USER_AGENT;
 import static org.hydev.veracross.sdk.VeracrossHtmlParser.parsePerson;
 
 /**
@@ -281,9 +282,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param quarter Quarter (0 to 3)
      * @return Grading scheme info of the course
      */
-    public VeraCourseGrading getGrading(VeraCourse course, int quarter) throws IOException
+    public VeraCourseGrading getGrading(CourseV3 course, int quarter) throws IOException
     {
-        return getGrading(course.getAssignmentsId(), quarter);
+        return getGrading(course.getEnrollmentPk(), quarter);
     }
 
     /**
@@ -308,9 +309,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param course Course
      * @return Grading scheme info list
      */
-    public List<VeraCourseGrading> getGradings(VeraCourse course) throws IOException
+    public List<VeraCourseGrading> getGradings(CourseV3 course) throws IOException
     {
-        return getGradings(course.getAssignmentsId());
+        return getGradings(course.getEnrollmentPk());
     }
 
     /**
