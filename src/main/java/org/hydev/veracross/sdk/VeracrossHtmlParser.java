@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
+import static java.util.regex.Pattern.*;
 import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 
 /**
@@ -29,17 +30,12 @@ import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
  */
 public class VeracrossHtmlParser
 {
-    private static final Pattern URL_NUMBER_PATTERN = Pattern.compile("(?<=/).[0-9]*(?=/)");
-    private static final Pattern USERNAME_PATTERN =
-            Pattern.compile("(?<=Portals\\.currentUser\\.username = \").*(?=@)");
-    private static final Pattern USERNAME_PATTERN_FALLBACK =
-            Pattern.compile("(?<=Portals\\.currentUser\\.username = \").*(?=\";)");
-    private static final Pattern PERSON_PK_PATTERN =
-            Pattern.compile("(?<=Portals\\.currentUser\\.personPk = ).*(?=;)");
-    private static final Pattern USERNAME_PATTERN_LEGACY =
-            Pattern.compile("(?<=username: \").*(?=\",)");
-    private static final Pattern PERSON_PK_PATTERN_LEGACY =
-            Pattern.compile("(?<=user_id: ).*(?=,)");
+    private static final Pattern URL_NUMBER_PATTERN = compile("(?<=/).[0-9]*(?=/)");
+    private static final Pattern V2_USERNAME_PATTERN = compile("(?<=Portals\\.currentUser\\.username = \").*(?=@)");
+    private static final Pattern V2_USERNAME_PATTERN_FALLBACK = compile("(?<=Portals\\.currentUser\\.username = \").*(?=\";)");
+    private static final Pattern V2_PERSON_PK_PATTERN = compile("(?<=Portals\\.currentUser\\.personPk = ).*(?=;)");
+    private static final Pattern V3_USERNAME_PATTERN = compile("(?<=username: \").*(?=\",)");
+    private static final Pattern V3_PERSON_PK_PATTERN = compile("(?<=user_id: ).*(?=,)");
 
     /**
      * Get basic person info
@@ -56,23 +52,22 @@ public class VeracrossHtmlParser
         if (!legacy)
         {
             // Get username and person pk
-            Matcher matcher = USERNAME_PATTERN.matcher(pageHtml);
+            Matcher matcher = V2_USERNAME_PATTERN.matcher(pageHtml);
             if (matcher.find()) username = matcher.group(0);
             if (username.equals(""))
             {
-                matcher = USERNAME_PATTERN_FALLBACK.matcher(pageHtml);
+                matcher = V2_USERNAME_PATTERN_FALLBACK.matcher(pageHtml);
                 if (matcher.find()) username = matcher.group(0);
-
             }
-            matcher = PERSON_PK_PATTERN.matcher(pageHtml);
+            matcher = V2_PERSON_PK_PATTERN.matcher(pageHtml);
             if (matcher.find()) personPk = parseInt(matcher.group(0));
         }
         else
         {
             // Get username and person pk
-            Matcher matcher = USERNAME_PATTERN_LEGACY.matcher(pageHtml);
+            Matcher matcher = V3_USERNAME_PATTERN.matcher(pageHtml);
             if (matcher.find()) username = matcher.group(0).toLowerCase();
-            matcher = PERSON_PK_PATTERN_LEGACY.matcher(pageHtml);
+            matcher = V3_PERSON_PK_PATTERN.matcher(pageHtml);
             if (matcher.find()) personPk = parseInt(matcher.group(0));
         }
 
@@ -107,9 +102,7 @@ public class VeracrossHtmlParser
 
         // If it says it's graded by assignment points, we are done.
         if (gradingHtml.contains("Assignment Points"))
-        {
             return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
-        }
 
         // Parse document
         Document doc = Jsoup.parse(gradingHtml);
@@ -137,8 +130,7 @@ public class VeracrossHtmlParser
         return new VeraCourseGrading(GradingMethod.PERCENT_TYPE, weightingMap);
     }
 
-    private static final Pattern CSRF_PATTERN =
-            Pattern.compile("(?<=<meta name=\"csrf-token\" content=\").*(?=\")");
+    private static final Pattern CSRF_PATTERN = compile("(?<=<meta name=\"csrf-token\" content=\").*(?=\")");
 
     /**
      * Find the csrf token in any page
@@ -149,10 +141,7 @@ public class VeracrossHtmlParser
     public static String findCsrfToken(String html)
     {
         Matcher matcher = CSRF_PATTERN.matcher(html);
-        if (matcher.find())
-        {
-            return matcher.group();
-        }
+        if (matcher.find()) return matcher.group();
         throw new RuntimeException("CSRF Token Not Found! " +
                 "Please check for update, VXAnalyzer.Server v" + VERSION + " might be deprecated.");
     }
