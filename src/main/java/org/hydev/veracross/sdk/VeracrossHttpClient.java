@@ -61,47 +61,6 @@ public class VeracrossHttpClient extends GeneralHttpClient
     }
 
     /**
-     * Login with username, password, and csrf token
-     *
-     * @param username Username
-     * @param password Password
-     * @throws IOException Something is wrong
-     */
-    public void _directLoginUnsupported(String username, String password) throws IOException
-    {
-        // Fetch html body
-        String html = getBody("https://accounts.veracross.com/" + SCHOOL_CODE + "/portals/login");
-
-        // Get token
-        String csrf = VeracrossHtmlParser.findCsrfToken(html);
-
-        CloseableHttpResponse response = postForm("https://accounts.veracross.com/" + SCHOOL_CODE + "/portals/login/password",
-            request ->
-            {
-                request.setHeader("authority", "accounts.veracross.com");
-                request.setHeader("origin", "https://accounts.veracross.com");
-                request.setHeader("upgrade-insecure-requests", "1");
-                request.setHeader("dnt", "1");
-                request.setHeader("content-type", "application/x-www-form-urlencoded");
-                request.setHeader("user-agent", USER_AGENT);
-                request.setHeader("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-                request.setHeader("sec-fetch-site", "same-origin");
-                request.setHeader("sec-fetch-mode", "navigate");
-                request.setHeader("sec-fetch-user", "?1");
-                request.setHeader("sec-fetch-dest", "document");
-                request.setHeader("referer", "https://accounts.veracross.com/sjp/portals/login");
-                return request;
-            },
-            "utf8", "✓",
-            "authenticity_token", csrf,
-            "username", username,
-            "password", password,
-            "commit", "Log In");
-
-        response.close();
-    }
-
-    /**
      * Restore cookie session
      *
      * @param session Session token
