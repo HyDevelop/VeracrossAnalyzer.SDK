@@ -27,15 +27,14 @@ class VeraTest
     private VeracrossHttpClient veracross;
 
     @Test @BeforeAll
-    void init()
+    void init() throws IOException
     {
         // Login Veracross
         veracross = new VeracrossHttpClient();
-        veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("/session.txt"), "UTF-8")
-                .useDelimiter("\\A").next().split("\n")[0]);
+        veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("/session.txt"), "UTF-8").useDelimiter("\\A").next().split("\n")[0]);
     }
 
-    private VeraCourses courses;
+    private CourseV3 courses;
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
@@ -156,7 +155,7 @@ class VeraTest
         veracross.restoreCookies(savedCookies);
 
         // Test it
-        VeraCourses courses = veracross.getCourses();
+        CourseV3 courses = veracross.getCourses();
         log(courses);
     }
 
