@@ -143,6 +143,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // Check error
         if (result == null)
         {
+            if (url.contains("accounts.veracross.com")) throw new RuntimeException("Veracross Error: Login failed or expired.");
             throw new RuntimeException("Veracross Error: Unsupported Version! Redirected URL: " + url);
         }
 
