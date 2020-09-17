@@ -34,7 +34,7 @@ class VeraTest
         veracross.restoreSession(new Scanner(VeraTest.class.getResourceAsStream("/session.txt"), "UTF-8").useDelimiter("\\A").next().split("\n")[0]);
     }
 
-    private CourseV3 courses;
+    private CourseListV3 courses;
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
@@ -50,7 +50,7 @@ class VeraTest
     void veracrossAssignments() throws IOException
     {
         // Get assignments of the course at index 1 of the list.
-        VeraAssignments assignments = veracross.getAssignments(courses.get(0).getAssignmentsId());
+        VeraAssignments assignments = veracross.getAssignments(courses.getCourses().get(0).getEnrollmentPk());
         log(assignments);
     }
 
@@ -108,7 +108,7 @@ class VeraTest
     void testGrading() throws IOException
     {
         // Get grading info
-        for (VeraCourse course : courses)
+        for (CourseV3 course : courses.getCourses())
         {
             List<VeraCourseGrading> gradings = veracross.getGradings(course);
             log(gradings);
@@ -155,7 +155,7 @@ class VeraTest
         veracross.restoreCookies(savedCookies);
 
         // Test it
-        CourseV3 courses = veracross.getCourses();
+        CourseListV3 courses = veracross.getCourses();
         log(courses);
     }
 
