@@ -32,19 +32,20 @@ public class VeracrossHttpClient extends GeneralHttpClient
 {
     public static String SCHOOL_CODE = "sjp";
 
-    public static String V2_BASE = "https://portals-app.veracross.com/" + SCHOOL_CODE + "/";
-    public static String V2_MESSAGES = "mailbox/messages";
-    public static String V2_CALENDAR_EVENTS = "student/calendar/student/calendar_events";
-    public static String V2_COURSE_ASSIGNMENTS = "student/enrollment/%s/assignments";
-    public static String V2_COURSE_FEEDBACK = "student/enrollment/%s/feedback";
-    public static String V2_DIRECTORY = "directory/entries.json";
-    public static String V2_ASSIGNMENT_MARK_READ = "enrollment/mark_notification_read";
+    public static String EMBED_BASE = "https://portals-embed.veracross.com/" + SCHOOL_CODE + "/";
+    public static String EMBED_ASSIGNMENTS = EMBED_BASE + "student/enrollment/%s/assignments";
+    public static String EMBED_DIRECTORY = EMBED_BASE + "directory/entries.json";
+    public static String EMBED_MESSAGES = EMBED_BASE + "mailbox/messages";
+    public static String EMBED_NOTIFICATION_READ = EMBED_BASE + "enrollment/mark_notification_read"; // TODO: Test
 
     public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=%s&key=_";
-    public static final String WEB_CSRF_TOKEN = "student/directory"; // Because it has the smallest html
+    public static String WEB_SMALLEST_HTML = EMBED_BASE + "student/directory"; // Because it has the smallest html
+
+    public static String V2_COURSE_FEEDBACK = "student/enrollment/%s/feedback"; //TODO
 
     public static String V3_BASE = "https://portals.veracross.com/" + SCHOOL_CODE + "/";
     public static String V3_COURSE = V3_BASE + "student/component/ClassListStudent/1308/load_data";
+    public static String V3_EVENTS = V3_BASE + "student/component/MyEventsStudent/1306/load_data";
 
     /**
      * Login and save the session
@@ -81,7 +82,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public CourseListV3 getCourses() throws IOException
     {
         // Get html
-        String responseHtml = getBody(V2_BASE);
+        String responseHtml = getBody(V3_BASE);
 
         // The old version website uses XHR to display course list, which
         // means there is an api for it. However, the new website shows
@@ -112,7 +113,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public boolean validateLogin() throws IOException
     {
-        return !getRedirectedUrl(V2_BASE).contains("accounts.veracross.com");
+        return !getRedirectedUrl(V3_BASE).contains("accounts.veracross.com");
     }
 
     /**
@@ -134,7 +135,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     {
         // Get the fully redirected url. Why this can be used to detect
         // the reason is explained above.
-        String url = getRedirectedUrl(V2_BASE);
+        String url = getRedirectedUrl(V3_BASE);
 
         // Check domain name
         String result =  url.contains("portals-app.veracross.com") ? "portals-app" :
@@ -159,7 +160,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public VeraAssignments getAssignments(long courseId) throws IOException
     {
-        String url = V2_BASE + String.format(V2_COURSE_ASSIGNMENTS, courseId);
+        String url = String.format(EMBED_ASSIGNMENTS, courseId);
         return getJson(url, VeraAssignments.class);
     }
 
@@ -176,7 +177,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // a TypeToken is used to generate the type.
         Type type = new TypeToken<List<VeraMessage>>(){}.getType();
 
-        return getJson(V2_BASE + V2_MESSAGES, type, "start", start);
+        return getJson(EMBED_MESSAGES, type, "start", start);
     }
 
     /**
@@ -188,7 +189,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public List<VeraCalendarEvent> getEvents(Date begin, Date end) throws IOException
     {
-        return getJson(V2_BASE + V2_CALENDAR_EVENTS, new TypeToken<List<VeraCalendarEvent>>(){}.getType()
+        return getJson(V3_EVENTS, new TypeToken<List<VeraCalendarEvent>>(){}.getType()
                 ,"begin_date", toVeracrossDate(begin)
                 ,"end_date", toVeracrossDate(end));
     }
@@ -240,7 +241,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public List<VeraStudent> getDirectoryStudents() throws IOException
     {
-        return getJson(V2_BASE + V2_DIRECTORY, new TypeToken<List<VeraStudent>>(){}.getType(),
+        return getJson(EMBED_DIRECTORY, new TypeToken<List<VeraStudent>>(){}.getType(),
                 "directory", "student",
                 "portal", "student",
                 "refresh", 0);
@@ -253,7 +254,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public List<VeraFaculty> getDirectoryFaculties() throws IOException
     {
-        return getJson(V2_BASE + V2_DIRECTORY, new TypeToken<List<VeraFaculty>>(){}.getType(),
+        return getJson(EMBED_DIRECTORY, new TypeToken<List<VeraFaculty>>(){}.getType(),
                 "directory", "faculty",
                 "portal", "student",
                 "refresh", 0);
@@ -324,7 +325,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public String getCsrfToken() throws IOException
     {
         // Fetch html body
-        String html = getBody(V2_BASE + WEB_CSRF_TOKEN);
+        String html = getBody(WEB_SMALLEST_HTML);
 
         // Get token
         return VeracrossHtmlParser.findCsrfToken(html);
@@ -340,7 +341,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public boolean markAssignmentAsRead(String csrf, long scoreId) throws IOException
     {
         // Fetch request
-        CloseableHttpResponse response = postForm(V2_BASE + V2_ASSIGNMENT_MARK_READ, (request) ->
+        CloseableHttpResponse response = postForm(EMBED_NOTIFICATION_READ, (request) ->
         {
             request.addHeader("accept", "*/*");
             request.addHeader("accept-encoding", "gzip, deflate, br");
