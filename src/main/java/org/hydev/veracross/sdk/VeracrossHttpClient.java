@@ -187,11 +187,11 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param end Ending date.
      * @return List of Calendar Events
      */
-    public List<VeraCalendarEvent> getEvents(Date begin, Date end) throws IOException
+    public List<EventV3> getEvents(Date begin, Date end) throws IOException
     {
-        return getJson(V3_EVENTS, new TypeToken<List<VeraCalendarEvent>>(){}.getType()
+        return getJson(V3_EVENTS, EventV3.EventListV3.class
                 ,"begin_date", toVeracrossDate(begin)
-                ,"end_date", toVeracrossDate(end));
+                ,"end_date", toVeracrossDate(end)).getEvents();
     }
 
     /**
@@ -202,7 +202,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * @param end Ending offset.
      * @return Calendar Events
      */
-    public List<VeraCalendarEvent> getEvents(int begin, int end) throws IOException
+    public List<EventV3> getEvents(int begin, int end) throws IOException
     {
         return getEvents(getDate(begin), getDate(end));
     }
