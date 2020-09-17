@@ -18,5 +18,13 @@ public class CourseListV3
     private List<CourseV3> courses = null;
 
     private String username;
-    private String personPk;
+    private Integer personPk;
+
+    public CourseListV3 setPerson(VeraPerson person)
+    {
+        username = person.getUsername();
+        personPk = person.getPersonPk();
+
+        return this;
+    }
 }
