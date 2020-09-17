@@ -40,8 +40,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public static String V2_DIRECTORY = "directory/entries.json";
     public static String V2_ASSIGNMENT_MARK_READ = "enrollment/mark_notification_read";
 
-    public static String WEB_GRADING =
-            "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=%s&key=_";
+    public static String WEB_GRADING = "https://documents.veracross.com/" + SCHOOL_CODE + "/grade_detail/%s?grading_period=%s&key=_";
     public static final String WEB_CSRF_TOKEN = "student/directory"; // Because it has the smallest html
 
     public static String V3_BASE = "https://portals.veracross.com/" + SCHOOL_CODE + "/";
@@ -101,7 +100,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             // This is Portals 3.0, it uses XHR to load courses
             // https://learn.veracross.com/docs/launching-portals-30
-            return getJson(V3_BASE + V3_COURSE, CourseListV3.class).setPerson(parsePerson(getBody(V3_BASE), true));
+            return getJson(V3_COURSE, CourseListV3.class).setPerson(parsePerson(getBody(V3_BASE), true));
         }
     }
 
