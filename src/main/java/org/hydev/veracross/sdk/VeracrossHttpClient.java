@@ -119,7 +119,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      *
      * @return List of courses.
      */
-    public CourseV3 getCourses() throws IOException
+    public CourseListV3 getCourses() throws IOException
     {
         // Get html
         String responseHtml = getBody(V2_BASE);
@@ -141,8 +141,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
         {
             // This is Portals 3.0, it uses XHR to load courses
             // https://learn.veracross.com/docs/launching-portals-30
-            return getJson(V3_BASE + V3_COURSE, CourseListContainer.class)
-                    .setPerson(parsePerson(getBody(V3_BASE), true));
+            return getJson(V3_BASE + V3_COURSE, CourseListV3.class).setPerson(parsePerson(getBody(V3_BASE), true));
         }
     }
 
