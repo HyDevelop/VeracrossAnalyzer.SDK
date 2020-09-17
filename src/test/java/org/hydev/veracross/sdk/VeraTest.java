@@ -66,7 +66,7 @@ class VeraTest
     void veracrossEvents1() throws IOException
     {
         // Get calendar events from 5 days ago to 5 days later.
-        List<VeraCalendarEvent> events = veracross.getEvents(-5, 5);
+        List<EventV3> events = veracross.getEvents(-5, 5);
         log(events);
     }
 
@@ -74,7 +74,7 @@ class VeraTest
     void veracrossEvents2() throws IOException
     {
         // Get calendar events in between two dates.
-        List<VeraCalendarEvent> events = veracross.getEvents(new Date(), new Date());
+        List<EventV3> events = veracross.getEvents(new Date(), new Date());
         log(events);
     }
 
