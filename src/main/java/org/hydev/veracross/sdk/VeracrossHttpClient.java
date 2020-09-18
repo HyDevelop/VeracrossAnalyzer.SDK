@@ -190,7 +190,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public List<EventV3> getEvents(Date begin, Date end) throws IOException
     {
         return getJson(V3_EVENTS, EventV3.EventListV3.class
-                ,"begin_date", toVeracrossDate(begin)
+                ,"start_date", toVeracrossDate(begin)
                 ,"end_date", toVeracrossDate(end)).getEvents();
     }
 
@@ -217,7 +217,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return new SimpleDateFormat("MM/dd/yyyy").format(date);
+        return new SimpleDateFormat("MM-dd-yyyy").format(date);
     }
 
     /**

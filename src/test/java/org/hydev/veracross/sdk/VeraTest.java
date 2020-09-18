@@ -84,8 +84,8 @@ class VeraTest
         // Get all student info
         List<VeraStudent> students = veracross.getDirectoryStudents();
 
-        // Filter them, select the students in Yoga course
-        students.removeIf(student -> !student.getAllClasses().contains("33070"));
+        // Filter them, select ony seniors
+        students.removeIf(student -> student.getCurrentGradeId() != 12);
 
         // Print results
         log(students);
