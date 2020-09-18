@@ -27,15 +27,15 @@ public class CourseV3
 
     @SerializedName("class_pk")
     @Expose
-    private Integer classPk;
+    private Integer pk;
 
     @SerializedName("class_id")
     @Expose
-    private String classId;
+    private String id;
 
     @SerializedName("class_name")
     @Expose
-    private String className;
+    private String name;
 
     @SerializedName("description")
     @Expose
