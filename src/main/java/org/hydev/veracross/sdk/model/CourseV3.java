@@ -27,11 +27,11 @@ public class CourseV3
 
     @SerializedName("class_pk")
     @Expose
-    private Integer pk;
+    private Integer id;
 
     @SerializedName("class_id")
     @Expose
-    private String id;
+    private String nameId;
 
     @SerializedName("class_name")
     @Expose
@@ -43,7 +43,7 @@ public class CourseV3
 
     @SerializedName("teacher_full_name")
     @Expose
-    private String teacherFullName;
+    private String teacherName;
 
     @SerializedName("course_type")
     @Expose
@@ -75,11 +75,11 @@ public class CourseV3
 
     @SerializedName("ptd_grade")
     @Expose
-    private Double ptdGrade;
+    private Double numericGrade;
 
     @SerializedName("ptd_letter_grade")
     @Expose
-    private String ptdLetterGrade;
+    private String letterGrade;
 
     @SerializedName("display_assignments")
     @Expose
