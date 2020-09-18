@@ -23,11 +23,11 @@ public class CourseV3
 {
     @SerializedName("enrollment_pk")
     @Expose
-    private Long enrollmentPk;
+    private Integer enrollmentPk;
 
     @SerializedName("class_pk")
     @Expose
-    private Long classPk;
+    private Integer classPk;
 
     @SerializedName("class_id")
     @Expose
@@ -47,7 +47,7 @@ public class CourseV3
 
     @SerializedName("course_type")
     @Expose
-    private Long courseType;
+    private Integer courseType;
 
     @SerializedName("status")
     @Expose
@@ -59,19 +59,19 @@ public class CourseV3
 
     @SerializedName("meets_today")
     @Expose
-    private Long meetsToday;
+    private Integer meetsToday;
 
     @SerializedName("todays_times")
     @Expose
-    private Object todaysTimes;
+    private String todaysTimes;
 
     @SerializedName("todays_start_time")
     @Expose
-    private Object todaysStartTime;
+    private String todaysStartTime;
 
     @SerializedName("todays_blocks")
     @Expose
-    private Object todaysBlocks;
+    private String todaysBlocks;
 
     @SerializedName("ptd_grade")
     @Expose
@@ -83,15 +83,15 @@ public class CourseV3
 
     @SerializedName("display_assignments")
     @Expose
-    private Short displayAssignments;
+    private Integer displayAssignments;
 
     @SerializedName("display_notifications")
     @Expose
-    private Short displayNotifications;
+    private Integer displayNotifications;
 
     @SerializedName("notifications_count")
     @Expose
-    private Long notificationsCount;
+    private Integer notificationsCount;
 
     @SerializedName("class_configuration")
     @Expose
@@ -99,17 +99,17 @@ public class CourseV3
 
     @SerializedName("status_sort_key")
     @Expose
-    private Long statusSortKey;
+    private Integer statusSortKey;
 
     @SerializedName("type_sort_key")
     @Expose
-    private Long typeSortKey;
+    private Integer typeSortKey;
 
     @SerializedName("subject_sort_key")
     @Expose
-    private Long subjectSortKey;
+    private Integer subjectSortKey;
 
     @SerializedName("course_sort_key")
     @Expose
-    private Long courseSortKey;
+    private Integer courseSortKey;
 }
