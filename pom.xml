@@ -6,7 +6,7 @@
 
     <groupId>org.hydev</groupId>
     <artifactId>VeracrossAnalyzer.SDK</artifactId>
-    <version>3.2.0.318</version>
+    <version>3.2.0.322</version>
 
     <distributionManagement>
         <repository>
