@@ -104,6 +104,10 @@ public class VeracrossHtmlParser
         if (gradingHtml.contains("Assignment Points"))
             return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
 
+        // I have no idea how this works yet
+        if (gradingHtml.contains("Assignment Type and Points"))
+            return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
+
         // Parse document
         Document doc = Jsoup.parse(gradingHtml);
 
