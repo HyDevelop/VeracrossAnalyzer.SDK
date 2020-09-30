@@ -106,6 +106,8 @@ public class VeracrossHttpClient extends GeneralHttpClient
      * Check if the website is portal V3 or portals-app V2. V3 accounts can access V2 apis, but V2 accounts cannot
      * access V3 apis. Also, if you try to access V2 website with a V3 account or vice-versa, it would redirect back.
      *
+     * V3 uses XHR to display course list while V2 returns a static HTML (no longer supported).
+     *
      * V2: portals-app.veracross.com
      * V3: portals.veracross.com
      *
