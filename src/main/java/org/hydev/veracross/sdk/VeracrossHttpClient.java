@@ -119,15 +119,11 @@ public class VeracrossHttpClient extends GeneralHttpClient
     /**
      * Get the version of the website.
      *
-     * Check if the website is the portals (old) version or the
-     * portals-app (new) version. They are in very different formats.
-     * The old version website accounts can access the new version apis,
-     * but the new version accounts cannot access the old version
-     * apis. Also, if you try to access the old version website with
-     * a new version account, you would get redirected back.
+     * Check if the website is portal V3 or portals-app V2. V3 accounts can access V2 apis, but V2 accounts cannot
+     * access V3 apis. Also, if you try to access V2 website with a V3 account or vice-versa, it would redirect back.
      *
-     * New version: portals-app.veracross.com
-     * Old version: portals.veracross.com
+     * V2: portals-app.veracross.com
+     * V3: portals.veracross.com
      *
      * @return Version ("portals-app" or "portals")
      */
