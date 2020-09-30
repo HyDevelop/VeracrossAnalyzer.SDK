@@ -84,25 +84,9 @@ public class VeracrossHttpClient extends GeneralHttpClient
         // Get html
         String responseHtml = getBody(V3_BASE);
 
-        // The old version website uses XHR to display course list, which
-        // means there is an api for it. However, the new website shows
-        // a generated static page for courses, which means information
-        // can only be obtained from the html.
-        //
-        // More details in the JavaDoc comments for getWebsiteVersion().
-
-        // Check version
-        if (getWebsiteVersion().equals("portals-app"))
-        {
-            // This is Portals 2.0, which originally required html souping
-            throw new UnsupportedOperationException("This version of Veracross is no longer supported.");
-        }
-        else
-        {
-            // This is Portals 3.0, it uses XHR to load courses
-            // https://learn.veracross.com/docs/launching-portals-30
-            return getJson(V3_COURSE, CourseListV3.class).setPerson(parsePerson(responseHtml));
-        }
+        // This is Portals 3.0, it uses XHR to load courses
+        // https://learn.veracross.com/docs/launching-portals-30
+        return getJson(V3_COURSE, CourseListV3.class).setPerson(parsePerson(responseHtml));
     }
 
     /**
