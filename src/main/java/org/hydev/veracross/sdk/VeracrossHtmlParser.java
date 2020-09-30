@@ -31,9 +31,6 @@ import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 public class VeracrossHtmlParser
 {
     private static final Pattern URL_NUMBER_PATTERN = compile("(?<=/).[0-9]*(?=/)");
-    private static final Pattern V2_USERNAME_PATTERN = compile("(?<=Portals\\.currentUser\\.username = \").*(?=@)");
-    private static final Pattern V2_USERNAME_PATTERN_FALLBACK = compile("(?<=Portals\\.currentUser\\.username = \").*(?=\";)");
-    private static final Pattern V2_PERSON_PK_PATTERN = compile("(?<=Portals\\.currentUser\\.personPk = ).*(?=;)");
     private static final Pattern V3_USERNAME_PATTERN = compile("(?<=username: \").*(?=\",)");
     private static final Pattern V3_PERSON_PK_PATTERN = compile("(?<=user_id: ).*(?=,)");
 
@@ -41,35 +38,18 @@ public class VeracrossHtmlParser
      * Get basic person info
      *
      * @param pageHtml Html
-     * @param legacy Is legacy html page or not
      * @return Person info
      */
-    public static VeraPerson parsePerson(String pageHtml, boolean legacy)
+    public static VeraPerson parsePerson(String pageHtml)
     {
         String username = "";
         int personPk = -1;
 
-        if (!legacy)
-        {
-            // Get username and person pk
-            Matcher matcher = V2_USERNAME_PATTERN.matcher(pageHtml);
-            if (matcher.find()) username = matcher.group(0);
-            if (username.equals(""))
-            {
-                matcher = V2_USERNAME_PATTERN_FALLBACK.matcher(pageHtml);
-                if (matcher.find()) username = matcher.group(0);
-            }
-            matcher = V2_PERSON_PK_PATTERN.matcher(pageHtml);
-            if (matcher.find()) personPk = parseInt(matcher.group(0));
-        }
-        else
-        {
-            // Get username and person pk
-            Matcher matcher = V3_USERNAME_PATTERN.matcher(pageHtml);
-            if (matcher.find()) username = matcher.group(0).toLowerCase();
-            matcher = V3_PERSON_PK_PATTERN.matcher(pageHtml);
-            if (matcher.find()) personPk = parseInt(matcher.group(0));
-        }
+        // Get username and person pk
+        Matcher matcher = V3_USERNAME_PATTERN.matcher(pageHtml);
+        if (matcher.find()) username = matcher.group(0).toLowerCase();
+        matcher = V3_PERSON_PK_PATTERN.matcher(pageHtml);
+        if (matcher.find()) personPk = parseInt(matcher.group(0));
 
         return new VeraPerson(username, personPk);
     }
