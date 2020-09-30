@@ -112,4 +112,36 @@ public class CourseV3
     @SerializedName("course_sort_key")
     @Expose
     private Integer courseSortKey;
+
+    /**
+     * Copy constructor
+     *
+     * @param o Other course
+     */
+    public CourseV3(CourseV3 o)
+    {
+        this.enrollmentPk = o.enrollmentPk;
+        this.id = o.id;
+        this.nameId = o.nameId;
+        this.name = o.name;
+        this.description = o.description;
+        this.teacherName = o.teacherName;
+        this.courseType = o.courseType;
+        this.status = o.status;
+        this.type = o.type;
+        this.meetsToday = o.meetsToday;
+        this.todaysTimes = o.todaysTimes;
+        this.todaysStartTime = o.todaysStartTime;
+        this.todaysBlocks = o.todaysBlocks;
+        this.numericGrade = o.numericGrade;
+        this.letterGrade = o.letterGrade;
+        this.displayAssignments = o.displayAssignments;
+        this.displayNotifications = o.displayNotifications;
+        this.notificationsCount = o.notificationsCount;
+        this.classConfiguration = o.classConfiguration;
+        this.statusSortKey = o.statusSortKey;
+        this.typeSortKey = o.typeSortKey;
+        this.subjectSortKey = o.subjectSortKey;
+        this.courseSortKey = o.courseSortKey;
+    }
 }
