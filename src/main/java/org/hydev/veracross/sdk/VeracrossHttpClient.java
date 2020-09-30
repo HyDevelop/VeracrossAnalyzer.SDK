@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.String.format;
 import static org.hydev.veracross.sdk.VeracrossHtmlParser.parsePerson;
 
 /**
@@ -142,8 +143,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
      */
     public VeraAssignments getAssignments(long courseId) throws IOException
     {
-        String url = String.format(EMBED_ASSIGNMENTS, courseId);
-        return getJson(url, VeraAssignments.class);
+        return getJson(format(EMBED_ASSIGNMENTS, courseId), VeraAssignments.class);
     }
 
     /**
@@ -252,7 +252,7 @@ public class VeracrossHttpClient extends GeneralHttpClient
     public VeraCourseGrading getGrading(long assignmentsId, int quarter) throws IOException
     {
         // Get HTML
-        String html = getBody(String.format(WEB_GRADING, assignmentsId, quarter + 1));
+        String html = getBody(format(WEB_GRADING, assignmentsId, quarter + 1));
 
         // Parse it
         return VeracrossHtmlParser.parseGrading(html);
