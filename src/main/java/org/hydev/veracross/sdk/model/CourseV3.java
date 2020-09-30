@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * TODO: Write a description for this class!
+ * Course data model for Veracross Portal V3
  * <p>
  * Class created by the HyDEV Team on 2019-09-23!
  *
