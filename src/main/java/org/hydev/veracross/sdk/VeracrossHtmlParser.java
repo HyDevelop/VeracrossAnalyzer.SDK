@@ -13,8 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.Long.parseLong;
-import static java.util.regex.Pattern.*;
+import static java.util.regex.Pattern.compile;
 import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
 
 /**
@@ -30,7 +29,6 @@ import static org.hydev.veracross.sdk.VeracrossConstants.VERSION;
  */
 public class VeracrossHtmlParser
 {
-    private static final Pattern URL_NUMBER_PATTERN = compile("(?<=/).[0-9]*(?=/)");
     private static final Pattern V3_USERNAME_PATTERN = compile("(?<=username: \").*(?=\",)");
     private static final Pattern V3_PERSON_PK_PATTERN = compile("(?<=user_id: ).*(?=,)");
 
@@ -52,21 +50,6 @@ public class VeracrossHtmlParser
         if (matcher.find()) personPk = parseInt(matcher.group(0));
 
         return new VeraPerson(username, personPk);
-    }
-
-    /**
-     * Find the first number in a url.
-     *
-     * @param url Url (eg. "/course/12345/website/")
-     * @return The first number, -1 if not found.
-     */
-    private static long findNumberInUrl(String url)
-    {
-        url += "/";
-        Matcher matcher = URL_NUMBER_PATTERN.matcher(url);
-
-        if (matcher.find()) return parseLong(matcher.group());
-        return -1;
     }
 
     /**
