@@ -68,6 +68,7 @@ public class VeracrossHtmlParser
             return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
 
         // I have no idea how this works yet
+        // TODO: Correct this
         if (gradingHtml.contains("Assignment Type and Points"))
             return new VeraCourseGrading(GradingMethod.TOTAL_MEAN, null);
 
