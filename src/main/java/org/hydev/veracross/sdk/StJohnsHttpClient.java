@@ -34,6 +34,20 @@ public class StJohnsHttpClient extends GeneralHttpClient
     private String username;
 
     /**
+     * Get the session's authenticity token
+     *
+     * @return CSRF token
+     */
+    public String getCsrf() throws IOException
+    {
+        // Exmaple response: <input name="authenticity_token" type="hidden" value="oLeYfaLYmQDScdhx9fR5jpgvyjBXDCC36NTvfIjkBkgrsyCxA+KO71Du9n1MvJqNbjRK1R+HCl4OlmGlrpqRSg==">
+        String response = getBody("https://www.stjohnsprep.org/fs/sessions/user/csrf-token");
+
+        // Example CSRF Token: oLeYfaLYmQDScdhx9fR5jpgvyjBXDCC36NTvfIjkBkgrsyCxA+KO71Du9n1MvJqNbjRK1R+HCl4OlmGlrpqRSg==
+        return response.substring(response.indexOf("value=\"") + 7, response.indexOf("\">"));
+    }
+
+    /**
      * Login and save the session
      */
     public void login(String username, String password) throws IOException, VeracrossException
@@ -42,10 +56,11 @@ public class StJohnsHttpClient extends GeneralHttpClient
         this.username = username;
 
         // Post request
-        CloseableHttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
-                        "username", username,
-                        "password", password,
-                        "submit", "login");
+        CloseableHttpResponse response = postForm("https://www.stjohnsprep.org/fs/auth/finalsite/callback", null,
+            "username", username,
+            "password", password,
+            "protected_page", "false",
+            "authenticity_token", getCsrf());
 
         // Get response
         int status = response.getStatusLine().getStatusCode();
