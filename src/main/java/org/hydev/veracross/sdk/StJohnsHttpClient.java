@@ -34,6 +34,20 @@ public class StJohnsHttpClient extends GeneralHttpClient
     private String username;
 
     /**
+     * Get the session's authenticity token
+     *
+     * @return CSRF token
+     */
+    public String getCsrf() throws IOException
+    {
+        // Exmaple response: <input name="authenticity_token" type="hidden" value="oLeYfaLYmQDScdhx9fR5jpgvyjBXDCC36NTvfIjkBkgrsyCxA+KO71Du9n1MvJqNbjRK1R+HCl4OlmGlrpqRSg==">
+        String response = getBody("https://www.stjohnsprep.org/fs/sessions/user/csrf-token");
+
+        // Example CSRF Token: oLeYfaLYmQDScdhx9fR5jpgvyjBXDCC36NTvfIjkBkgrsyCxA+KO71Du9n1MvJqNbjRK1R+HCl4OlmGlrpqRSg==
+        return response.substring(response.indexOf("value=\"") + 7, response.indexOf("\">"));
+    }
+
+    /**
      * Login and save the session
      */
     public void login(String username, String password) throws IOException, VeracrossException
