@@ -5,8 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.hydev.veracross-analyzer</groupId>
-    <artifactId>VeracrossAnalyzer.SDK</artifactId>
+    <artifactId>veracross-analyzer-sdk</artifactId>
     <version>3.1.2.297</version>
+
+    <distributionManagement>
+        <repository>
+            <id>VeracrossAnalyzer.SDK</id>
+            <name>GitHub HyDevelop Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/HyDevelop/VeracrossAnalyzer.SDK</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
