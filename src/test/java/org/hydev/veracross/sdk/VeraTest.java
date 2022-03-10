@@ -2,6 +2,7 @@ package org.hydev.veracross.sdk;
 
 import com.google.gson.Gson;
 import org.apache.http.cookie.Cookie;
+import org.hydev.veracross.sdk.exceptions.VeracrossException;
 import org.hydev.veracross.sdk.model.*;
 import org.junit.jupiter.api.*;
 
@@ -35,6 +36,14 @@ class VeraTest
     }
 
     private CourseListV3 courses;
+
+    @Test
+    void sjpCsrf() throws IOException
+    {
+        StJohnsHttpClient sj = new StJohnsHttpClient();
+        String csrf = sj.getCsrf();
+        System.out.println(csrf);
+    }
 
     @Test @Order(3)
     void veracrossCourses() throws IOException
@@ -161,7 +170,7 @@ class VeraTest
 
     private static void log(Object object)
     {
-        System.out.println(String.valueOf(new Gson().toJson(object)));
+        System.out.println(new Gson().toJson(object));
         System.out.println("--------======= LINE OF SEPARATION =======--------");
     }
 }
