@@ -56,10 +56,11 @@ public class StJohnsHttpClient extends GeneralHttpClient
         this.username = username;
 
         // Post request
-        CloseableHttpResponse response = postForm("https://www.stjohnsprep.org/userlogin.cfm?do=login&p=114", null,
-                        "username", username,
-                        "password", password,
-                        "submit", "login");
+        CloseableHttpResponse response = postForm("https://www.stjohnsprep.org/fs/auth/finalsite/callback", null,
+                "username", username,
+                "password", password,
+                "protected_page", "false",
+                "authenticity_token", getCsrf());
 
         // Get response
         int status = response.getStatusLine().getStatusCode();
